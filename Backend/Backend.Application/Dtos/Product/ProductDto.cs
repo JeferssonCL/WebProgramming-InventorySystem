@@ -9,5 +9,6 @@ namespace Backend.Application.Dtos
         public double Price { get; set; }
         public List<string> Image { get; set; } = [];
         public List<ProductVariantDto> Variants { get; set; } = [];
+        public List<ProductCategory> Categories { get; set; } = [];
     }
 }
