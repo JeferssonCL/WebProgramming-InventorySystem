@@ -52,6 +52,9 @@ coverage/
 # Rider caches
 .idea/
 
+# Ignore the .env file
+.env
+
 # Ignore user-specific files
 *.suo
 *.user
