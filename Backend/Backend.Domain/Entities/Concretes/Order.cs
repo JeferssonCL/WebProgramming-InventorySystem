@@ -7,7 +7,7 @@ public class Order : BaseEntity
 {
     public Guid UserId { get; set; }
     public DateTime OrderDate { get; set; }
-    public Status OrderStatus { get; set; }
+    public OrderStatus OrderStatus { get; set; }
     public double TotalPrice { get; set; }
     public User User { get; set; }
     public Shipment Shipment { get; set; }
