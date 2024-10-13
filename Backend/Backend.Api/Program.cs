@@ -30,7 +30,7 @@ builder.Services.AddScoped<IGenericDAO<Product>, ProductDAO>();
 builder.Services.AddScoped<IGenericDAO<Order>, OrderDAO>();
 
 string connectionString = builder.Configuration["PostgresSQLConnection"]
-    ?? throw new Exception("POSTGRES_CONNECTION_STRING is not set");
+    ?? throw new Exception("POSTGRESSQLCONNECTION is not set");
 
 builder.Services.AddDbContext<PostgresContext>(options =>
     options.UseNpgsql(connectionString,
@@ -42,13 +42,7 @@ builder.Services.AddDbContext<PostgresContext>(options =>
 
 builder.Services.AddAuthorization();
 builder.Services.AddControllers();
-// Register application services
 
-builder.Services.AddMediatR(cfg =>
-            cfg.RegisterServicesFromAssemblies(typeof(ApplicationProfile).Assembly)
-        );
-
-builder.Services.AddAutoMapper(typeof(ApplicationProfile).Assembly);
 
 var app = builder.Build();
 

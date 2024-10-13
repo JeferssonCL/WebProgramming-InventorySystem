@@ -6,14 +6,14 @@ using MediatR;
 
 namespace Backend.Application.Handlers.Products.RequestHandlers.Commands
 {
-    public class CreateProductCommandHandler : IRequestHandler<UpdateProductCommand, Product>
+    public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand, Product>
     {
         private readonly IGenericDAO<Product> _productDao;
         public CreateProductCommandHandler(IGenericDAO<Product> productDao)
         {
             _productDao = productDao;
         }
-        public async Task<Product> Handle(UpdateProductCommand request, CancellationToken cancellationToken)
+        public async Task<Product> Handle(CreateProductCommand request, CancellationToken cancellationToken)
         {
             var product = request.Product;
             await _productDao.CreateAsync(request.Product);

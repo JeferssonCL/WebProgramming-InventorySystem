@@ -7,6 +7,7 @@ namespace Backend.Application.Dtos
         public string Description { get; set; } = string.Empty;
         public string Brand { get; set; } = string.Empty;
         public double Price { get; set; }
+        public Guid Store { get; set; }
         public List<string> Image { get; set; } = [];
         public List<ProductVariantDto> Variants { get; set; } = [];
         public List<ProductCategory> Categories { get; set; } = [];
