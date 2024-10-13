@@ -4,7 +4,6 @@ using Backend.Infrastructure.Context;
 using Backend.Infrastructure.DAO.Concretes;
 using Backend.Infrastructure.DAO.Interfaces;
 using DotNetEnv;
-using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -21,19 +20,28 @@ builder.Services.AddCors(options =>
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddControllers();
+builder.Configuration.AddEnvironmentVariables();
 
 // CHECK:Add services to the container.
 builder.Services.AddApplication();
 
-builder.Services.AddScoped<IGenericDAO<Product>, ProductDAO>();
 
+builder.Services.AddScoped<IGenericDAO<Product>, ProductDAO>();
+builder.Services.AddScoped<IGenericDAO<Order>, OrderDAO>();
+
+string connectionString = builder.Configuration["PostgresSQLConnection"]
+    ?? throw new Exception("POSTGRES_CONNECTION_STRING is not set");
 
 builder.Services.AddDbContext<PostgresContext>(options =>
-    options.UseNpgsql(Environment.GetEnvironmentVariable("POSTGRES_CONNECTION_STRING"))
+    options.UseNpgsql(connectionString,
+        b => b.MigrationsAssembly("Backend.Api"))
+
            .EnableSensitiveDataLogging()
            .LogTo(Console.WriteLine, LogLevel.Information)
 );
+
+builder.Services.AddAuthorization();
+builder.Services.AddControllers();
 // Register application services
 
 builder.Services.AddMediatR(cfg =>
