@@ -1,7 +1,4 @@
-using Backend.Application.Dtos.Payment;
-using Backend.Application.Dtos.User;
-
-namespace Backend.Application.Dtos.Order
+namespace Backend.Application.Dtos
 {
     public class ProcessOrderDto
     {

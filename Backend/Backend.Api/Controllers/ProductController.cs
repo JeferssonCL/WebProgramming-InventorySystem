@@ -1,9 +1,11 @@
-using Backend.Application.Handlers.Product.Requests.Queries;
-using Backend.Application.Dtos.Product;
+using Backend.Application.Handlers.Products.Requests.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using MerchantService.Application.Dtos;
-using Backend.Application.Handlers.Product.Requests.Commands;
+using Backend.Application.Handlers.Products.Requests.Commands;
+using Backend.Application.Dtos;
+using AutoMapper;
+using Backend.Domain.Entities.Concretes;
 
 namespace Backend.Application.Api.Controllers
 {
@@ -12,9 +14,11 @@ namespace Backend.Application.Api.Controllers
     public class ProductController : ControllerBase
     {
         private readonly IMediator _mediator;
-        public ProductController(IMediator mediator)
+        private readonly IMapper _mapper;
+        public ProductController(IMediator mediator, IMapper mapper)
         {
             _mediator = mediator;
+            _mapper = mapper;
         }
 
         [HttpGet("{id}")]
@@ -30,11 +34,12 @@ namespace Backend.Application.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<PageDto<ProductDto>>> GetAll([FromQuery] int page = 1, [FromQuery] int limit = 10)
+        public async Task<ActionResult<PageDto<Product>>> GetAll([FromQuery] int page = 1, [FromQuery] int limit = 10)
         {
             var query = new GetAllProductsQuery(page, limit);
-            var products = await _mediator.Send(query);
+            (List<Product> products, int total) = await _mediator.Send(query);
 
+            PageDto<Product> pageDto = PageDto<Product>.Create<Product>(products, total, page, limit);
             return Ok(products);
         }
 
@@ -42,7 +47,8 @@ namespace Backend.Application.Api.Controllers
         [HttpPost]
         public async Task<ActionResult<ProductDto>> Create([FromBody] ProductDto productDto)
         {
-            var createdProduct = await _mediator.Send(new CreateProductCommand(productDto));
+            var product = _mapper.Map<Product>(productDto);
+            var createdProduct = await _mediator.Send(new CreateProductCommand(product));
             return CreatedAtAction(nameof(GetById), new { id = createdProduct.Id }, createdProduct);
         }
 
@@ -54,7 +60,8 @@ namespace Backend.Application.Api.Controllers
                 return BadRequest("ID mismatch");
             }
 
-            var updatedProduct = await _mediator.Send(new UpdateProductCommand(productDto));
+            var product = _mapper.Map<Product>(productDto);
+            var updatedProduct = await _mediator.Send(new UpdateProductCommand(product));
             if (updatedProduct == null)
             {
                 return NotFound();
@@ -64,7 +71,7 @@ namespace Backend.Application.Api.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult> Delete(int id)
+        public async Task<ActionResult> Delete(Guid id)
         {
             var result = await _mediator.Send(new DeleteProductCommand(id));
             if (!result)

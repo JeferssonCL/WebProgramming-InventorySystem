@@ -1,10 +1,9 @@
-using Backend.Application.Dtos.Product;
+using Backend.Domain.Entities.Concretes;
 using MediatR;
-using MerchantService.Application.Dtos;
 
-namespace Backend.Application.Handlers.Product.Requests.Queries
+namespace Backend.Application.Handlers.Products.Requests.Queries
 {
-    public class GetAllProductsQuery : IRequest<PageDto<ProductDto>>
+    public class GetAllProductsQuery : IRequest<(List<Product>, int)>
     {
         public int Page { get; set; }
         public int PageSize { get; set; }

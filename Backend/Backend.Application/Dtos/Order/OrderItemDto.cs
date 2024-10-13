@@ -1,4 +1,4 @@
-namespace Backend.Application.Dtos.Order
+namespace Backend.Application.Dtos
 {
     public class OrderItemDto
     {

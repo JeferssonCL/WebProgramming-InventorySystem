@@ -1,3 +1,6 @@
+using Backend.Application.Dtos;
+using Backend.Domain.Entities.Concretes;
+
 namespace MerchantService.Application.Dtos
 {
     public class PageDto<T>
@@ -15,6 +18,11 @@ namespace MerchantService.Application.Dtos
             Page = page;
             PageSize = pageSize;
             TotalPages = (int)Math.Ceiling(totalItems / (double)pageSize);
+        }
+
+        public static PageDto<TK> Create<TK>(List<TK> products, int total, int page, int limit)
+        {
+            return new PageDto<TK>(products, total, page, limit);
         }
     }
 }

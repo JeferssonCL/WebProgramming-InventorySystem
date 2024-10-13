@@ -1,8 +1,8 @@
-using Backend.Application.Dtos.Order;
-using Backend.Application.Handlers.Order.Request.Commands;
+using Backend.Application.Dtos;
+using Backend.Application.Handlers.Orders.Request.Commands;
 using MediatR;
 
-namespace Backend.Application.Handlers.Order.RequestHandlers.Commands
+namespace Backend.Application.Handlers.Orders.RequestHandlers.Commands
 {
     public class ProcessOrderCommandHandler : IRequestHandler<ProcessOrderCommand, ProcessOrderDto>
     {

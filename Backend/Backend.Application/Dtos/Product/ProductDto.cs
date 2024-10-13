@@ -1,4 +1,4 @@
-namespace Backend.Application.Dtos.Product
+namespace Backend.Application.Dtos
 {
     public class ProductDto
     {

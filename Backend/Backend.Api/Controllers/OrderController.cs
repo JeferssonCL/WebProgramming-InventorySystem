@@ -1,7 +1,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Backend.Application.Dtos.Order;
-using Backend.Application.Handlers.Order.Request.Commands;
+using Backend.Application.Handlers.Orders.Request.Commands;
+using Backend.Application.Dtos;
 
 namespace Backend.Application.Api.Controllers
 {

@@ -1,4 +1,4 @@
-namespace Backend.Application.Dtos.Payment
+namespace Backend.Application.Dtos
 {
     public class CreditCardPaymentDto : PaymentMethodDto
     {
