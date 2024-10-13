@@ -8,31 +8,29 @@ namespace Backend.Infrastructure.DAO.Bases;
 public class GenericDAO<T>(PostgresContext context) : IGenericDAO<T>
     where T : class, IEntity
 {
-    private readonly PostgresContext _context = context;
-
     public async Task CreateAsync(T entity)
     {
-        _context.Set<T>().Add(entity);
-        await _context.SaveChangesAsync();
+        context.Set<T>().Add(entity);
+        await context.SaveChangesAsync();
     }
 
-    public async Task<T?> GetByIdAsync(int id)
+    public async Task<T?> GetByIdAsync(Guid id)
     {
-        return await _context.Set<T>().FindAsync(id);
+        return await context.Set<T>().FindAsync(id);
     }
 
     public async Task<IEnumerable<T>> GetAllAsync()
     {
-        return await _context.Set<T>().ToListAsync();
+        return await context.Set<T>().ToListAsync();
     }
 
     public async Task UpdateAsync(T entity)
     {
-        _context.Set<T>().Update(entity);
-        await _context.SaveChangesAsync();
+        context.Set<T>().Update(entity);
+        await context.SaveChangesAsync();
     }
 
-    public async Task DeleteAsync(int id)
+    public async Task DeleteAsync(Guid id)
     {
         var entity = await GetByIdAsync(id);
         if (entity != null)
