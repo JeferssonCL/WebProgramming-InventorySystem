@@ -4,4 +4,4 @@ using Backend.Infrastructure.DAO.Bases;
 
 namespace Backend.Infrastructure.DAO.Concretes;
 
-public class ShipmentDAO(PostgresContext context) : GenericDAO<Shipment>(context);
+public class StoreDAO(PostgresContext context) : GenericDAO<Store>(context);
