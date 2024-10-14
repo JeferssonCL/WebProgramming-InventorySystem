@@ -10,7 +10,6 @@ public class Order : BaseEntity
     public OrderStatus OrderStatus { get; set; }
     public double TotalPrice { get; set; }
     public User User { get; set; }
-    public Shipment Shipment { get; set; }
     public PaymentTransaction PaymentTransaction { get; set; }
     public ICollection<OrderItem> OrderItems { get; set; }
 }
