@@ -40,7 +40,7 @@ namespace Backend.Application.Api.Controllers
             (List<Product> products, int total) = await _mediator.Send(query);
 
             var productsDto = _mapper.Map<List<ProductDto>>(products);
-            PageDto<ProductDto> pageDto = PageDto<Product>.Create(productsDto, total, page, limit);
+            PageDto<ProductDto> pageDto = PageDto<ProductDto>.Create(productsDto, total, page, limit);
             return Ok(pageDto);
         }
 
