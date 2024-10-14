@@ -1,6 +1,6 @@
 namespace Backend.Application.Dtos
 {
-    public class UserAddress
+    public class UserAddressDto
     {
         public string? Street { get; set; }
         public string? City { get; set; }

@@ -34,18 +34,19 @@ namespace Backend.Application.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<PageDto<Product>>> GetAll([FromQuery] int page = 1, [FromQuery] int limit = 10)
+        public async Task<ActionResult<PageDto<ProductDto>>> GetAll([FromQuery] int page = 1, [FromQuery] int limit = 10)
         {
             var query = new GetAllProductsQuery(page, limit);
             (List<Product> products, int total) = await _mediator.Send(query);
 
-            PageDto<Product> pageDto = PageDto<Product>.Create<Product>(products, total, page, limit);
-            return Ok(products);
+            var productsDto = _mapper.Map<List<ProductDto>>(products);
+            PageDto<ProductDto> pageDto = PageDto<Product>.Create(productsDto, total, page, limit);
+            return Ok(pageDto);
         }
 
 
         [HttpPost]
-        public async Task<ActionResult<ProductDto>> Create([FromBody] ProductDto productDto)
+        public async Task<ActionResult<ProductDto>> Create([FromBody] CreateProductDto productDto)
         {
             var product = _mapper.Map<Product>(productDto);
             var createdProduct = await _mediator.Send(new CreateProductCommand(product));

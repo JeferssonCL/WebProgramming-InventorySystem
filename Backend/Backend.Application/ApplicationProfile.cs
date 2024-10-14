@@ -9,25 +9,84 @@ namespace Backend.Application
     {
         public ApplicationProfile()
         {
-            // Mapping from ProductDto to Product
-            CreateMap<ProductDto, Product>()
-                .ForMember(dest => dest.Categories, opt => opt.MapFrom(src => src.Categories));
+            CreateMap<CreateProductDto, Product>()
+             .ForMember(dest => dest.ProductAttributes, opt => opt.MapFrom(src => src.Variants.Select(v => new ProductAttribute
+             {
+                 Value = v.Value,
+                 Image = new Image()
+                 {
+                     ProductId = v.Image.ProductId,
+                     Url = v.Image.Url,
+                     AltText = v.Image.AltText,
+                     ProductAttribute = new ProductAttribute()
+                     {
+                         Id = v.Image.ProductAttributeId
+                     }
+                 },
+                 VariantId = v.variantId
+             }).ToList()))
+             .ForMember(dest => dest.Images, opt => opt.MapFrom(src => src.Images.Select(
+                    img => new Image
+                    {
+                        Url = img.Url,
+                        AltText = img.AltText,
+                        ProductId = img.ProductId,
+                        ProductAttribute = new ProductAttribute()
+                        {
+                            Id = img.ProductAttributeId
+                        }
+                    }
+                )))
+             .ForMember(dest => dest.Categories, opt => opt.MapFrom(src => src.Categories.Select(cat => new Category { Id = cat }).ToList()));
 
-            // Reverse mapping from Product to ProductDto
+
+
             CreateMap<Product, ProductDto>()
-                .ForMember(dest => dest.Categories, opt => opt.MapFrom(src => src.Categories));
+                .ForMember(dest => dest.Stock, opt => opt.MapFrom(src => src.StockQuantity))
+                .ForMember(dest => dest.Variants, opt => opt.MapFrom(src => src.ProductAttributes.Select(
+                   v =>
+                        new ProductVariantDto()
+                        {
+                            Value = v.Value,
+                            Image = new ImageDto()
+                            {
+                                Url = v.Image.Url,
+                                AltText = v.Image.AltText,
+                                ProductId = v.Image.ProductId,
+                                ProductAttributeId = v.Image.ProductAttribute.Id
+                            },
+                            variantId = v.VariantId,
+                            Name = v.Variant.Name
+                        }
+                )))
+                .ForMember(dest => dest.Categories, opt => opt.MapFrom(src => src.Categories.Select(cat => new ProductCategoryDto
+                {
+                    Name = cat.Name,
+                    Subcategories = cat.SubCategories.Select(sub => sub.Name).ToList()
+                }).ToList()))
+                .ForMember(dest => dest.Images, opt => opt.MapFrom(src => src.Images.Select(
+                    img => new ImageDto
+                    {
+                        Url = img.Url,
+                        AltText = img.AltText,
+                        ProductId = img.ProductId,
+                        ProductAttributeId = img.ProductAttribute.Id
+                    }
+                )))
+                .ForMember(
+                    dest => dest.Store,
+                    opt => opt.MapFrom(src => new ReducedStoreDto
+                    {
+                        Id = src.Store.Id,
+                        Name = src.Store.Name,
+                        UserId = src.Store.UserId,
+                        Description = src.Store.Description,
+                        Address = src.Store.Address,
+                        PhoneNumber = src.Store.PhoneNumber
+                    })
+                );
 
-            // Mapping from ProductCategory to Category
-            CreateMap<ProductCategory, Category>()
-                .ForMember(dest => dest.SubCategories, opt =>
-                    opt.MapFrom(src => src.Subcategories.Select(name => new Category { Name = name }).ToList()));
 
-            // Reverse mapping from Category to ProductCategory
-            CreateMap<Category, ProductCategory>()
-                .ForMember(dest => dest.Subcategories, opt =>
-                    opt.MapFrom(src => src.SubCategories.Select(sub => sub.Name).ToList())); // Extract names from SubCategoriesu
-            CreateMap<ProductVariantDto, ProductAttribute>();
-            CreateMap<ProductAttribute, ProductVariantDto>();
         }
     }
 }

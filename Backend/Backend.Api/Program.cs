@@ -19,7 +19,11 @@ builder.Services.AddCors(options =>
 });
 
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c =>
+{
+    // Utiliza el nombre completo de la clase para el schemaId
+    c.CustomSchemaIds(type => type.FullName); 
+});
 builder.Configuration.AddEnvironmentVariables();
 
 // CHECK:Add services to the container.
