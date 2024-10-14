@@ -1,16 +1,18 @@
 services:
-  postgres:
-    container_name: postgres_db
-    image: postgres:latest
-    restart: always
-    ports:
-      - "${POSTGRES_PORT}:${POSTGRES_PORT}"
-    environment:
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      POSTGRES_DB: ${POSTGRES_DB}
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
+  # postgres:
+  #   container_name: postgres_db
+  #   image: postgres:latest
+  #   restart: always
+  #   ports:
+  #     - "${POSTGRES_PORT}:${POSTGRES_PORT}"
+  #   environment:
+  #     POSTGRES_USER: ${POSTGRES_USER}
+  #     POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+  #     POSTGRES_DB: ${POSTGRES_DB}
+  #   volumes:
+  #     - postgres_data:/var/lib/postgresql/data
+  #     - ./Persistence_data/init.sql:/docker-entrypoint-initdb.d/1.sql
+  #     - ./Persistence_data/insert_data.sql:/docker-entrypoint-initdb.d/2.sql
 
   pgadmin:
     image: dpage/pgadmin4
@@ -19,8 +21,21 @@ services:
     environment:
       PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
-    depends_on:
-      - postgres
+    # depends_on:
+    #   - postgres
+
+# TODO: Fix it 
+  # api:
+  #   build:
+  #     context: .
+  #     dockerfile: Backend.API/Dockerfile
+  #   depends_on:
+  #     - postgres
+  #   environment:
+  #     - ASPNETCORE_ENVIRONMENT=Development
+  #     - ConnectionStrings__DefaultConnection=Host=postgres;Database=${POSTGRES_DB};Username=${POSTGRES_USER};Password=${POSTGRES_PASSWORD}
+  #   ports:
+  #     - "5000:80"
 
 volumes:
   postgres_data:
