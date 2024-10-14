@@ -12,5 +12,4 @@ public class UserAddress : BaseEntity
     public double Longitude { get; set; }
     public string AddressType { get; set; }
     public User User { get; set; }
-    public Shipment Shipment { get; set; }
 }
