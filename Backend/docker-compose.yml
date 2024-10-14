@@ -23,5 +23,28 @@ services:
     depends_on:
       - postgres
 
+api:
+    build:
+      context: .
+      dockerfile: Backend.API/Dockerfile
+    depends_on:
+      - postgres
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Host=postgres;Database=${POSTGRES_DB};Username=${POSTGRES_USER};Password=${POSTGRES_PASSWORD}
+    ports:
+      - "5000:80"
+
+  migration:
+    build:
+      context: .
+      dockerfile: Backend.API/Dockerfile
+    command: ["dotnet", "ef", "database", "update", "--project", "Backend.API"]
+    depends_on:
+      - postgres
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Host=postgres;Database=${POSTGRES_DB};Username=${POSTGRES_USER};Password=${POSTGRES_PASSWORD}
+
 volumes:
   postgres_data:
