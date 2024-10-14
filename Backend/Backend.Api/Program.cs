@@ -21,20 +21,17 @@ builder.Services.AddCors(options =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
-    // Utiliza el nombre completo de la clase para el schemaId
     c.CustomSchemaIds(type => type.FullName); 
 });
 builder.Configuration.AddEnvironmentVariables();
 
-// CHECK:Add services to the container.
 builder.Services.AddApplication();
 
 
 builder.Services.AddScoped<IGenericDAO<Product>, ProductDAO>();
 builder.Services.AddScoped<IGenericDAO<Order>, OrderDAO>();
 
-string connectionString = "Host=localhost;Port=5432;Database=merchant-db;Username=daniel;Password=daniel123";
-    //?? throw new Exception("POSTGRESSQLCONNECTION is not set");
+string connectionString = "Host=junction.proxy.rlwy.net;Port=25938;Database=railway;Username=postgres;Password=zsXxMVMoHWcwgGefeMsObSxlEpIZQNiq";
 
 builder.Services.AddDbContext<PostgresContext>(options =>
     options.UseNpgsql(connectionString,

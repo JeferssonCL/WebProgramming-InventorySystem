@@ -11,7 +11,7 @@ namespace Backend.Application.Handlers.Orders.RequestHandlers.Commands
         private readonly IGenericDAO<Order> _orderDao;
         public Task<bool> Handle(ProcessOrderCommand request, CancellationToken cancellationToken)
         {
-            return Task.FromResult(true);
+            return Task.FromResult(true );
         }
     }
 }
