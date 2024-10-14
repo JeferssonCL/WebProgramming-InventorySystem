@@ -16,15 +16,14 @@ namespace Backend.Application.Api.Controllers
         }
 
         [HttpPost]
-        public ActionResult<ProcessOrderDto> ProcessOrder(ProcessOrderDto processOrderDto)
+        public ActionResult<Dictionary<string, bool>> ProcessOrder(ProcessOrderDto processOrderDto)
         {
-            var product = _mediator.Send(new ProcessOrderCommand(processOrderDto));
+            var result = _mediator.Send(new ProcessOrderCommand(processOrderDto));
 
-            if (product == null)
+            return Ok(new Dictionary<string, bool>
             {
-                return NotFound();
-            }
-            return Ok(product);
+                { "result", result.Result }
+            });
         }
 
     }

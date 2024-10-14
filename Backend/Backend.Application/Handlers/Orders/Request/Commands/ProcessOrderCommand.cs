@@ -3,7 +3,7 @@ using MediatR;
 
 namespace Backend.Application.Handlers.Orders.Request.Commands
 {
-    public class ProcessOrderCommand : IRequest<ProcessOrderDto>
+    public class ProcessOrderCommand : IRequest<bool>
     {
         public ProcessOrderDto ProcessOrderDto { get; set; }
 

@@ -6,12 +6,12 @@ using MediatR;
 
 namespace Backend.Application.Handlers.Orders.RequestHandlers.Commands
 {
-    public class ProcessOrderCommandHandler : IRequestHandler<ProcessOrderCommand, ProcessOrderDto>
+    public class ProcessOrderCommandHandler : IRequestHandler<ProcessOrderCommand, bool>
     {
         private readonly IGenericDAO<Order> _orderDao;
-        public Task<ProcessOrderDto> Handle(ProcessOrderCommand request, CancellationToken cancellationToken)
+        public Task<bool> Handle(ProcessOrderCommand request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return Task.FromResult(true);
         }
     }
 }

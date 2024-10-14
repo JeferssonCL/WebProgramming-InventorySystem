@@ -33,8 +33,8 @@ builder.Services.AddApplication();
 builder.Services.AddScoped<IGenericDAO<Product>, ProductDAO>();
 builder.Services.AddScoped<IGenericDAO<Order>, OrderDAO>();
 
-string connectionString = builder.Configuration["PostgresSQLConnection"]
-    ?? throw new Exception("POSTGRESSQLCONNECTION is not set");
+string connectionString = "Host=localhost;Port=5432;Database=merchant-db;Username=daniel;Password=daniel123";
+    //?? throw new Exception("POSTGRESSQLCONNECTION is not set");
 
 builder.Services.AddDbContext<PostgresContext>(options =>
     options.UseNpgsql(connectionString,
