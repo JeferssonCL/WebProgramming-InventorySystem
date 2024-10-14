@@ -71,9 +71,10 @@ namespace Backend.Application
                 Url = img.Url,
                 AltText = img.AltText,
                 ProductId = img.ProductId,
-                ProductAttributeId = img.ProductAttribute.Id
+                ProductAttributeId = img.ProductAttribute != null ? img.ProductAttribute.Id : Guid.Empty // Handle null ProductAttribute
             }).ToList();
         }
+
 
         private static ProductVariantDto MapProductVariant(ProductAttribute v)
         {
