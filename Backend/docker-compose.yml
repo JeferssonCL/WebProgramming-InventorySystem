@@ -22,8 +22,7 @@ services:
       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
     depends_on:
       - postgres
-
-api:
+  api:
     build:
       context: .
       dockerfile: Backend.API/Dockerfile
