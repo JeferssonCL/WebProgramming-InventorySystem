@@ -1,0 +1,42 @@
+.shopping-cart-button {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.shop-cart-button {
+    color: #fff;
+    font-size: 30px;
+}
+
+.shopping-cart-list-section {
+    width: 600px;
+    height: 600px;
+    background-color: #fff;
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    border-radius: 10px;
+    display: none;
+}
+
+.shopping-cart-list-section.open {
+    display: block;
+}
+
+.shopping-cart-list-products {
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.shopping-cart-list-message-empty {
+    font-size: 18px;
+}
