@@ -1,4 +1,3 @@
-using Backend.Application.Dtos;
 using Backend.Application.Handlers.Products.Requests.Queries;
 using Backend.Domain.Entities.Concretes;
 using Backend.Infrastructure.DAO.Interfaces;
@@ -17,7 +16,6 @@ namespace Backend.Application.Handlers.Products.RequestHandlers.Queries
         public async Task<Product?> Handle(GetProductQuery request, CancellationToken cancellationToken)
         {
             var product = await _productDao.GetByIdAsync(request.Id);
-            
             return product;
         }
     }

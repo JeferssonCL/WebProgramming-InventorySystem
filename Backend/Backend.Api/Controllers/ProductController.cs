@@ -24,13 +24,15 @@ namespace Backend.Application.Api.Controllers
         [HttpGet("{id}")]
         public ActionResult<ProductDto> GetById(Guid id)
         {
-            var product = _mediator.Send(new GetProductQuery(id));
+            var product = _mediator.Send(new GetProductQuery(id)).Result;
 
             if (product == null)
             {
                 return NotFound();
             }
-            return Ok(product);
+
+            var productDto = _mapper.Map<ProductDto>(product);
+            return Ok(productDto);
         }
 
         [HttpGet]
