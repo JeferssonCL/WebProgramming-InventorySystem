@@ -10,18 +10,6 @@ INSERT INTO [Category] (Id, ParentCategoryId, Name) VALUES
 ('5e09170e-dedd-4ea9-ae0e-0a1091f80742', 'cff773e7-398e-4820-987e-47c171efdee5', 'Accessories');
 
 -- Insert Products
-INSERT INTO [CategoryProduct] (Id, CategoryId, ProductId) VALUES 
-('2300da8f-4014-45b4-b8dd-7a70c0d746ba', 'e0a21115-170c-438c-9b26-71ed8440b62f', '80381bb1-1d22-475a-8b7e-c4b84d02be0e'),
-('2300da8f-4014-45b4-b8dd-7a70c0d746ba', '4e5cb421-968e-4f85-b654-a96e0ab0e3f0', '80381bb1-1d22-475a-8b7e-c4b84d02be0e'),
-('dba80a58-ab77-49ba-9f4f-ddf667dfe39b', '4e5cb421-968e-4f85-b654-a96e0ab0e3f0', 'd98f6668-2b9f-4a7c-a866-99a73921eed6'),
-('dba80a58-ab77-49ba-9f4f-ddf667dfe39b', '3e76ea5d-aaaf-468b-ace8-e4944caea1bf', 'd98f6668-2b9f-4a7c-a866-99a73921eed6'),
-('45daac76-c8d5-41b2-b06b-c6efa6c98359', 'cff773e7-398e-4820-987e-47c171efdee5', 'fba39c75-29fb-499f-a88a-b0863c1d0f2a'),
-('45daac76-c8d5-41b2-b06b-c6efa6c98359', 'd7c2fa22-0abf-461f-942d-a4e235f46b8c', 'fba39c75-29fb-499f-a88a-b0863c1d0f2a'),
-('45daac76-c8d5-41b2-b06b-c6efa6c98359', '111687c4-9ff6-46aa-98b6-3a55c0d880fa', 'fba39c75-29fb-499f-a88a-b0863c1d0f2a'),
-('d171a92a-bfe7-404b-8471-adc5c3c5c44b', '111687c4-9ff6-46aa-98b6-3a55c0d880fa', '53d78e6d-decc-4244-b116-18bab2f24f09');
-('d171a92a-bfe7-404b-8471-adc5c3c5c44b', 'cff773e7-398e-4820-987e-47c171efdee5', '53d78e6d-decc-4244-b116-18bab2f24f09t');
-
--- Insert Products
 INSERT INTO [Product] (Id, StoreId, Name, Description, Price, Brand, StockQuantity) VALUES 
 ('80381bb1-1d22-475a-8b7e-c4b84d02be0e', '1df15fe2-2484-4d4d-88ff-830a4490d91c', 'iPhone 14', 'Latest Apple smartphone', 999.99, 'Apple', 50),
 ('d98f6668-2b9f-4a7c-a866-99a73921eed6', '1df15fe2-2484-4d4d-88ff-830a4490d91c', 'Dell XPS 13', 'Compact laptop with powerful performance', 1199.99, 'Dell', 20),
@@ -94,3 +82,15 @@ INSERT INTO [UserAddress] (Id, UserId, Address, City, Country, Latitude, Longitu
 INSERT INTO [Store] (Id, UserId, Name, Description, Address, PhoneNumber) VALUES 
 ('708096b5-4119-4365-b974-3da5c04f0ba6', 'c4055860-c902-4787-ba54-0b34e18a1040', 'Best Electronics', 'Your one-stop shop for electronics', '789 Tech Ave', 76435676),
 ('8330f716-3ad1-40f9-a8b4-5720b010328b', 'c4055860-c902-4787-ba54-0b34e18a1040', 'Fashion Hub', 'Latest fashion trends', '101 Fashion St', 65473899);
+
+-- Insert Products
+INSERT INTO [CategoryProduct] (CategoriesId, ProductsId) VALUES 
+('e0a21115-170c-438c-9b26-71ed8440b62f', '80381bb1-1d22-475a-8b7e-c4b84d02be0e'),
+('4e5cb421-968e-4f85-b654-a96e0ab0e3f0', '80381bb1-1d22-475a-8b7e-c4b84d02be0e'),
+('4e5cb421-968e-4f85-b654-a96e0ab0e3f0', 'd98f6668-2b9f-4a7c-a866-99a73921eed6'),
+('3e76ea5d-aaaf-468b-ace8-e4944caea1bf', 'd98f6668-2b9f-4a7c-a866-99a73921eed6'),
+('cff773e7-398e-4820-987e-47c171efdee5', 'fba39c75-29fb-499f-a88a-b0863c1d0f2a'),
+('d7c2fa22-0abf-461f-942d-a4e235f46b8c', 'fba39c75-29fb-499f-a88a-b0863c1d0f2a'),
+('111687c4-9ff6-46aa-98b6-3a55c0d880fa', 'fba39c75-29fb-499f-a88a-b0863c1d0f2a'),
+('111687c4-9ff6-46aa-98b6-3a55c0d880fa', '53d78e6d-decc-4244-b116-18bab2f24f09');
+('cff773e7-398e-4820-987e-47c171efdee5', '53d78e6d-decc-4244-b116-18bab2f24f09t');
