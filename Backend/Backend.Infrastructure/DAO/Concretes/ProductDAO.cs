@@ -11,8 +11,18 @@ public class ProductDAO(PostgresContext context) : GenericDAO<Product>(context)
     {
         return await context.Set<Product>()
              .Include(p => p.Store)
-             .Include(p => p.Images) 
-             .ToListAsync();
+             .Include(p => p.Images)
+             .ToListAsync()
+             .ConfigureAwait(false);
     }
 
+
+    public override async Task<Product?> GetByIdAsync(Guid id)
+    {
+        return await context.Set<Product>()
+             .Include(p => p.Store)
+             .Include(p => p.Images)
+             .FirstOrDefaultAsync(p => p.Id == id)
+             .ConfigureAwait(false);
+    }
 }

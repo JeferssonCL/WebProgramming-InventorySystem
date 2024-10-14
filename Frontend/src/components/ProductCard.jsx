@@ -6,7 +6,7 @@ export function ProductCard({ id, name, price, brand, image, onAddToCart }) {
     return (
         <div className="product-card">
             <img className='product-card-image' src={image} alt={`Product image: ${name}`} />
-            <h3 className='product-card-name'>{name}</h3>
+            <a href={`http://localhost:5173/product/${id}`} className='product-card-name'>{name}</a>
             <p className='product-card-price'><FaMoneyBill /> {price} $</p>
             <p className='product-card-brand'>
                 <FaTag /> {brand}

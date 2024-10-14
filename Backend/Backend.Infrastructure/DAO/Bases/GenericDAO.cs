@@ -19,6 +19,7 @@ public class GenericDAO<T>(PostgresContext context) : IGenericDAO<T>
         return await context.Set<T>().FindAsync(id);
     }
 
+
     public virtual async Task<IEnumerable<T>> GetAllAsync()
     {
         return await context.Set<T>().ToListAsync();

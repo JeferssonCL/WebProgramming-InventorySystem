@@ -86,7 +86,7 @@ namespace Backend.Application
                     Url = v.Image.Url,
                     AltText = v.Image.AltText,
                     ProductId = v.Image.ProductId,
-                    ProductAttributeId = v.Image.ProductAttribute.Id
+                    ProductAttributeId = v.Image.ProductAttribute != null ? v.Image.ProductAttribute.Id : Guid.Empty
                 },
                 variantId = v.VariantId,
                 Name = v.Variant.Name
@@ -98,7 +98,7 @@ namespace Backend.Application
             return new ProductCategoryDto
             {
                 Name = cat.Name,
-                Subcategories = cat.SubCategories.Select(sc => sc.Name).ToList()
+                Subcategories = cat.SubCategories.Select(sc => sc.Name).ToList() ?? new List<string>()
             };
         }
 

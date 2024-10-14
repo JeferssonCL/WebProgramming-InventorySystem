@@ -18,6 +18,7 @@
 .product-card-name {
     font-size: 24px;
     color: #5275F5;
+    text-decoration: none;
 }
 
 .product-card-add-shop-cart {
