@@ -1,0 +1,60 @@
+.failed-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #f9f9f9;
+}
+
+.failed-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 10vh;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.failed-image {
+    width: 300px; /* Ajusta el tamaño según tus preferencias */
+    margin-bottom: 20px;
+}
+
+.failed-title {
+    color: #F44336; /* Color rojo para indicar error */
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+.failed-message {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.failed-actions {
+    margin-top: 20px;
+}
+
+.action-title {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.retry-button,
+.contact-support-button {
+    background-color: #FF9800; /* Color naranja */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+
+.retry-button:hover,
+.contact-support-button:hover {
+    background-color: #F57C20; /* Color naranja más oscuro al pasar el mouse */
+}
