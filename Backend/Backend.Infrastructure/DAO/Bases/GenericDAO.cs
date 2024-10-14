@@ -14,12 +14,13 @@ public class GenericDAO<T>(PostgresContext context) : IGenericDAO<T>
         await context.SaveChangesAsync();
     }
 
-    public async Task<T?> GetByIdAsync(Guid id)
+    public virtual async Task<T?> GetByIdAsync(Guid id)
     {
         return await context.Set<T>().FindAsync(id);
     }
 
-    public async Task<IEnumerable<T>> GetAllAsync()
+
+    public virtual async Task<IEnumerable<T>> GetAllAsync()
     {
         return await context.Set<T>().ToListAsync();
     }
@@ -35,7 +36,7 @@ public class GenericDAO<T>(PostgresContext context) : IGenericDAO<T>
         var entity = await GetByIdAsync(id);
         if (entity != null)
         {
-            entity.IsActive = false; 
+            entity.IsActive = false;
             await UpdateAsync(entity);
         }
     }
