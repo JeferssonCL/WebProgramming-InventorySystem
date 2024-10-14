@@ -153,9 +153,9 @@ namespace Backend.Application
             return new PaymentTransaction
             {
                 Id = Guid.NewGuid(),
-                PaymentMethod = src.PaymentMethod.PaymentMethod,
+                PaymentMethod = src?.PaymentMethod?.PaymentMethod ?? PaymentMethod.CreditCard,
                 TransactionOrderStatus = PaymentStatus.Pending,
-                Amount = src.TotalPrice
+                Amount = src?.TotalPrice ?? 0,
             };
         }
     }
