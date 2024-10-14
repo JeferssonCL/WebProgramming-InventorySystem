@@ -1,5 +1,5 @@
 -- Insert Categories
-INSERT INTO [Category] (Id, ParentCategoryId, Name) VALUES 
+INSERT INTO Category (Id, ParentCategoryId, Name) VALUES 
 ('4e5cb421-968e-4f85-b654-a96e0ab0e3f0', NULL, 'Electronics'),
 ('cff773e7-398e-4820-987e-47c171efdee5', NULL, 'Clothing'),
 ('e0a21115-170c-438c-9b26-71ed8440b62f', '4e5cb421-968e-4f85-b654-a96e0ab0e3f0', 'Mobile Phones'),
@@ -10,14 +10,14 @@ INSERT INTO [Category] (Id, ParentCategoryId, Name) VALUES
 ('5e09170e-dedd-4ea9-ae0e-0a1091f80742', 'cff773e7-398e-4820-987e-47c171efdee5', 'Accessories');
 
 -- Insert Products
-INSERT INTO [Product] (Id, StoreId, Name, Description, Price, Brand, StockQuantity) VALUES 
+INSERT INTO Product (Id, StoreId, Name, Description, Price, Brand, StockQuantity) VALUES 
 ('80381bb1-1d22-475a-8b7e-c4b84d02be0e', '1df15fe2-2484-4d4d-88ff-830a4490d91c', 'iPhone 14', 'Latest Apple smartphone', 999.99, 'Apple', 50),
 ('d98f6668-2b9f-4a7c-a866-99a73921eed6', '1df15fe2-2484-4d4d-88ff-830a4490d91c', 'Dell XPS 13', 'Compact laptop with powerful performance', 1199.99, 'Dell', 20),
 ('fba39c75-29fb-499f-a88a-b0863c1d0f2a', 'eab21138-5858-4539-89fa-4634d2445faa', 'T-Shirt', 'Cotton T-Shirt in various colors', 19.99, 'Fashion Brand', 100),
 ('53d78e6d-decc-4244-b116-18bab2f24f09', 'eab21138-5858-4539-89fa-4634d2445faa', 'Leather Jacket', 'Genuine leather jacket', 199.99, 'Fashion Brand', 40);
 
 -- Insert Images
-INSERT INTO [Image] (Id, ProductId, AltText, Url) VALUES 
+INSERT INTO "Image" (Id, ProductId, AltText, Url) VALUES 
 ('3fe7bbff-d878-47be-a235-1ed9ebe2ed00', '80381bb1-1d22-475a-8b7e-c4b84d02be0e', 'iPhone 14', 'https://www.tiendaamiga.com.bo/media/catalog/product/cache/deb88dadd509903c96aaa309d3e790dc/c/e/celular_iphone_14_pro_128gb_negro.jpg'),
 ('0025a458-14f7-4067-b96a-13c6dec420bc', '80381bb1-1d22-475a-8b7e-c4b84d02be0e', 'iPhone 14', 'https://www.tiendaamiga.com.bo/media/catalog/product/cache/0f08319f92600c7a6bb31ae1a25ad318/c/e/celular_iphone_14_pro_128gb_black.jpg'),
 ('6be3577a-990a-4140-b726-8be55a2eeacc', '80381bb1-1d22-475a-8b7e-c4b84d02be0e', 'iPhone 14', 'https://www.tiendaamiga.com.bo/media/catalog/product/cache/0f08319f92600c7a6bb31ae1a25ad318/c/e/celular_iphone_14_pro_128gb_negro_mate.jpg'),
@@ -42,12 +42,12 @@ INSERT INTO [Image] (Id, ProductId, AltText, Url) VALUES
 ('ca49da7c-6deb-45dc-8ae7-65e8abce34d8', '53d78e6d-decc-4244-b116-18bab2f24f09', 'Genuine Leather Jacket in black', 'https://domino.ua/media/iopt/catalog/product/cache/1338d3702d6df92e886ded663f0927b0/1/5/154584-1_1.webp');
 
 -- Insert Variants
-INSERT INTO [Variant] (Id, Name) VALUES 
+INSERT INTO Variant (Id, Name) VALUES 
 ('c84517ff-e146-4074-a232-4c0b2328d308', 'Color'),
 ('0952150e-7949-4166-a489-9a8eadcd803a', 'Size');
 
 -- Insert Product Attributes
-INTO [ProductAttribute] (Id, ImageId, ProductId, VariantId, Value) VALUES 
+INTO ProductAttribute (Id, ImageId, ProductId, VariantId, Value) VALUES 
 ('b6f3db9e-b64d-4eae-97e9-b8f3dae749cf', '7e47fdc4-3043-416a-afd2-d9a9e9de73b9', '80381bb1-1d22-475a-8b7e-c4b84d02be0e', 'c84517ff-e146-4074-a232-4c0b2328d308', 'red'),
 ('b6f3db9e-b64d-4eae-97e9-b8f3dae749cf', '88ae92e5-6569-47b8-ab80-4e70b98e18cb', '80381bb1-1d22-475a-8b7e-c4b84d02be0e', 'c84517ff-e146-4074-a232-4c0b2328d308', 'black'),
 ('b6f3db9e-b64d-4eae-97e9-b8f3dae749cf', '7adcaa29-4dd5-48de-a64b-66b5b4977b93', '80381bb1-1d22-475a-8b7e-c4b84d02be0e', 'c84517ff-e146-4074-a232-4c0b2328d308', 'yellow'),
@@ -69,22 +69,22 @@ INTO [ProductAttribute] (Id, ImageId, ProductId, VariantId, Value) VALUES
 
 
 -- Insert Users
-INSERT INTO [User] (Id, Name, Email, Password, UserType) VALUES 
+INSERT INTO User (Id, Name, Email, Password, UserType) VALUES 
 ('c4055860-c902-4787-ba54-0b34e18a1040', 'Jefersson Coronel', 'jefersoncoronel700@gmail.com', 'password123', 0),
 ('e8489e3b-c12c-4197-8bc1-dac21bc6e82f', 'Karina Aguirre', 'jefersoncoronel700@gmail.com', 'password123', 3);
 
 -- Insert User Addresses
-INSERT INTO [UserAddress] (Id, UserId, Address, City, Country, Latitude, Longitude, AddressType) VALUES 
+INSERT INTO UserAddress (Id, UserId, Address, City, Country, Latitude, Longitude, AddressType) VALUES 
 ('945ff41a-fd1d-431b-9a70-2ae6f1a9ec08', 'c4055860-c902-4787-ba54-0b34e18a1040', '123 Main St', 'Los Angeles', 'USA', 34.0522, -118.2437, 'Home'),
 ('4ed85ab2a-19ed-4b0e-98e1-17366bf5e170', 'e8489e3b-c12c-4197-8bc1-dac21bc6e82f', '456 Elm St', 'New York', 'USA', 40.7128, -74.0060, 'Home');
 
 -- Insert Stores
-INSERT INTO [Store] (Id, UserId, Name, Description, Address, PhoneNumber) VALUES 
+INSERT INTO Store (Id, UserId, Name, Description, Address, PhoneNumber) VALUES 
 ('708096b5-4119-4365-b974-3da5c04f0ba6', 'c4055860-c902-4787-ba54-0b34e18a1040', 'Best Electronics', 'Your one-stop shop for electronics', '789 Tech Ave', 76435676),
 ('8330f716-3ad1-40f9-a8b4-5720b010328b', 'c4055860-c902-4787-ba54-0b34e18a1040', 'Fashion Hub', 'Latest fashion trends', '101 Fashion St', 65473899);
 
 -- Insert Products
-INSERT INTO [CategoryProduct] (CategoriesId, ProductsId) VALUES 
+INSERT INTO CategoryProduct (CategoriesId, ProductsId) VALUES 
 ('e0a21115-170c-438c-9b26-71ed8440b62f', '80381bb1-1d22-475a-8b7e-c4b84d02be0e'),
 ('4e5cb421-968e-4f85-b654-a96e0ab0e3f0', '80381bb1-1d22-475a-8b7e-c4b84d02be0e'),
 ('4e5cb421-968e-4f85-b654-a96e0ab0e3f0', 'd98f6668-2b9f-4a7c-a866-99a73921eed6'),
