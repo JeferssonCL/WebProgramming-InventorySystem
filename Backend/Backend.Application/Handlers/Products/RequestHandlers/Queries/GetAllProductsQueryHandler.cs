@@ -17,6 +17,7 @@ namespace Backend.Application.Handlers.Products.RequestHandlers.Queries
         public async Task<(List<Product>, int)> Handle(GetAllProductsQuery request, CancellationToken cancellationToken)
         {
             var totalProducts = await _productDao.GetAllAsync();
+
             int total = totalProducts.Count();
             totalProducts = totalProducts
                 .Skip((request.Page - 1) * request.PageSize)

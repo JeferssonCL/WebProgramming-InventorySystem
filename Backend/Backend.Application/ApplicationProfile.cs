@@ -28,24 +28,25 @@ namespace Backend.Application
                 .ForMember(dest => dest.OrderStatus, opt => opt.MapFrom(src => OrderStatus.Pending))
                 .ForMember(dest => dest.OrderItems, opt => opt.MapFrom(src => MapOrderItems(src.OrderItems)))
                 .ForMember(dest => dest.PaymentTransaction, opt => opt.MapFrom(src => MapPaymentTransaction(src)));
+
         }
 
         private static List<ProductAttribute> MapProductAttributes(CreateProductDto src)
         {
             return src.Variants.Select(v => new ProductAttribute
             {
-                Value = v.Value,
+                Value = v?.Value ?? string.Empty,
                 Image = new Image
                 {
-                    ProductId = v.Image.ProductId,
-                    Url = v.Image.Url,
-                    AltText = v.Image.AltText,
+                    ProductId = v?.Image?.ProductId ?? Guid.Empty,
+                    Url = v?.Image?.Url ?? string.Empty,
+                    AltText = v?.Image?.AltText ?? string.Empty,
                     ProductAttribute = new ProductAttribute
                     {
-                        Id = v.Image.ProductAttributeId
+                        Id = v?.Image?.ProductAttributeId ?? Guid.Empty
                     }
                 },
-                VariantId = v.variantId
+                VariantId = v?.variantId ?? Guid.Empty,
             }).ToList();
         }
 
@@ -96,7 +97,7 @@ namespace Backend.Application
             return new ProductCategoryDto
             {
                 Name = cat.Name,
-                Subcategories = cat.SubCategories.Select(sub => sub.Name).ToList()
+                Subcategories = cat.SubCategories.Select(sc => sc.Name).ToList()
             };
         }
 
