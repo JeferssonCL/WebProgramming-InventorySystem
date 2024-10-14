@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import '../styles/pages/productDetail.css'
 
 export function ProductDetail() {
   const { id } = useParams();
@@ -36,7 +37,7 @@ export function ProductDetail() {
 
   return (
     <div className="product-detail">
-      <button onClick={() => navigate('/')}>Back to Catalog</button>
+      <button onClick={() => navigate('/')} className='back-catalog-button'>Back to Catalog</button>
       <img
         src={product.images?.[0]?.url || 'https://via.placeholder.com/150'}
         alt={product.name}
