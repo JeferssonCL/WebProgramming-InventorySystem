@@ -3,7 +3,7 @@ import { useState } from "react";
 import '../styles/components/shoppingCart.css';
 import { ShoppingCartItem } from "./ShoppingCartItem";
 
-export function ShoppingCart({ shoppingCartList, removeToList }) {
+export function ShoppingCart({ shoppingCartList, removeToList, increse, decrese }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const openMenu = () => {
@@ -33,6 +33,8 @@ export function ShoppingCart({ shoppingCartList, removeToList }) {
                   image={item.image[0]}
                   removeToList={removeToList}
                   quantity={item.quantity}
+                  increseQuantity={increse}
+                  decreseQuantity={decrese}
                 />
               ))
             )

@@ -1,7 +1,8 @@
 import { FaMinus, FaPlus } from "react-icons/fa";
 import PropTypes from "prop-types";
+import '../styles/components/stockQuantityInput.css'
 
-export function StockQuantityInput({ quantity, increse, decrese }) {
+export function StockQuantityInput({ id, quantity, increse, decrese }) {
   return (
     <div className="stock-quantity-input">
       <button className="quantity-input-decrese-button" onClick={() => decrese()}>
