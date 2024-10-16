@@ -30,8 +30,24 @@ export const ProductsProvider = ({ children }) => {
         setProducts((prevProducts) => prevProducts.filter((item, _) => item.id !== id));
     };
 
+    const handleDecreaseQuantity = (id) => {
+        setProducts((prevProducts) => prevProducts.map(item => {
+            if (item.id === id) {
+              return { ...item, quantity: item.quantity > 1 ? item.quantity - 1 : 0 };
+            }
+            return item;}))
+      };
+    
+      const handleIncreaseQuantity = (id) => {
+        setProducts((prevProducts) => prevProducts.map(item => {
+            if (item.id === id) {
+              return { ...item, quantity: item.quantity + 1 };
+            }
+            return item;}))
+      };
+
     return (
-        <ProductsContext.Provider value={{ products, removeProductById, addProduct }}>
+        <ProductsContext.Provider value={{ products, removeProductById, addProduct, handleDecreaseQuantity, handleIncreaseQuantity }}>
             {children}
         </ProductsContext.Provider>
     );
