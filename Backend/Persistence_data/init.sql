@@ -4,7 +4,7 @@ CREATE TABLE IF NOT EXISTS "Category" (
     "Name" VARCHAR(255) NOT NULL,
     "IsActive" BOOLEAN NOT NULL DEFAULT TRUE,
     "CreatedAt" TIMESTAMP  with time zone DEFAULT CURRENT_TIMESTAMP,
-    "UpdatedAt" TIMESTAMP  with time zone 
+    "UpdatedAt" TIMESTAMP  with time zone
 );
 
 CREATE TABLE IF NOT EXISTS "User" (
@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS "User" (
     "UserType" INTEGER NOT NULL,
     "IsActive" BOOLEAN NOT NULL DEFAULT TRUE,
     "CreatedAt" TIMESTAMP  with time zone DEFAULT CURRENT_TIMESTAMP,
-    "UpdatedAt" TIMESTAMP  with time zone 
+    "UpdatedAt" TIMESTAMP  with time zone
 );
 
 CREATE TABLE IF NOT EXISTS "Store" (
@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS "Product" (
     "Brand" VARCHAR(255),
     "IsActive" BOOLEAN NOT NULL DEFAULT TRUE,
     "CreatedAt" TIMESTAMP  with time zone DEFAULT CURRENT_TIMESTAMP,
-    "UpdatedAt" TIMESTAMP  with time zone 
+    "UpdatedAt" TIMESTAMP  with time zone
 );
 
 CREATE TABLE IF NOT EXISTS "Image" (
@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS "Image" (
     "Url" VARCHAR(355) NOT NULL,
     "IsActive" BOOLEAN NOT NULL DEFAULT TRUE,
     "CreatedAt" TIMESTAMP  with time zone DEFAULT CURRENT_TIMESTAMP,
-    "UpdatedAt" TIMESTAMP  with time zone 
+    "UpdatedAt" TIMESTAMP  with time zone
 );
 
 CREATE TABLE IF NOT EXISTS "ProductVariant"
@@ -61,7 +61,7 @@ CREATE TABLE IF NOT EXISTS "ProductVariant"
     "StockQuantity" INTEGER,
     "IsActive" BOOLEAN NOT NULL DEFAULT TRUE,
     "CreatedAt" TIMESTAMP  with time zone DEFAULT CURRENT_TIMESTAMP,
-    "UpdatedAt" TIMESTAMP  with time zone 
+    "UpdatedAt" TIMESTAMP  with time zone
 );
 
 CREATE TABLE IF NOT EXISTS "Variant" (
@@ -98,7 +98,7 @@ CREATE TABLE IF NOT EXISTS "UserAddress" (
     "Country" VARCHAR(100) NOT NULL,
     "IsActive" BOOLEAN NOT NULL DEFAULT TRUE,
     "CreatedAt" TIMESTAMP  with time zone DEFAULT CURRENT_TIMESTAMP,
-    "UpdatedAt" TIMESTAMP  with time zone 
+    "UpdatedAt" TIMESTAMP  with time zone
 );
 
 CREATE TABLE IF NOT EXISTS "CategoryProduct" (
@@ -117,8 +117,8 @@ CREATE TABLE IF NOT EXISTS "Order"
     "TotalPrice" DOUBLE PRECISION,
     "IsActive" BOOLEAN NOT NULL DEFAULT TRUE,
     "CreatedAt" TIMESTAMP  with time zone DEFAULT CURRENT_TIMESTAMP,
-    "UpdatedAt" TIMESTAMP  with time zone 
-)
+    "UpdatedAt" TIMESTAMP  with time zone
+);
 
 CREATE TABLE IF NOT EXISTS "OrderItem"
 (
@@ -131,8 +131,8 @@ CREATE TABLE IF NOT EXISTS "OrderItem"
     "TotalPrice" DOUBLE PRECISION,
     "IsActive" BOOLEAN NOT NULL DEFAULT TRUE,
     "CreatedAt" TIMESTAMP  with time zone DEFAULT CURRENT_TIMESTAMP,
-    "UpdatedAt" TIMESTAMP  with time zone 
-)
+    "UpdatedAt" TIMESTAMP  with time zone
+);
 
 CREATE TABLE IF NOT EXISTS "PaymentTransaction"
 (
@@ -143,5 +143,5 @@ CREATE TABLE IF NOT EXISTS "PaymentTransaction"
     "Amount" DOUBLE PRECISION,
     "IsActive" BOOLEAN NOT NULL DEFAULT TRUE,
     "CreatedAt" TIMESTAMP  with time zone DEFAULT CURRENT_TIMESTAMP,
-    "UpdatedAt" TIMESTAMP  with time zone 
-)
+    "UpdatedAt" TIMESTAMP  with time zone
+);
