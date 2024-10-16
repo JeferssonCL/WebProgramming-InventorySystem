@@ -1,5 +1,3 @@
-using Backend.Domain.Entities.Concretes;
-
 namespace Backend.Application.Dtos
 {
     public class CreateProductDto

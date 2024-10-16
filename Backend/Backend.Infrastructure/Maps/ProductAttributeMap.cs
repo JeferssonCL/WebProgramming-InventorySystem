@@ -13,12 +13,12 @@ public class ProductAttributeMap : IEntityTypeConfiguration<ProductAttribute>
         builder.Property(pa => pa.Id).ValueGeneratedOnAdd();
         builder.Property(pa => pa.Value).IsRequired();
 
-        builder.HasOne(pa => pa.Product)
-            .WithMany(p => p.ProductAttributes)
-            .HasForeignKey(pa => pa.ProductId);
+        builder.HasOne(pa => pa.ProductVariant)
+            .WithMany(pv => pv.Attributes)
+            .HasForeignKey(pa => pa.ProductVariantId);
         
         builder.HasOne(pa => pa.Variant)
-            .WithOne(v => v.ProductAttribute)
-            .HasForeignKey<ProductAttribute>(pa => pa.VariantId);
+            .WithMany(v => v.ProductAttributes)
+            .HasForeignKey(pa => pa.VariantId);
     }
 }
