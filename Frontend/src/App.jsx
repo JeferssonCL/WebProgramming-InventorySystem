@@ -4,6 +4,8 @@ import { Home } from './pages/Home'
 import { Route, Routes, BrowserRouter } from 'react-router-dom'
 import { ProductDetail } from './pages/ProductDetail'
 import { useState, useEffect } from 'react'
+import PaymentStatusSuccess from './pages/PaymentStatusSuccess'
+import PaymentStatusFailed from './pages/PaymentStatusSuccess'
 
 function App() {
 
@@ -79,6 +81,8 @@ function App() {
       <Routes>
         <Route path='/' element={<Home addToCart={handleAddToCart} />} />
         <Route path="/product/:id" element={<ProductDetail />} />
+        <Route path="/payment_transaction/success" element={<PaymentStatusSuccess />} />
+        <Route path="/payment_transaction/failed" element={<PaymentStatusFailed />} />
       </Routes>
     </BrowserRouter>
   )
