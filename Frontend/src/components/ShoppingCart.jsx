@@ -32,6 +32,7 @@ export function ShoppingCart({ shoppingCartList, removeToList }) {
                   price={item.price}
                   image={item.image[0]}
                   removeToList={removeToList}
+                  quantity={item.quantity}
                 />
               ))
             )

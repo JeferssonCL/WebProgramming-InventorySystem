@@ -20,6 +20,7 @@ function App() {
       name: product.name,
       price: product.price,
       image: product.images,
+      quantity: 1
     };
 
     const productExists = shoppingCartList.find(item => item.id === productToStore.id);
