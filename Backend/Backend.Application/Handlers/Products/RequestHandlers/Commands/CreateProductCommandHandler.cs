@@ -1,21 +1,22 @@
 using Backend.Application.Handlers.Products.Requests.Commands;
 using Backend.Domain.Entities.Concretes;
-using Backend.Infrastructure.DAO.Interfaces;
+using Backend.Infrastructure.Repositories.Interfaces;
 using MediatR;
 
 namespace Backend.Application.Handlers.Products.RequestHandlers.Commands;
 
 public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand, Product>
 {
-    private readonly IGenericDAO<Product> _productDao;
-    public CreateProductCommandHandler(IGenericDAO<Product> productDao)
+    private readonly IProductRepository _producRepository;
+    public CreateProductCommandHandler(IProductRepository productRepository)
     {
-        _productDao = productDao;
+        _producRepository = productRepository;
     }
     public async Task<Product> Handle(CreateProductCommand request, CancellationToken cancellationToken)
     {
         var product = request.Product;
-        await _productDao.CreateAsync(request.Product);
+        product = await _producRepository.AddAsync(product);
         return product;
     }
+
 }

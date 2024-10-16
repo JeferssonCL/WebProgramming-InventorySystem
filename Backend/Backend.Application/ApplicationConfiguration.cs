@@ -1,3 +1,4 @@
+using Backend.Application.Profiles;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Backend.Application
@@ -7,9 +8,9 @@ namespace Backend.Application
 
         public static void AddApplication(this IServiceCollection services)
         {
-            services.AddAutoMapper(typeof(ApplicationProfile));
+            services.AddAutoMapper(typeof(UserProfile));
             services.AddMediatR(cfg =>
-            cfg.RegisterServicesFromAssemblies(typeof(ApplicationProfile).Assembly)
+            cfg.RegisterServicesFromAssemblies(typeof(UserProfile).Assembly)
         );
         }
     }
