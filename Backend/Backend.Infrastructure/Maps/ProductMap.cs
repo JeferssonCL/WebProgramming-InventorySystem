@@ -12,9 +12,13 @@ public class ProductMap : IEntityTypeConfiguration<Product>
         builder.HasIndex(p => p.Id);
         builder.Property(p => p.Id).ValueGeneratedOnAdd();
         builder.Property(p => p.Name).IsRequired();
-        builder.Property(p => p.Price).IsRequired();
-        builder.Property(p => p.StockQuantity).IsRequired();
+        builder.Property(p => p.BasePrice).IsRequired();
+        builder.Property(p => p.Brand).IsRequired();
 
+        builder.HasOne(p => p.Store)
+            .WithMany(s => s.Products)
+            .HasForeignKey(p => p.StoreId);
+        
         builder.HasOne(p => p.OrderItem)
             .WithOne(oi => oi.Product)
             .HasForeignKey<OrderItem>(oi => oi.ProductId);
@@ -23,9 +27,9 @@ public class ProductMap : IEntityTypeConfiguration<Product>
             .WithOne(i => i.Product)
             .HasForeignKey(i => i.ProductId);
 
-        builder.HasMany(p => p.ProductAttributes)
-            .WithOne(pa => pa.Product)
-            .HasForeignKey(pa => pa.ProductId);
+        builder.HasMany(p => p.ProductVariants)
+            .WithOne(pv => pv.Product)
+            .HasForeignKey(pv => pv.ProductId);
 
         builder.HasMany(p => p.Categories)
             .WithMany(c => c.Products);

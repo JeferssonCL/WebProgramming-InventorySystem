@@ -1,15 +1,19 @@
 using Backend.Application.Handlers.Orders.Request.Commands;
-using Backend.Domain.Entities.Concretes;
-using Backend.Infrastructure.DAO.Interfaces;
+using Backend.Infrastructure.Repositories.Interfaces;
 using MediatR;
 
-namespace Backend.Application.Handlers.Orders.RequestHandlers.Commands
+namespace Backend.Application.Handlers.Orders.RequestHandlers;
+
+public class ProcessOrderCommandHandler : IRequestHandler<ProcessOrderCommand, bool>
 {
-    public class ProcessOrderCommandHandler : IRequestHandler<ProcessOrderCommand, bool>
-    {
-        public Task<bool> Handle(ProcessOrderCommand request, CancellationToken cancellationToken)
-        {
-            return Task.FromResult(true);
-        }
+    private readonly IOrderRepository _orderRepository;
+    public ProcessOrderCommandHandler(IOrderRepository orderRepository)
+    { 
+        _orderRepository = orderRepository;
     }
+    public Task<bool> Handle(ProcessOrderCommand request, CancellationToken cancellationToken)
+    {
+        return Task.FromResult(true);
+    }
+
 }

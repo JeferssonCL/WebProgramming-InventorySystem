@@ -29,7 +29,8 @@ builder.Services.AddApplication();
 
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
-string connectionString = "Host=localhost;Port=5432;Database=merchantdb;Username=daniel;Password=daniel123";
+
+string connectionString = Env.GetString("POSTGRESSQLCONNECTION");
 
 builder.Services.AddDbContext<PostgresContext>(options =>
     options.UseNpgsql(connectionString,

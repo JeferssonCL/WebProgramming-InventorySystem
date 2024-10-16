@@ -1,3 +1,5 @@
+using Backend.Application.Dtos.User;
+
 namespace Backend.Application.Dtos
 {
     public class ProcessOrderDto
