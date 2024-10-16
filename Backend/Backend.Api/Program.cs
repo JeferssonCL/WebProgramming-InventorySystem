@@ -31,7 +31,7 @@ builder.Services.AddApplication();
 builder.Services.AddScoped<IGenericDAO<Product>, ProductDAO>();
 builder.Services.AddScoped<IGenericDAO<Order>, OrderDAO>();
 
-string connectionString = "Host=junction.proxy.rlwy.net;Port=25938;Database=railway;Username=postgres;Password=zsXxMVMoHWcwgGefeMsObSxlEpIZQNiq";
+string connectionString = Env.GetString("POSTGRESSQLCONNECTION");
 
 builder.Services.AddDbContext<PostgresContext>(options =>
     options.UseNpgsql(connectionString,
