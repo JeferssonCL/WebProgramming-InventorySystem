@@ -13,8 +13,8 @@ public class VariantMap : IEntityTypeConfiguration<Variant>
         builder.Property(v => v.Id).ValueGeneratedOnAdd();
         builder.Property(v => v.Name).IsRequired();
 
-        builder.HasOne(v => v.ProductAttribute)
+        builder.HasMany(v => v.ProductAttributes)
             .WithOne(pa => pa.Variant)
-            .HasForeignKey<Variant>(v => v.ProductAttributeId);
+            .HasForeignKey(pa => pa.VariantId);
     }
 }
