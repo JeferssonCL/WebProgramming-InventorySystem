@@ -26,9 +26,8 @@ namespace Backend.Application
                 .ForMember(dest => dest.User, opt => opt.MapFrom(src => MapUser(src)))
                 .ForMember(dest => dest.OrderDate, opt => opt.MapFrom(src => DateTime.UtcNow))
                 .ForMember(dest => dest.OrderStatus, opt => opt.MapFrom(src => OrderStatus.Pending))
-                .ForMember(dest => dest.OrderItems, opt => opt.MapFrom(src => MapOrderItems(src.OrderItems)))
+                .ForMember(dest => dest.OrderItems, opt => opt.MapFrom(src => new List<OrderItem>()))
                 .ForMember(dest => dest.PaymentTransaction, opt => opt.MapFrom(src => MapPaymentTransaction(src)));
-
         }
 
         private static List<ProductAttribute> MapProductAttributes(CreateProductDto src)
@@ -50,7 +49,7 @@ namespace Backend.Application
             }).ToList();
         }
 
-        private static List<Image> MapImages(ICollection<ImageDto> images)
+/*         private static List<Image> MapImages(ICollection<ImageDto> images)
         {
             return images.Select(img => new Image
             {
@@ -63,8 +62,8 @@ namespace Backend.Application
                 }
             }).ToList();
         }
-
-        private static List<ImageDto> MapDtoImages(List<Image> images)
+ */
+   /*      private static List<ImageDto> MapDtoImages(List<Image> images)
         {
             return images.Select(img => new ImageDto
             {
@@ -73,23 +72,26 @@ namespace Backend.Application
                 ProductId = img.ProductId,
                 ProductAttributeId = img.ProductAttribute != null ? img.ProductAttribute.Id : Guid.Empty // Handle null ProductAttribute
             }).ToList();
-        }
+        } */
 
 
         private static ProductVariantDto MapProductVariant(ProductAttribute v)
         {
+            if (v == null)
+            {
+                return new ProductVariantDto();
+            }
             return new ProductVariantDto
             {
                 Value = v.Value,
                 Image = new ImageDto
                 {
-                    Url = v.Image.Url,
-                    AltText = v.Image.AltText,
-                    ProductId = v.Image.ProductId,
-                    ProductAttributeId = v.Image.ProductAttribute != null ? v.Image.ProductAttribute.Id : Guid.Empty
+                    Url = v?.Image?.Url ?? string.Empty,
+                    AltText = v?.Image?.AltText ?? string.Empty,
+                    ProductId = v?.Image?.ProductId ?? Guid.Empty,
                 },
-                variantId = v.VariantId,
-                Name = v.Variant.Name
+                variantId = v?.VariantId ?? Guid.Empty,
+                Name = v?.Variant?.Name ?? string.Empty
             };
         }
 
@@ -98,7 +100,7 @@ namespace Backend.Application
             return new ProductCategoryDto
             {
                 Name = cat.Name,
-                Subcategories = cat.SubCategories.Select(sc => sc.Name).ToList() ?? new List<string>()
+                Subcategories = cat.SubCategories?.Select(sub => sub.Name).ToList() ?? []
             };
         }
 
@@ -134,11 +136,11 @@ namespace Backend.Application
             };
         }
 
-        private static List<OrderItem> MapOrderItems(IEnumerable<OrderItemDto> orderItems)
+/*         private static List<OrderItem> MapOrderItems(IEnumerable<OrderItemDto> orderItems)
         {
             return orderItems.Select(item => new OrderItem
             {
-                ProductId = item.ProductDto.Id,
+                ProductId = item..Id,
                 Quantity = item.Quantity,
                 TotalPrice = item.Subtotal,
                 Product = new Product
@@ -146,7 +148,7 @@ namespace Backend.Application
                     Id = item.ProductDto.Id
                 }
             }).ToList();
-        }
+        } */
 
         private static PaymentTransaction MapPaymentTransaction(ProcessOrderDto src)
         {

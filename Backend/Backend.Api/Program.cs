@@ -1,8 +1,7 @@
 using Backend.Application;
-using Backend.Domain.Entities.Concretes;
 using Backend.Infrastructure.Context;
-using Backend.Infrastructure.DAO.Concretes;
-using Backend.Infrastructure.DAO.Interfaces;
+using Backend.Infrastructure.Repositories.Concretes;
+using Backend.Infrastructure.Repositories.Interfaces;
 using DotNetEnv;
 using Microsoft.EntityFrameworkCore;
 
@@ -21,17 +20,16 @@ builder.Services.AddCors(options =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
-    c.CustomSchemaIds(type => type.FullName); 
+    c.CustomSchemaIds(type => type.FullName);
 });
 builder.Configuration.AddEnvironmentVariables();
 
 builder.Services.AddApplication();
 
 
-builder.Services.AddScoped<IGenericDAO<Product>, ProductDAO>();
-builder.Services.AddScoped<IGenericDAO<Order>, OrderDAO>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
-string connectionString = "Host=junction.proxy.rlwy.net;Port=25938;Database=railway;Username=postgres;Password=zsXxMVMoHWcwgGefeMsObSxlEpIZQNiq";
+string connectionString = "Host=localhost;Port=5432;Database=merchantdb;Username=daniel;Password=daniel123";
 
 builder.Services.AddDbContext<PostgresContext>(options =>
     options.UseNpgsql(connectionString,
