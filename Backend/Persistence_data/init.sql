@@ -118,7 +118,7 @@ CREATE TABLE IF NOT EXISTS "Order"
     "IsActive" BOOLEAN NOT NULL DEFAULT TRUE,
     "CreatedAt" TIMESTAMP  with time zone DEFAULT CURRENT_TIMESTAMP,
     "UpdatedAt" TIMESTAMP  with time zone 
-)
+);
 
 CREATE TABLE IF NOT EXISTS "OrderItem"
 (
@@ -132,7 +132,7 @@ CREATE TABLE IF NOT EXISTS "OrderItem"
     "IsActive" BOOLEAN NOT NULL DEFAULT TRUE,
     "CreatedAt" TIMESTAMP  with time zone DEFAULT CURRENT_TIMESTAMP,
     "UpdatedAt" TIMESTAMP  with time zone 
-)
+);
 
 CREATE TABLE IF NOT EXISTS "PaymentTransaction"
 (
@@ -144,4 +144,4 @@ CREATE TABLE IF NOT EXISTS "PaymentTransaction"
     "IsActive" BOOLEAN NOT NULL DEFAULT TRUE,
     "CreatedAt" TIMESTAMP  with time zone DEFAULT CURRENT_TIMESTAMP,
     "UpdatedAt" TIMESTAMP  with time zone 
-)
+);
