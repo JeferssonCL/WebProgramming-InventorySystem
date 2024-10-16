@@ -1,15 +1,20 @@
 using Backend.Application.Handlers.Checkout_Session.Request.Commands;
+using DotNetEnv;
 using MediatR;
+using Stripe;
 using Stripe.Checkout;
 
 namespace Backend.Application.Handlers.Checkout_Session.RequestHandlers;
 
-public class CreateCheckoutSessionCommandHandler : IRequestHandler<CreateCheckoutSessionCommand, bool>
+public class CreateCheckoutSessionCommandHandler : IRequestHandler<CreateCheckoutSessionCommand, string>
 {
-    public async Task<bool> Handle(CreateCheckoutSessionCommand request, CancellationToken cancellationToken)
+    public CreateCheckoutSessionCommandHandler()
     {
-        if (request.ShoppingCartList == null!) return await Task.FromResult(false);
+        StripeConfiguration.ApiKey = Env.GetString("STRIPE_SECRET_KEY");
+    }
 
+    public async Task<string> Handle(CreateCheckoutSessionCommand request, CancellationToken cancellationToken)
+    {
         var lineItems = request.ShoppingCartList.Select(product =>
             new SessionLineItemOptions {
             PriceData = new SessionLineItemPriceDataOptions
@@ -35,6 +40,6 @@ public class CreateCheckoutSessionCommandHandler : IRequestHandler<CreateCheckou
 
         var service = new SessionService();
         var session = await service.CreateAsync(options, cancellationToken: cancellationToken);
-        return await Task.FromResult(session != null);
+        return await Task.FromResult(session.Id);
     }
 }

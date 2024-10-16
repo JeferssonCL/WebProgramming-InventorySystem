@@ -4,7 +4,7 @@ using MediatR;
 
 namespace Backend.Application.Handlers.Checkout_Session.Request.Commands;
 
-public class CreateCheckoutSessionCommand(List<ShoppingCartItemDto> shoppingCartList) : IRequest<bool>
+public class CreateCheckoutSessionCommand(List<ShoppingCartItemDto> shoppingCartList) : IRequest<string>
 {
     public List<ShoppingCartItemDto> ShoppingCartList { get; set; } = shoppingCartList;
 }
