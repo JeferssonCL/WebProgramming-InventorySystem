@@ -62,7 +62,7 @@ CREATE TABLE IF NOT EXISTS "ProductVariant"
     "IsActive" BOOLEAN NOT NULL DEFAULT TRUE,
     "CreatedAt" TIMESTAMP  with time zone DEFAULT CURRENT_TIMESTAMP,
     "UpdatedAt" TIMESTAMP  with time zone 
-)
+);
 
 CREATE TABLE IF NOT EXISTS "Variant" (
     "Id" UUID PRIMARY KEY,
