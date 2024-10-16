@@ -1,14 +1,13 @@
 import { FaShoppingCart, FaRegSadTear } from "react-icons/fa";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import '../styles/components/shoppingCart.css';
 import { ShoppingCartItem } from "./ShoppingCartItem";
+import { ProductsContext } from "../context/ProductsContext";
 
-<<<<<<< HEAD
-export function ShoppingCart({ shoppingCartList }) {
-=======
-export function ShoppingCart({ shoppingCartList, removeToList, increse, decrese }) {
->>>>>>> 420ebd4f0cdd684c92a3be1737ac89a3f4155608
+export function ShoppingCart() {
   const [isOpen, setIsOpen] = useState(false);
+
+  const { products } = useContext(ProductsContext);
 
   const openMenu = () => {
     setIsOpen(!isOpen);
@@ -22,13 +21,13 @@ export function ShoppingCart({ shoppingCartList, removeToList, increse, decrese 
       <div className={`shopping-cart-list-section ${isOpen ? 'open' : ''}`}>
         <div className="shopping-cart-list-products">
           {
-            shoppingCartList.length === 0 ? (
+            products.length === 0 ? (
               <div className="shopping-cart-list-empty">
                 <FaRegSadTear className="shopping-cart-empty-icon" />
                 <p className="shopping-cart-list-message-empty">Empty cart</p>
               </div>
             ) : (
-              shoppingCartList.map(item => (
+              products.map(item => (
                 <ShoppingCartItem
                   key={item.id}
                   id={item.id}
@@ -36,14 +35,12 @@ export function ShoppingCart({ shoppingCartList, removeToList, increse, decrese 
                   price={item.price}
                   image={item.image[0].url}
                   quantity={item.quantity}
-                  increseQuantity={increse}
-                  decreseQuantity={decrese}
                 />
               ))
             )
           }
         </div>
-        <a href="/complete-order" className={`shopping-cart-go-button ${shoppingCartList.length > 0 ? 'active' : ''}`}><FaShoppingCart /> Go to shopping cart</a>
+        <a href="/complete-order" className={`shopping-cart-go-button ${products.length > 0 ? 'active' : ''}`}><FaShoppingCart /> Go to shopping cart</a>
       </div>
     </>
   );

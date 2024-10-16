@@ -1,0 +1,50 @@
+{
+    "orderItems": [
+        {
+            "id": "53d78e6d-decc-4244-b116-18bab2f24f09",
+            "variantId": "00000000-0000-0000-0000-000000000000",
+            "name": "Leather Jacket",
+            "price": 199.99,
+            "image": "https://domino.ua/media/iopt/catalog/product/cache/1338d3702d6df92e886ded663f0927b0/1/5/154584-1_1.webp",
+            "attributes": {},
+            "quantity": 1,
+            "subtotal": "199.99"
+        },
+        {
+            "id": "80381bb1-1d22-475a-8b7e-c4b84d02be0e",
+            "variantId": "00000000-0000-0000-0000-000000000000",
+            "name": "iPhone 14",
+            "price": 999.99,
+            "image": "https://media.croma.com/image/upload/v1708671880/Croma%20Assets/Communication/Mobiles/Images/270412_5_tynkco.png",
+            "attributes": {},
+            "quantity": 1,
+            "subtotal": "999.99"
+        },
+        {
+            "id": "d98f6668-2b9f-4a7c-a866-99a73921eed6",
+            "variantId": "00000000-0000-0000-0000-000000000000",
+            "name": "Dell XPS 13",
+            "price": 1199.99,
+            "image": "https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/notebooks/xps-notebooks/xps-13-9315/media-gallery/umber/notebook-xps-9315-nt-umber-hero-right.psd?fmt=pjpg&pscan=auto&scl=1&wid=5000&hei=5000&qlt=100,1&resMode=sharp2&size=5000,5000&chrss=full&imwidth=5000",
+            "attributes": {},
+            "quantity": 1,
+            "subtotal": "1199.99"
+        },
+        {
+            "id": "fba39c75-29fb-499f-a88a-b0863c1d0f2a",
+            "variantId": "00000000-0000-0000-0000-000000000000",
+            "name": "T-Shirt",
+            "price": 19.99,
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6qkuuNGspBfSgJ9fc8xYnxLJ4T1Xe6A-BRQ&s",
+            "attributes": {},
+            "quantity": 1,
+            "subtotal": "19.99"
+        }
+    ],
+    "user": {
+        "id": "c4055860-c902-4787-ba54-0b34e18a1040",
+        "name": "Juan",
+        "email": "as@gmail.com"
+    },
+    "totalPrice": 2419.96
+}
