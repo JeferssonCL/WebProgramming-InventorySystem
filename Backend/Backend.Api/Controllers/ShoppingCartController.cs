@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Backend.Api.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("api/[controller]/Submit-cart")]
 public class ShoppingCartController : ControllerBase
 {
     private readonly IMediator _mediator;
@@ -22,16 +22,16 @@ public class ShoppingCartController : ControllerBase
     }
 
     [HttpPost]
-    public ActionResult<Dictionary<string, bool>> InitCheckoutSession(List<ShoppingCartItemDto> shoppingCartItemDtos)
+    public ActionResult<Dictionary<string, string>> InitCheckoutSession(List<ShoppingCartItemDto> shoppingCartItemDtos)
     {
         foreach (var shoppingCartItemDto in shoppingCartItemDtos)
             Console.WriteLine(shoppingCartItemDto);
 
         var result = _mediator.Send(new CreateCheckoutSessionCommand(shoppingCartItemDtos));
 
-        return Ok(new Dictionary<string, bool>
+        return Ok(new Dictionary<string, string>
         {
-            { "result", result.Result }
+            { "id", result.Result }
         });
     }
 
