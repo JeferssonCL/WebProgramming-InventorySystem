@@ -34,8 +34,8 @@ public class CreateCheckoutSessionCommandHandler : IRequestHandler<CreateCheckou
             PaymentMethodTypes = ["card"],
             LineItems = lineItems,
             Mode = "payment",
-            SuccessUrl = "http://localhost:5173/success",
-            CancelUrl = "http://localhost:5173/failed",
+            SuccessUrl = "http://localhost:5173/payment_transaction/success",
+            CancelUrl = "http://localhost:5173/payment_transaction/failed",
         };
 
         var service = new SessionService();

@@ -13,20 +13,15 @@ namespace Backend.Api.Controllers;
 public class ShoppingCartController : ControllerBase
 {
     private readonly IMediator _mediator;
-    private readonly IMapper _mapper;
 
-    public ShoppingCartController(IMediator mediator, IMapper mapper)
+    public ShoppingCartController(IMediator mediator)
     {
         _mediator = mediator;
-        _mapper = mapper;
     }
 
     [HttpPost]
     public ActionResult<Dictionary<string, string>> InitCheckoutSession(List<ShoppingCartItemDto> shoppingCartItemDtos)
     {
-        foreach (var shoppingCartItemDto in shoppingCartItemDtos)
-            Console.WriteLine(shoppingCartItemDto);
-
         var result = _mediator.Send(new CreateCheckoutSessionCommand(shoppingCartItemDtos));
 
         return Ok(new Dictionary<string, string>
