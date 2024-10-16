@@ -37,7 +37,7 @@ export function ShoppingCart({ shoppingCartList }) {
             )
           }
         </div>
-        <a href="/" className={`shopping-cart-go-button ${shoppingCartList.length > 0 ? 'active' : ''}`}><FaShoppingCart /> Go to shopping cart</a>
+        <a href="/complete-order" className={`shopping-cart-go-button ${shoppingCartList.length > 0 ? 'active' : ''}`}><FaShoppingCart /> Go to shopping cart</a>
       </div>
     </>
   );

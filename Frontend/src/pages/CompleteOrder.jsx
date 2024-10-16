@@ -1,11 +1,13 @@
 import { DatePicker } from "@mui/x-date-pickers";
 import ProductCardCompleteInfo  from "../components/ProductCardCompleteInfo";
 import { useForm, Controller } from "react-hook-form";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { ProductsContext } from "../context/ProductsContext";
+import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 
 function CompleteOrder() {
+    const navigate = useNavigate();
     const {
         register,
         handleSubmit,
@@ -13,13 +15,23 @@ function CompleteOrder() {
         control
       } = useForm();
 
+    const [orderStatus, setOrderStatus] = useState(null);
+
     const { products, removeProductById } = useContext(ProductsContext);
 
     const onSubmit = async (data) => {
         const parsedData = parseOrderData(data);
-        await sendOrder(parsedData);
-        console.log(data);
-    }
+        const isSuccess = await sendOrder(parsedData);
+        
+        if (isSuccess) {
+            setOrderStatus('Order sent successfully! Redirecting to home...');
+            setTimeout(() => {
+                navigate('/'); // Redirect to the home page
+            }, 2000);
+        } else {
+            setOrderStatus('Failed to send the order. Please try again.');
+        }
+    };
 
     const parseOrderData = (data) => {
         return {
@@ -59,32 +71,18 @@ function CompleteOrder() {
 
     const sendOrder = async (orderData) => {
         try {
-          console.log(JSON.stringify(orderData));
-      
-          // Realizar la solicitud POST utilizando axios
-          const response = await axios.post('https://localhost:5163/api/Order', orderData, {
-            headers: {
-              'Content-Type': 'application/json',
-            }
-          });
-      
-          // Axios automáticamente lanza un error si el status code no está en el rango 2xx
-          console.log('Order submitted successfully:', response.data);
-          
+            const response = await axios.post('http://localhost:5163/api/Order', orderData, {
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            });
+            console.log('Order submitted successfully:', response.data);
+            return true; // return success
         } catch (error) {
-          // Manejo de errores de Axios
-          if (error.response) {
-            // El servidor respondió con un código de estado fuera del rango 2xx
-            console.error('Error submitting order (response):', error.response.status, error.response.data);
-          } else if (error.request) {
-            // No se recibió respuesta del servidor
-            console.error('Error submitting order (no response):', error.request);
-          } else {
-            // Otro tipo de error
-            console.error('Error submitting order:', error.message);
-          }
+            console.error('Error submitting order:', error);
+            return false; // return failure
         }
-      };
+    };
 
     return (
         <div className="m-6 flex flex-row justify-between space-x-6 bg-white text-black p-6">
@@ -205,6 +203,8 @@ function CompleteOrder() {
                         disabled={isSubmitting}
                         >{isSubmitting ? "Loading" : "Accept"}</button>
                 </form>
+                {/* Show order status message */}
+                {orderStatus && <div className="mt-4 text-green-500">{orderStatus}</div>}
             </div>
         </div>
     );
