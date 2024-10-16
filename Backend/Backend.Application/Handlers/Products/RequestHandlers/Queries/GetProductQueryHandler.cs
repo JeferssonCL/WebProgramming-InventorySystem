@@ -18,26 +18,6 @@ namespace Backend.Application.Handlers.Products.RequestHandlers.Queries
         public async Task<Product?> Handle(GetProductQuery request, CancellationToken cancellationToken)
         {
             var product = await _productRepository.GetByIdAsync(request.Id);
-            System.Console.WriteLine("+=========================================================");
-            System.Console.WriteLine(product.Categories);
-
-
-            foreach (ProductVariant productAttribute in product.ProductVariants)
-            {
-                System.Console.WriteLine("type Id " + productAttribute.Id);
-                System.Console.WriteLine("type Image " + productAttribute.Image);
-                System.Console.WriteLine("type ProductId " + productAttribute.ProductId);
-                System.Console.WriteLine("type Value " + productAttribute.Attributes);
-                foreach (ProductAttribute attribute in productAttribute.Attributes)
-                {
-                    System.Console.WriteLine("attribute Id " + attribute.Id);
-                    System.Console.WriteLine("attribute Value " + attribute.Value);
-                    System.Console.WriteLine("attribute Variant Id " + attribute.Variant.Id);
-                    System.Console.WriteLine("attribute Variant Name " + attribute.Variant.Name);
-                }
-            }
-
-            System.Console.WriteLine("+=========================================================");
             return product;
         }
     }
