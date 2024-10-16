@@ -1,5 +1,5 @@
 using AutoMapper;
-using Backend.Application.Dtos;
+using Backend.Application.Dtos.User;
 using Backend.Domain.Entities.Concretes;
 
 namespace Backend.Application.Profiles;

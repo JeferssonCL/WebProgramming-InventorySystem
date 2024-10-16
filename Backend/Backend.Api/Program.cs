@@ -27,6 +27,7 @@ builder.Configuration.AddEnvironmentVariables();
 builder.Services.AddApplication();
 
 
+builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
 

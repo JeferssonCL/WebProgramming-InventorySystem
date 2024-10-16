@@ -22,13 +22,19 @@ namespace Backend.Application.Handlers.Products.RequestHandlers.Queries
             System.Console.WriteLine(product.Categories);
 
 
-            foreach (ProductAttribute productAttribute in product.ProductAttributes)
+            foreach (ProductVariant productAttribute in product.ProductVariants)
             {
-                System.Console.WriteLine("type Id "+productAttribute.Id);
-                System.Console.WriteLine("type Image "+productAttribute.Image);
-                System.Console.WriteLine("type ProductId "+productAttribute.ProductId);
-                System.Console.WriteLine("type Value "+productAttribute.Value);
-                System.Console.WriteLine("type Variant "+productAttribute?.Variant?.Id);
+                System.Console.WriteLine("type Id " + productAttribute.Id);
+                System.Console.WriteLine("type Image " + productAttribute.Image);
+                System.Console.WriteLine("type ProductId " + productAttribute.ProductId);
+                System.Console.WriteLine("type Value " + productAttribute.Attributes);
+                foreach (ProductAttribute attribute in productAttribute.Attributes)
+                {
+                    System.Console.WriteLine("attribute Id " + attribute.Id);
+                    System.Console.WriteLine("attribute Value " + attribute.Value);
+                    System.Console.WriteLine("attribute Variant Id " + attribute.Variant.Id);
+                    System.Console.WriteLine("attribute Variant Name " + attribute.Variant.Name);
+                }
             }
 
             System.Console.WriteLine("+=========================================================");
