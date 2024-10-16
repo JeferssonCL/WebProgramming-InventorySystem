@@ -1,0 +1,209 @@
+.login-container,
+.signup-container {
+  display: flex;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+}
+
+.login-sidebar,
+.signup-sidebar {
+  flex: 1;
+  background-color: #7790ED;
+  color: white;
+  padding: 2rem;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.login-logo,
+.signup-logo {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.login-welcome,
+.signup-welcome {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.login-info,
+.signup-info {
+  font-size: 0.9rem;
+}
+
+.login-form-container,
+.signup-form-container {
+  flex: 1;
+  background-color: white;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-form,
+.signup-form {
+  width: 100%;
+  max-width: 300px;
+}
+
+.login-form h2,
+.signup-form h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.login-form input,
+.signup-form input {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.login-form button,
+.signup-form button,
+.signup-button,
+.login-button {
+  width: 100%;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.social-login,
+.social-signup {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.social-login p,
+.social-signup p {
+  margin-bottom: 0.5rem;
+  color: #4A5568;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.social-icons button {
+  background-color: transparent;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.signup-section,
+.login-section {
+  margin-top: 2rem;
+}
+
+.signup-button,
+.login-button {
+  background-color: transparent;
+  border: 2px solid white;
+  color: white;
+  border-radius: 20px;
+  width: auto;
+  margin-top: 1rem;
+}
+
+.signup-button:hover {
+  background-color: white;
+  color: #6B46C1;
+}
+
+.login-button:hover {
+  background-color: white;
+  color: #7790ED;
+}
+
+.login-form button,
+.signup-form button {
+  background-color: #F4E3CC;
+  color: #4A5568;
+}
+
+.login-form button:hover,
+.signup-form button:hover {
+  background-color: #F4E3CC;
+}
+
+.login-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  font-size: 0.8rem;
+}
+
+.remember-me {
+  display: flex;
+  align-items: center;
+}
+
+.forgot-password {
+  color: #6B46C1;
+  text-decoration: none;
+}
+
+.social-icons button {
+  width: 40px;
+  height: 40px;
+}
+
+.social-icons button:hover {
+  background-color: #f0f0f0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .login-container,
+  .signup-container {
+    flex-direction: column;
+  }
+  
+  .login-sidebar,
+  .signup-sidebar,
+  .login-form-container,
+  .signup-form-container {
+    width: 100%;
+  }
+}
+.error-message {
+    color: #ff0000;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+  
+  .invalid-input {
+    border-color: #ff0000 !important;
+  }
+  
+  .invalid-input::placeholder {
+    color: #ff0000;
+  }
+  .invalid-input {
+    border: 1px solid red;
+  }
+  
+  .error-message {
+    color: red;
+    font-size: 0.9rem;
+    margin-top: 4px;
+  }
+  
