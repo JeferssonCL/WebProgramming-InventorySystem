@@ -1,8 +1,12 @@
-import React from "react";
-import { FaFacebook, FaEye } from "react-icons/fa";
+import React, { useState } from "react";
+import { FaFacebook } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 
-export function AuthForm({ isLogin, onSubmit, onSwitchAuth, errorMessage, invalidFields }) {
+export function AuthForm({ isLogin, onSubmit, onSwitchAuth, errorMessage, fieldErrors = {} }) {
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
   const title = isLogin ? "LOGIN" : "SIGN UP";
   const buttonText = isLogin ? "LOGIN" : "SIGN UP";
   const socialText = isLogin ? "Or Login with" : "Or Sign up with";
@@ -13,11 +17,11 @@ export function AuthForm({ isLogin, onSubmit, onSwitchAuth, errorMessage, invali
     <div className={`${isLogin ? 'login' : 'signup'}-container`}>
       <div className={`${isLogin ? 'login' : 'signup'}-sidebar`}>
         <div>
-            <img 
-                src="public/logo/l.png" 
-                alt="Merchant logo" 
-                className={`${isLogin ? 'login' : 'signup'}-logo`} 
-            />
+          <img 
+            src="public/logo/m.png" 
+            alt="Merchant logo" 
+            className={`${isLogin ? 'login' : 'signup'}-logo`} 
+          />
           <p className={`${isLogin ? 'login' : 'signup'}-welcome`}>
             {isLogin ? "WELCOME BACK!" : "WELCOME!"}
           </p>
@@ -37,34 +41,72 @@ export function AuthForm({ isLogin, onSubmit, onSwitchAuth, errorMessage, invali
       <div className={`${isLogin ? 'login' : 'signup'}-form-container`}>
         <div className={`${isLogin ? 'login' : 'signup'}-form`}>
           <h2 className="form-title">{title}</h2>
-          {errorMessage && <p className="error-message">{errorMessage}</p>}
-          <form onSubmit={onSubmit}>
+          {errorMessage && <p className="form-error-message">{errorMessage}</p>}
+          <form onSubmit={onSubmit} noValidate>
             {!isLogin && (
-              <div className="input-group">
-                <input type="text" name="username" placeholder="Username" required 
-                  className={invalidFields.includes("username") ? "invalid-input" : ""}
+              <div className="form-field">
+                <input 
+                  type="text" 
+                  name="username" 
+                  placeholder="Username"
+                  className={fieldErrors.username ? "input-error" : ""}
                 />
+                {fieldErrors.username && (
+                  <span className="field-error-message">{fieldErrors.username}</span>
+                )}
               </div>
             )}
-            <div className="input-group">
+            <div className="form-field">
               <input
                 type="text"
                 name="email"
                 placeholder={isLogin ? "Username or Email" : "Email"}
-                required
-                className={invalidFields.includes("email")? "Invalid-input" : ""}
+                className={fieldErrors.email ? "input-error" : ""}
               />
+              {fieldErrors.email && (
+                <span className="field-error-message">{fieldErrors.email}</span>
+              )}
             </div>
-            <div className="input-group">
-              <input type="password" name="password" placeholder="Password" required 
-                    className={invalidFields.includes("email")? "Invalid-input" : ""}
+            <div className="form-field">
+              <div className="password-input-wrapper">
+                <input 
+                  type={showPassword ? "text" : "password"}
+                  name="password" 
+                  placeholder="Password"
+                  className={fieldErrors.password ? "input-error" : ""}
                 />
+                <button
+                  type="button"
+                  className="password-toggle"
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  {showPassword ? <AiFillEyeInvisible size={20} /> : <AiFillEye size={20} />}
+                </button>
+              </div>
+              {fieldErrors.password && (
+                <span className="field-error-message">{fieldErrors.password}</span>
+              )}
             </div>
             {!isLogin && (
-              <div className="input-group">
-                <input type="password" name="confirmPassword" placeholder="Confirm password" required 
-                    className={invalidFields.includes("email")? "Invalid-input" : ""}
-                />
+              <div className="form-field">
+                <div className="password-input-wrapper">
+                  <input 
+                    type={showConfirmPassword ? "text" : "password"}
+                    name="confirmPassword" 
+                    placeholder="Confirm password"
+                    className={fieldErrors.confirmPassword ? "input-error" : ""}
+                  />
+                  <button
+                    type="button"
+                    className="password-toggle"
+                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                  >
+                    {showConfirmPassword ? <AiFillEyeInvisible size={20} /> : <AiFillEye size={20} />}
+                  </button>
+                </div>
+                {fieldErrors.confirmPassword && (
+                  <span className="field-error-message">{fieldErrors.confirmPassword}</span>
+                )}
               </div>
             )}
             {isLogin && (
@@ -83,8 +125,8 @@ export function AuthForm({ isLogin, onSubmit, onSwitchAuth, errorMessage, invali
           <div className={`social-${isLogin ? 'login' : 'signup'}`}>
             <p>{socialText}</p>
             <div className="social-icons">
-              <button><FcGoogle /></button>
-              <button><FaFacebook /></button>
+              <button><FcGoogle  size={40} /></button>
+              <button><FaFacebook size={40}/></button>
             </div>
           </div>
         </div>

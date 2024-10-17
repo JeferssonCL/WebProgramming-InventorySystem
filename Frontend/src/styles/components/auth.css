@@ -11,6 +11,7 @@
   background-color: #7790ED;
   color: white;
   padding: 2rem;
+  padding-top: 18rem;
   flex-direction: column;
   justify-content: space-between;
 }
@@ -65,8 +66,8 @@
   border-radius: 4px;
 }
 
-.login-form button,
-.signup-form button,
+.login-form button[type="submit"],
+.signup-form button[type="submit"],
 .signup-button,
 .login-button {
   width: 100%;
@@ -131,8 +132,8 @@
   color: #7790ED;
 }
 
-.login-form button,
-.signup-form button {
+.login-form button[type="submit"],
+.signup-form button[type="submit"] {
   background-color: #F4E3CC;
   color: #4A5568;
 }
@@ -146,6 +147,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-top: 2rem;
   margin-bottom: 1rem;
   font-size: 0.8rem;
 }
@@ -169,7 +171,6 @@
   background-color: #f0f0f0;
 }
 
-/* Responsive adjustments */
 @media (max-width: 768px) {
   .login-container,
   .signup-container {
@@ -184,26 +185,90 @@
   }
 }
 .error-message {
-    color: #ff0000;
-    font-size: 0.9rem;
-    margin-bottom: 1rem;
-    text-align: center;
-  }
+  color: #ff0000;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.invalid-input {
+  border-color: #ff0000 !important;
+}
+
+.invalid-input::placeholder {
+  color: #ff0000;
+}
+.invalid-input {
+  border: 1px solid red;
+}
   
-  .invalid-input {
-    border-color: #ff0000 !important;
-  }
-  
-  .invalid-input::placeholder {
-    color: #ff0000;
-  }
-  .invalid-input {
-    border: 1px solid red;
-  }
-  
-  .error-message {
-    color: red;
-    font-size: 0.9rem;
-    margin-top: 4px;
-  }
-  
+.error-message {
+  color: red;
+  font-size: 0.9rem;
+  margin-top: 4px;
+}
+
+.form-field {
+  position: relative;
+}
+
+.input-error {
+  border: 1px solid #ff4444 !important;
+  background-color: #fff6f6;
+}
+
+.field-error-message {
+  color: #ff4444;
+  font-size: 0.75rem;
+  margin-top: 0.25rem;
+  display: block;
+  position: absolute;
+  bottom: -0px;
+  left: 0;
+}
+
+.form-error-message {
+  color: #ff4444;
+  text-align: center;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.form-field + .form-field {
+  margin-top: 1.5rem;
+}
+
+.password-input-wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.password-input-wrapper input {
+  width: 100%;
+  padding-right: 35px;
+}
+
+.password-toggle {
+  position: absolute;
+  right: 8px;
+  border: none;
+  cursor: pointer;
+  color: #666;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  margin-top: -15px;
+}
+
+.password-toggle:hover {
+  color: #333;
+}
+
+.password-input-wrapper, 
+.password-input-wrapper input,
+.password-toggle {
+  background: none;
+}
