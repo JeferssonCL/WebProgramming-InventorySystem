@@ -1,28 +1,24 @@
 using Backend.Application.Handlers.Products.Requests.Queries;
 using Backend.Domain.Entities.Concretes;
-using Backend.Infrastructure.DAO.Interfaces;
+using Backend.Infrastructure.Repositories.Interfaces;
 using MediatR;
 
 namespace Backend.Application.Handlers.Products.RequestHandlers.Queries
 {
     public class GetAllProductsQueryHandler : IRequestHandler<GetAllProductsQuery, (List<Product>, int)>
     {
-        private readonly IGenericDAO<Product> _productDao;
+        private readonly IProductRepository _productRepository;
 
-        public GetAllProductsQueryHandler(IGenericDAO<Product> productDao)
+        public GetAllProductsQueryHandler(IProductRepository productRepository)
         {
-            _productDao = productDao;
+            _productRepository = productRepository;
         }
 
         public async Task<(List<Product>, int)> Handle(GetAllProductsQuery request, CancellationToken cancellationToken)
         {
-            var totalProducts = await _productDao.GetAllAsync();
-            int total = totalProducts.Count();
-            totalProducts = totalProducts
-                .Skip((request.Page - 1) * request.PageSize)
-                .Take(request.PageSize);
-                
-            return (totalProducts.ToList(), total);
+            var totalProducts = await _productRepository.GetAllAsync(request.Page, request.PageSize);
+            var count = await _productRepository.GetCountAsync();
+            return (totalProducts.ToList(), count);
         }
     }
 }

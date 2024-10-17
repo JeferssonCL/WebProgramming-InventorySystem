@@ -1,13 +1,49 @@
 import { FaShoppingCart, FaRegSadTear } from "react-icons/fa";
 import { useState } from "react";
+import { loadStripe } from "@stripe/stripe-js";
 import '../styles/components/shoppingCart.css';
 import { ShoppingCartItem } from "./ShoppingCartItem";
 
-export function ShoppingCart({ shoppingCartList, removeToList }) {
+export function ShoppingCart({ shoppingCartList, removeToList, increse, decrese }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const openMenu = () => {
     setIsOpen(!isOpen);
+  };
+
+  const shoppingCartDtoList = shoppingCartList.map(item => ({
+    id: item.id,
+    name: item.name,
+    price: item.price,
+    imageUrl: item.image.length > 0 ? item.image[0].url : '',
+    quantity: item.quantity
+  }));
+
+  const submitCart = async () => {
+    try {
+      const stripe = await loadStripe(
+        "pk_test_51Q81UpP3WBhplXYwggVU8aKSusfUgfjKqFPz6amcMmjkcnJSJVOL22DHfqQiyou6mtPlbTpOtehXhG0wFRFIo47l00rb1JJ1Qc"
+      );
+      console.log(JSON.stringify(shoppingCartDtoList));
+      const response = await fetch('http://localhost:5163/api/ShoppingCart/Submit-cart', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(shoppingCartDtoList)
+      });
+      const session = await response.json();
+      const result = stripe.redirectToCheckout({
+        sessionId: session.id
+      });
+
+      if (result.error) {
+        console.log(result.error);
+      }
+
+      console.log(result);
+
+    } catch (error) {
+      console.error("Error al enviar el carrito:", error);
+    }
   };
 
   return (
@@ -33,12 +69,23 @@ export function ShoppingCart({ shoppingCartList, removeToList }) {
                   image={item.image[0]}
                   removeToList={removeToList}
                   quantity={item.quantity}
+                  increseQuantity={increse}
+                  decreseQuantity={decrese}
                 />
               ))
             )
           }
         </div>
-        <a href="/" className={`shopping-cart-go-button ${shoppingCartList.length > 0 ? 'active' : ''}`}><FaShoppingCart /> Go to shopping cart</a>
+        <a
+          href="/"
+          className={`shopping-cart-go-button ${shoppingCartList.length > 0 ? 'active' : ''}`}
+          onClick={(e) => {
+            e.preventDefault();
+            submitCart();
+          }}
+        >
+          <FaShoppingCart /> Go to shopping cart
+        </a>
       </div>
     </>
   );
