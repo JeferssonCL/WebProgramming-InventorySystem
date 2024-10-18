@@ -1,9 +1,12 @@
 using Backend.Api;
+using Microsoft.AspNetCore.Diagnostics;
+using DotNetEnv;
+using Microsoft.EntityFrameworkCore;
 using Backend.Application;
 using Backend.Infrastructure.Context;
-using DotNetEnv;
-using Microsoft.AspNetCore.Diagnostics;
-using Microsoft.EntityFrameworkCore;
+using Backend.Infrastructure.Repositories.Interfaces;
+using Backend.Infrastructure.Repositories.Concretes;
+using Backend.Application.Repositories.Concretes;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,7 +15,7 @@ Env.Load("../.env");
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowLocalhost",
-        builder => builder.WithOrigins("http://localhost:5173")
+        builder => builder.WithOrigins("*")
                           .AllowAnyHeader()
                           .AllowAnyMethod());
 });
@@ -26,6 +29,11 @@ builder.Configuration.AddEnvironmentVariables();
 
 builder.Services.AddApplication();
 
+
+
+builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 string connectionString = Env.GetString("POSTGRESSQLCONNECTION");
 
@@ -41,7 +49,6 @@ builder.Services.AddAuthorization();
 builder.Services.AddControllers();
 builder.Services.AddSingleton<IExceptionHandler, GlobalExceptionHandler>();
 builder.Services.AddSwaggerAuthConfig();
-
 
 
 var app = builder.Build();

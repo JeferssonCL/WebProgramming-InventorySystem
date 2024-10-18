@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { auth } from "../config/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { AuthForm } from "../components/AuthForm";
+import axios from "axios";
 import "../styles/components/auth.css";
 
 export function Login({ onLogin }) {
@@ -12,7 +13,7 @@ export function Login({ onLogin }) {
 
   const validateForm = (email, password) => {
     const errors = {};
-    
+
     if (!email.trim()) {
       errors.email = "Email is required";
     }
@@ -37,9 +38,18 @@ export function Login({ onLogin }) {
     }
 
     try {
-      const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      const user = userCredential.user;
-      if (onLogin) onLogin(user);
+      const userCredential = axios.post('http://localhost:5163/api/auth/login', {
+        email,
+        password
+      })
+      .then(response => {
+        console.log('Respuesta del servidor:', response.data);
+      })
+      .catch(error => {
+        console.error('Error al realizar la solicitud:', error);
+      });
+
+      if (onLogin) onLogin(userCredential);
       navigate("/");
     } catch (error) {
       console.error("Login failed:", error);
@@ -66,9 +76,9 @@ export function Login({ onLogin }) {
   };
 
   return (
-    <AuthForm 
-      isLogin={true} 
-      onSubmit={handleLogin} 
+    <AuthForm
+      isLogin={true}
+      onSubmit={handleLogin}
       onSwitchAuth={handleSwitchToSignup}
       statusMessage={statusMessage}
       fieldErrors={fieldErrors}
