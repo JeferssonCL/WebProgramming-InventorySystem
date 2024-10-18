@@ -1,5 +1,4 @@
 using Backend.Domain.Entities.Concretes;
-using Backend.Infrastructure.Context;
 using Backend.Infrastructure.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
@@ -7,7 +6,7 @@ namespace Backend.Infrastructure.Repositories.Concretes;
 
 public class ProductRepository : BaseRepository<Product>, IProductRepository
 {
-    public ProductRepository(PostgresContext context) : base(context) { }
+    public ProductRepository(DbContext context) : base(context) { }
 
     public override async Task<Product> AddAsync(Product entity)
     {

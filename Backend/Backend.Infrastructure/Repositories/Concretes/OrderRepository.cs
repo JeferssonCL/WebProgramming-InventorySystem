@@ -1,12 +1,12 @@
 using Backend.Domain.Entities.Concretes;
-using Backend.Infrastructure.Context;
 using Backend.Infrastructure.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace Backend.Infrastructure.Repositories.Concretes;
 
 public class OrderRepository : BaseRepository<Order>, IOrderRepository
 {
-    public OrderRepository(PostgresContext context) : base(context)
+    public OrderRepository(DbContext context) : base(context)
     {
     }
 

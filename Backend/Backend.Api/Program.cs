@@ -1,8 +1,8 @@
+using Backend.Api;
 using Backend.Application;
 using Backend.Infrastructure.Context;
-using Backend.Infrastructure.Repositories.Concretes;
-using Backend.Infrastructure.Repositories.Interfaces;
 using DotNetEnv;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -27,13 +27,9 @@ builder.Configuration.AddEnvironmentVariables();
 builder.Services.AddApplication();
 
 
-builder.Services.AddScoped<IOrderRepository, OrderRepository>();
-builder.Services.AddScoped<IProductRepository, ProductRepository>();
-
-
 string connectionString = Env.GetString("POSTGRESSQLCONNECTION");
 
-builder.Services.AddDbContext<PostgresContext>(options =>
+builder.Services.AddDbContext<DbContext, PostgresContext>(options =>
     options.UseNpgsql(connectionString,
         b => b.MigrationsAssembly("Backend.Api"))
 
@@ -43,6 +39,9 @@ builder.Services.AddDbContext<PostgresContext>(options =>
 
 builder.Services.AddAuthorization();
 builder.Services.AddControllers();
+builder.Services.AddSingleton<IExceptionHandler, GlobalExceptionHandler>();
+builder.Services.AddSwaggerAuthConfig();
+
 
 
 var app = builder.Build();
@@ -51,12 +50,15 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+    app.UseExceptionHandler("/error");
 }
 
 
 app.UseHttpsRedirection();
 app.UseCors("AllowLocalhost");
+app.UseAuthentication();
 app.UseAuthorization();
+
 app.MapControllers();
 
 app.Run();
