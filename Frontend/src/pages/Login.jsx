@@ -38,19 +38,30 @@ export function Login({ onLogin }) {
     }
 
     try {
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+    } catch (error) {
+      console.error("Login failed:", error);
+      setStatusMessage({
+        type: 'error',
+        message: "Invalid email or password"
+      });
+      setFieldErrors({});
+    }
+
+    try {
       const userCredential = axios.post('http://localhost:5163/api/auth/login', {
         email,
         password
       })
-      .then(response => {
-        console.log('Respuesta del servidor:', response.data);
-      })
-      .catch(error => {
-        console.error('Error al realizar la solicitud:', error);
-      });
+        .then(response => {
+          console.log('Respuesta del servidor:', response.data);
+        })
+        .catch(error => {
+          console.error('Error al realizar la solicitud:', error);
+        });
 
-      if (onLogin) onLogin(userCredential);
-      navigate("/");
+
     } catch (error) {
       console.error("Login failed:", error);
       setStatusMessage({
