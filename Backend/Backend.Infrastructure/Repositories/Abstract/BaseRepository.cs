@@ -9,9 +9,9 @@ public abstract class BaseRepository<T> : ICrudRepository<T>
 where T : BaseEntity
 {
 
-    protected readonly PostgresContext _context;
+    protected readonly DbContext _context;
 
-    public BaseRepository(PostgresContext context)
+    public BaseRepository(DbContext context)
     {
         _context = context;
     }
@@ -19,6 +19,7 @@ where T : BaseEntity
     public virtual Task<T> AddAsync(T entity)
     {
         _context.Set<T>().Add(entity);
+        _context.SaveChanges();
         return Task.FromResult(entity);
     }
 
@@ -29,6 +30,7 @@ where T : BaseEntity
         {
             entity.IsActive = false;
             await UpdateAsync(entity);
+            _context.SaveChanges();
         }
         return true;
     }
@@ -51,6 +53,7 @@ where T : BaseEntity
     {
         entity.UpdatedAt = DateTime.Now;
         _context.Set<T>().Update(entity);
+        _context.SaveChanges();
         return Task.FromResult(entity);
     }
 

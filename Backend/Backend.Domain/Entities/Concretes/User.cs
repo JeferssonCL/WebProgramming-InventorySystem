@@ -7,7 +7,7 @@ public class User : BaseEntity
 {
     public string Name { get; set; }
     public string Email { get; set; }
-    public string Password { get; set; }
+    public string? IdentityId { get; set; }
     public UserType UserType { get; set; }
     public ICollection<Order> Orders { get; set; }
     public ICollection<Store> Stores { get; set; }
