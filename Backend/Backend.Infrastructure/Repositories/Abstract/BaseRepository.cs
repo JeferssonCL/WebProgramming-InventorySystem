@@ -19,6 +19,7 @@ where T : BaseEntity
     public virtual Task<T> AddAsync(T entity)
     {
         _context.Set<T>().Add(entity);
+        _context.SaveChanges();
         return Task.FromResult(entity);
     }
 
@@ -29,6 +30,7 @@ where T : BaseEntity
         {
             entity.IsActive = false;
             await UpdateAsync(entity);
+            _context.SaveChanges();
         }
         return true;
     }
@@ -51,6 +53,7 @@ where T : BaseEntity
     {
         entity.UpdatedAt = DateTime.Now;
         _context.Set<T>().Update(entity);
+        _context.SaveChanges();
         return Task.FromResult(entity);
     }
 
