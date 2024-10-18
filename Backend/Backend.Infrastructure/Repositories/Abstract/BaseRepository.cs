@@ -9,9 +9,9 @@ public abstract class BaseRepository<T> : ICrudRepository<T>
 where T : BaseEntity
 {
 
-    protected readonly PostgresContext _context;
+    protected readonly DbContext _context;
 
-    public BaseRepository(PostgresContext context)
+    public BaseRepository(DbContext context)
     {
         _context = context;
     }

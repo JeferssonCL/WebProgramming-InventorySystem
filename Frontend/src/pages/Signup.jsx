@@ -4,6 +4,7 @@ import { auth } from "../config/firebase";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { AuthForm } from "../components/AuthForm";
 import "../styles/components/auth.css";
+import axios from "axios";
 
 export function Signup() {
   const navigate = useNavigate();
@@ -55,15 +56,12 @@ export function Signup() {
     }
 
     try {
-      const userCredential = await createUserWithEmailAndPassword(
-        auth, 
-        formData.email, 
-        formData.password
-      );
+      const userCredential = await axios.post('http://localhost:5163/api/auth/signup', {
+        name: formData.name,
+        email: formData.email,
+        password: formData.password
+      })
 
-      await updateProfile(userCredential.user, {
-        displayName: formData.name,
-      });
 
       alert("Account created successfully!");
       navigate("/");
