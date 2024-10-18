@@ -16,6 +16,7 @@ const ProductCardCompleteInfo = ({ product, onDelete }) => {
             <div className="flex flex-row items-center">
                 <div className="flex flex-col p-6 text-right items-end">
                     <h4 className="font-bold ">{product.name}</h4>
+                    <label className="font-light text-sm">{product.variant}</label>
                     <div className="flex flex-row h-fit justify-between w-20">
                       <button
                           className="border border-violet-600 pr-2 pl-2 pt-0.5 pb-0.5 rounded-md"

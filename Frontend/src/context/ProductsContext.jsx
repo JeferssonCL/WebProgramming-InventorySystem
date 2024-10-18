@@ -1,52 +1,68 @@
-import React, { createContext, useState, useEffect } from 'react';
+import React, {createContext, useEffect, useState} from 'react';
 
 export const ProductsContext = createContext();
 
 export const ProductsProvider = ({ children }) => {
     const [products, setProducts] = useState(() => {
         const savedProducts = localStorage.getItem('products');
-        console.log("Initial load from localStorage:", savedProducts);
         return savedProducts ? JSON.parse(savedProducts) : [];
     });
 
     // This will trigger whenever `products` changes
     useEffect(() => {
-        console.log("Products updated:", products);
         localStorage.setItem('products', JSON.stringify(products));
     }, [products]);
 
     const addProduct = (newProduct) => {
+        const variantName = searchBasicVariantCombination(newProduct.variants);
         const productToStore = {
             id: newProduct.id,
             name: newProduct.name,
             price: newProduct.price,
             image: newProduct.images,
+            variant: variantName,
             quantity: 1
         };
         const productExists = products.find(item => item.id === productToStore.id);
         if (!productExists) {
             setProducts((prevProducts) => {
-                console.log("Adding new product:", productToStore);
                 return [...prevProducts, productToStore];
             });
         }
     };
 
+    const searchBasicVariantCombination = (variants) => {
+        const attributesMap = {};
+
+        variants.forEach(variant => {
+            variant.attributes.forEach(attribute => {
+                if (attributesMap[attribute.name]) {
+                    if (!attributesMap[attribute.name].includes(attribute.value)) {
+                        attributesMap[attribute.name].push(attribute.value);
+                    }
+                } else {
+                    attributesMap[attribute.name] = [attribute.value];
+                }
+            });
+        });
+
+        return Object.keys(attributesMap).map(key => {
+            const firstValue = attributesMap[key][0];
+            return `${key}: ${firstValue}`;
+        }).join(', ');
+    }
+
     const removeProductById = (id) => {
         setProducts((prevProducts) => {
-            const updatedProducts = prevProducts.filter(item => item.id !== id);
-            console.log("Removed product with id:", id);
-            return updatedProducts;
+            return prevProducts.filter(item => item.id !== id);
         });
     };
 
     const handleDecreaseQuantity = (id) => {
-        console.log("Decrease");
         setProducts((prevProducts) =>
             prevProducts
                 .map(item => {
                     if (item.id === id) {
-                        console.log(`Decreasing quantity for product id ${id}`);
                         return { ...item, quantity: item.quantity > 1 ? item.quantity - 1 : 1 };
                     }
                     return item;
@@ -55,11 +71,9 @@ export const ProductsProvider = ({ children }) => {
     };
 
     const handleIncreaseQuantity = (id) => {
-        console.log("Increase" + id);
         setProducts((prevProducts) =>
             prevProducts.map(item => {
                 if (item.id === id) {
-                    console.log(`Increasing quantity for product id ${id}`);
                     return { ...item, quantity: item.quantity + 1 };
                 }
                 return item;
