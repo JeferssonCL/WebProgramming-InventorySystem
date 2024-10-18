@@ -1,11 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { ProductCard } from "../components/ProductCard";
+import { ProductsContext } from "../context/ProductsContext";
 import axios from 'axios';
 import '../styles/pages/home.css';
 import PropTypes from "prop-types";
 
-export function Home({ addToCart }) {
+export function Home() {
   const [productList, setProductList] = useState([]);
+
+  const { addProduct } = useContext(ProductsContext);
 
   useEffect(() => {
     const apiUrl = "http://localhost:5163/api/product?page=1&limit=20";
@@ -32,7 +35,7 @@ export function Home({ addToCart }) {
               brand={product.brand}
               price={product.price}
               image={product.images[0].url}
-              onAddToCart={() => addToCart(product)}
+              onAddToCart={() => addProduct(product)}
             />
           ))
         )
@@ -42,5 +45,4 @@ export function Home({ addToCart }) {
 }
 
 Home.propTypes = {
-  addToCart: PropTypes.func.isRequired
 }

@@ -64,7 +64,10 @@
 
 .shopping-cart-go-button {
   width: 100%;
-  display: none;
+  height: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
   background-color: #5275F5;
   color: #fff;
