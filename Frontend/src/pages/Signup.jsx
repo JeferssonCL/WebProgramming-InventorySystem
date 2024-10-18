@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import { AuthForm } from "../components/AuthForm.jsx";
+import { auth } from "../config/firebase";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { AuthForm } from "../components/AuthForm";
 import "../styles/components/auth.css";
 
 export function Signup() {
@@ -12,36 +13,26 @@ export function Signup() {
   const validateForm = (formData) => {
     const errors = {};
 
-    if (!formData.username.trim()) {
-      errors.username = "Username is required";
-    } else if (!/^[a-zA-Z0-9_-]+$/.test(formData.username)) {
-      errors.username = "Username can only contain letters, numbers, underscore and dash";
+    if (!formData.name?.trim()) {
+      errors.username = "Name is required";
     }
 
-    if (!formData.email.trim()) {
+    if (!formData.email?.trim()) {
       errors.email = "Email is required";
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      errors.email = "Please enter a valid email address";
+      errors.email = "Please enter a valid email";
     }
 
-    if (!formData.password.trim()) {
+    if (!formData.password?.trim()) {
       errors.password = "Password is required";
-    } else {
-      if (formData.password.length < 6) {
-        errors.password = "Password must be at least 6 characters long";
-      } else if (!/(?=.*[A-Z])/.test(formData.password)) {
-        errors.password = "Password must contain at least one uppercase letter";
-      } else if (!/(?=.*[0-9])/.test(formData.password)) {
-        errors.password = "Password must contain at least one number";
-      } else if (!/(?=.*[!@#$%^&*])/.test(formData.password)) {
-        errors.password = "Password must contain at least one special character";
-      }
+    } else if (formData.password.length < 6) {
+      errors.password = "Password must be at least 6 characters long";
     }
 
-    if (!formData.confirmPassword.trim()) {
-      errors.confirmPassword = "Please confirm your password";
+    if (!formData.confirmPassword?.trim()) {
+      errors.confirmPassword = "Confirm your password";
     } else if (formData.password !== formData.confirmPassword) {
-      errors.confirmPassword = "Passwords don't match";
+      errors.confirmPassword = "Passwords do not match";
     }
 
     return errors;
@@ -50,7 +41,7 @@ export function Signup() {
   const handleSignup = async (event) => {
     event.preventDefault();
     const formData = {
-      username: event.target.username.value,
+      name: event.target.name.value,
       email: event.target.email.value,
       password: event.target.password.value,
       confirmPassword: event.target.confirmPassword.value,
@@ -64,28 +55,46 @@ export function Signup() {
     }
 
     try {
-      /**
-       * The request to the backend should be implemented, this is provitional 
-       */
-      const response = await axios.post("http://localhost:5163/api/signup", {
-        username: formData.username,
-        email: formData.email,
-        password: formData.password
+      const userCredential = await createUserWithEmailAndPassword(
+        auth, 
+        formData.email, 
+        formData.password
+      );
+
+      await updateProfile(userCredential.user, {
+        displayName: formData.name,
       });
-      
-      if (response.status === 201) {
-        alert("Signup successful! Please login.");
-        navigate("/login");
-      }
+
+      alert("Account created successfully!");
+      navigate("/");
     } catch (error) {
-      console.error("Signup failed:", error);
-      if (error.response?.data?.message) {
-        setErrorMessage(error.response.data.message);
-      } else {
-        setErrorMessage("Signup failed. Please try again.");
+      let errorMsg = "Failed to create account";
+
+      switch (error.code) {
+        case "auth/email-already-in-use":
+          errorMsg = "An account with this email already exists";
+          break;
+        case "auth/operation-not-allowed":
+          errorMsg = "Email and password registration is not enabled";
+          break;
+        case "auth/weak-password":
+          errorMsg = "The password is too weak";
+          break;
+        default:
+          errorMsg = "An unexpected error occurred. Please try again.";
       }
+
+      setErrorMessage(errorMsg);
       setFieldErrors({});
     }
+  };
+
+  const handleSocialLoginSuccess = (user) => {
+    navigate("/");
+  };
+
+  const handleSocialLoginError = (error) => {
+    setErrorMessage("Failed to register with social network");
   };
 
   const handleSwitchToLogin = () => {
@@ -99,6 +108,8 @@ export function Signup() {
       onSwitchAuth={handleSwitchToLogin}
       errorMessage={errorMessage}
       fieldErrors={fieldErrors}
+      onSocialLoginSuccess={handleSocialLoginSuccess}
+      onSocialLoginError={handleSocialLoginError}
     />
   );
 }

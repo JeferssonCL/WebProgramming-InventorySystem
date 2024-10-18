@@ -1,9 +1,18 @@
 import React, { useState } from "react";
-import { FaFacebook } from "react-icons/fa";
-import { FcGoogle } from "react-icons/fc";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
+import { GoogleLoginButton, FacebookLoginButton } from "../components/SocialButtons";
+import "../styles/components/auth.css";
 
-export function AuthForm({ isLogin, onSubmit, onSwitchAuth, errorMessage, fieldErrors = {} }) {
+export function AuthForm({
+  isLogin,
+  onSubmit,
+  onSwitchAuth,
+  errorMessage = "",
+  fieldErrors = {},
+  statusMessage = {},
+  onSocialLoginSuccess,
+  onSocialLoginError,
+}) {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
@@ -14,41 +23,42 @@ export function AuthForm({ isLogin, onSubmit, onSwitchAuth, errorMessage, fieldE
   const switchButtonText = isLogin ? "SIGN UP" : "LOGIN";
 
   return (
-    <div className={`${isLogin ? 'login' : 'signup'}-container`}>
-      <div className={`${isLogin ? 'login' : 'signup'}-sidebar`}>
+    <div className={`${isLogin ? "login" : "signup"}-container`}>
+      <div className={`${isLogin ? "login" : "signup"}-sidebar`}>
         <div>
           <img 
             src="public/logo/m.png" 
             alt="Merchant logo" 
-            className={`${isLogin ? 'login' : 'signup'}-logo`} 
+            className={`${isLogin ? "login" : "signup"}-logo`} 
           />
-          <p className={`${isLogin ? 'login' : 'signup'}-welcome`}>
+          <p className={`${isLogin ? "login" : "signup"}-welcome`}>
             {isLogin ? "WELCOME BACK!" : "WELCOME!"}
           </p>
-          <p className={`${isLogin ? 'login' : 'signup'}-info`}>
+          <p className={`${isLogin ? "login" : "signup"}-info`}>
             {isLogin
               ? "To keep connected with us please login with your personal info"
               : "Join us to find everything you need"}
           </p>
         </div>
-        <div className={`${isLogin ? 'signup' : 'login'}-section`}>
+        <div className={`${isLogin ? "signup" : "login"}-section`}>
           <p>{switchText}</p>
-          <button onClick={onSwitchAuth} className={`${isLogin ? 'signup' : 'login'}-button`}>
+          <button onClick={onSwitchAuth} className={`${isLogin ? "signup" : "login"}-button`}>
             {switchButtonText}
           </button>
         </div>
       </div>
-      <div className={`${isLogin ? 'login' : 'signup'}-form-container`}>
-        <div className={`${isLogin ? 'login' : 'signup'}-form`}>
+
+      <div className={`${isLogin ? "login" : "signup"}-form-container`}>
+        <div className={`${isLogin ? "login" : "signup"}-form`}>
           <h2 className="form-title">{title}</h2>
-          {errorMessage && <p className="form-error-message">{errorMessage}</p>}
+
           <form onSubmit={onSubmit} noValidate>
             {!isLogin && (
               <div className="form-field">
                 <input 
                   type="text" 
-                  name="username" 
-                  placeholder="Username"
+                  name="name" 
+                  placeholder="Name"
                   className={fieldErrors.username ? "input-error" : ""}
                 />
                 {fieldErrors.username && (
@@ -56,6 +66,7 @@ export function AuthForm({ isLogin, onSubmit, onSwitchAuth, errorMessage, fieldE
                 )}
               </div>
             )}
+
             <div className="form-field">
               <input
                 type="text"
@@ -67,11 +78,12 @@ export function AuthForm({ isLogin, onSubmit, onSwitchAuth, errorMessage, fieldE
                 <span className="field-error-message">{fieldErrors.email}</span>
               )}
             </div>
+
             <div className="form-field">
               <div className="password-input-wrapper">
                 <input 
                   type={showPassword ? "text" : "password"}
-                  name="password" 
+                  name="password"
                   placeholder="Password"
                   className={fieldErrors.password ? "input-error" : ""}
                 />
@@ -87,13 +99,14 @@ export function AuthForm({ isLogin, onSubmit, onSwitchAuth, errorMessage, fieldE
                 <span className="field-error-message">{fieldErrors.password}</span>
               )}
             </div>
+
             {!isLogin && (
               <div className="form-field">
                 <div className="password-input-wrapper">
                   <input 
                     type={showConfirmPassword ? "text" : "password"}
-                    name="confirmPassword" 
-                    placeholder="Confirm password"
+                    name="confirmPassword"
+                    placeholder="Confirm Password"
                     className={fieldErrors.confirmPassword ? "input-error" : ""}
                   />
                   <button
@@ -109,25 +122,21 @@ export function AuthForm({ isLogin, onSubmit, onSwitchAuth, errorMessage, fieldE
                 )}
               </div>
             )}
-            {isLogin && (
-              <div className="login-options">
-                <label className="remember-me">
-                  <input type="checkbox" />
-                  Remember me
-                </label>
-                <a href="#" className="forgot-password">Forgot Password</a>
-              </div>
+
+            {statusMessage.message && (
+              <p className={`status-message ${statusMessage.type}`}>{statusMessage.message}</p>
             )}
-            <button type="submit" className={`${isLogin ? 'login' : 'signup'}-button`}>
+
+            <button type="submit" className="signup-button">
               {buttonText}
             </button>
           </form>
-          <div className={`social-${isLogin ? 'login' : 'signup'}`}>
-            <p>{socialText}</p>
-            <div className="social-icons">
-              <button><FcGoogle  size={40} /></button>
-              <button><FaFacebook size={40}/></button>
-            </div>
+
+          <p className="social-text">{socialText}</p>
+
+          <div className="social-icons">
+            <GoogleLoginButton onSuccess={onSocialLoginSuccess} onError={onSocialLoginError} />
+            <FacebookLoginButton onSuccess={onSocialLoginSuccess} onError={onSocialLoginError} />
           </div>
         </div>
       </div>

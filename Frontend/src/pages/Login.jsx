@@ -1,25 +1,24 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import { AuthForm } from "../components/AuthForm.jsx";
+import { auth } from "../config/firebase";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { AuthForm } from "../components/AuthForm";
 import "../styles/components/auth.css";
 
 export function Login({ onLogin }) {
   const navigate = useNavigate();
-  const [errorMessage, setErrorMessage] = useState("");
+  const [statusMessage, setStatusMessage] = useState({ type: '', message: '' });
   const [fieldErrors, setFieldErrors] = useState({});
 
   const validateForm = (email, password) => {
     const errors = {};
     
     if (!email.trim()) {
-      errors.email = "Username or Email is required";
+      errors.email = "Email is required";
     }
 
     if (!password.trim()) {
       errors.password = "Password is required";
-    } else if (password.trim().length < 6) {
-      errors.password = "Password must be at least 6 characters";
     }
 
     return errors;
@@ -33,30 +32,33 @@ export function Login({ onLogin }) {
     const errors = validateForm(email, password);
     if (Object.keys(errors).length > 0) {
       setFieldErrors(errors);
-      setErrorMessage("");
+      setStatusMessage({ type: '', message: '' });
       return;
     }
 
     try {
-      /**
-       * The request to the backend should be implemented, this is provitional 
-       */
-      const response = await axios.post("http://localhost:5163/api/login", {
-        email,
-        password
-      });
-      
-      if (response.status === 200) {
-        onLogin();
-      }
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+      if (onLogin) onLogin(user);
+      navigate("/");
     } catch (error) {
       console.error("Login failed:", error);
-      setErrorMessage("Email or password invalid");
-      setFieldErrors({
-        email: "",
-        password: ""
+      setStatusMessage({
+        type: 'error',
+        message: "Invalid email or password"
       });
+      setFieldErrors({});
     }
+  };
+
+  const handleSocialLoginSuccess = (user) => {
+    if (onLogin) onLogin(user);
+    navigate("/");
+  };
+
+  const handleSocialLoginError = (error) => {
+    console.error("Social login error:", error);
+    setStatusMessage({ type: 'error', message: "Failed to log in with social network" });
   };
 
   const handleSwitchToSignup = () => {
@@ -68,8 +70,10 @@ export function Login({ onLogin }) {
       isLogin={true} 
       onSubmit={handleLogin} 
       onSwitchAuth={handleSwitchToSignup}
-      errorMessage={errorMessage}
+      statusMessage={statusMessage}
       fieldErrors={fieldErrors}
+      onSocialLoginSuccess={handleSocialLoginSuccess}
+      onSocialLoginError={handleSocialLoginError}
     />
   );
 }

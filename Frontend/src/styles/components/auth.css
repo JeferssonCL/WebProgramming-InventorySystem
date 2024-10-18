@@ -166,6 +166,10 @@
   width: 40px;
   height: 40px;
 }
+.social-text {
+  padding: 50px;
+  margin-left: 50px;
+}
 
 .social-icons button:hover {
   background-color: #f0f0f0;
@@ -271,4 +275,21 @@
 .password-input-wrapper input,
 .password-toggle {
   background: none;
+}
+
+.status-message {
+  padding: 0.5rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  transition: all 0.3s ease;
+}
+
+.status-message.error {
+  color: #dc2626;
+  background-color: rgba(220, 38, 38, 0.1);
+}
+
+.status-message.success {
+  color: #16a34a;
+  background-color: rgba(22, 163, 74, 0.1);
 }
