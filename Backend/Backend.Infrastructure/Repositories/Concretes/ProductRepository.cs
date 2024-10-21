@@ -1,14 +1,13 @@
 using Backend.Domain.Entities.Concretes;
 using Backend.Infrastructure.Context;
+using Backend.Infrastructure.Repositories.Abstract;
 using Backend.Infrastructure.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace Backend.Infrastructure.Repositories.Concretes;
 
-public class ProductRepository : BaseRepository<Product>, IProductRepository
+public class ProductRepository(PostgresContext context) : BaseRepository<Product>(context), IProductRepository
 {
-    public ProductRepository(PostgresContext context) : base(context) { }
-
     public override async Task<Product> AddAsync(Product entity)
     {
         if (entity == null)
@@ -16,8 +15,8 @@ public class ProductRepository : BaseRepository<Product>, IProductRepository
             throw new ArgumentNullException(nameof(entity));
         }
 
-        await _context.Set<Product>().AddAsync(entity).ConfigureAwait(false);
-        await _context.SaveChangesAsync();
+        await Context.Set<Product>().AddAsync(entity).ConfigureAwait(false);
+        await Context.SaveChangesAsync();
 
         return entity;
     }
@@ -25,7 +24,7 @@ public class ProductRepository : BaseRepository<Product>, IProductRepository
 
     public override async Task<IEnumerable<Product>> GetAllAsync(int page, int limit)
     {
-        List<Product> products = await _context.Set<Product>()
+        List<Product> products = await Context.Set<Product>()
             .Include(p => p.Store)
             .Include(p => p.Images)
             .Include(p => p.ProductVariants)
@@ -41,7 +40,7 @@ public class ProductRepository : BaseRepository<Product>, IProductRepository
     }
     public override async Task<Product?> GetByIdAsync(Guid id)
     {
-        return await _context.Set<Product>()
+        return await Context.Set<Product>()
             .Include(p => p.Store)
             .Include(p => p.Images)
             .Include(p => p.ProductVariants)
@@ -59,16 +58,16 @@ public class ProductRepository : BaseRepository<Product>, IProductRepository
             throw new ArgumentNullException(nameof(entity));
         }
 
-        var existingProduct = await _context.Set<Product>().FindAsync(entity.Id);
+        var existingProduct = await Context.Set<Product>().FindAsync(entity.Id);
 
         if (existingProduct == null)
         {
             throw new KeyNotFoundException($"Product with ID {entity.Id} not found.");
         }
 
-        _context.Entry(existingProduct).CurrentValues.SetValues(entity);
+        Context.Entry(existingProduct).CurrentValues.SetValues(entity);
 
-        await _context.SaveChangesAsync();
+        await Context.SaveChangesAsync();
 
         return existingProduct;
     }
