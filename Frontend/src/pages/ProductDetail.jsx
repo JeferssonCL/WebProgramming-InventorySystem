@@ -27,8 +27,6 @@ export function ProductDetail() {
       }
     };
 
-
-    console.log("ID: " + id)
     fetchProductById();
   }, [id]);
 
