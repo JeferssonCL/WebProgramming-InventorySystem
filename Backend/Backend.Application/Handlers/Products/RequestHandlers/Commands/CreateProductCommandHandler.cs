@@ -5,17 +5,13 @@ using MediatR;
 
 namespace Backend.Application.Handlers.Products.RequestHandlers.Commands;
 
-public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand, Product>
+public class CreateProductCommandHandler(IProductRepository productRepository)
+    : IRequestHandler<CreateProductCommand, Product>
 {
-    private readonly IProductRepository _producRepository;
-    public CreateProductCommandHandler(IProductRepository productRepository)
-    {
-        _producRepository = productRepository;
-    }
     public async Task<Product> Handle(CreateProductCommand request, CancellationToken cancellationToken)
     {
         var product = request.Product;
-        product = await _producRepository.AddAsync(product);
+        product = await productRepository.AddAsync(product);
         return product;
     }
 
