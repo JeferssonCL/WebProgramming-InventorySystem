@@ -1,6 +1,8 @@
 import './App.css'
 import { Header } from './components/Header'
 import { Home } from './pages/Home'
+import { Login } from './pages/Login'
+import { Signup } from './pages/Signup'
 import { Route, Routes, BrowserRouter } from 'react-router-dom'
 import { ProductDetail } from './pages/ProductDetail'
 import { useState, useEffect } from 'react'
@@ -83,6 +85,8 @@ function App() {
         <Route path="/product/:id" element={<ProductDetail />} />
         <Route path="/payment_transaction/success" element={<PaymentStatusSuccess />} />
         <Route path="/payment_transaction/failed" element={<PaymentStatusFailed />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
       </Routes>
     </BrowserRouter>
   )
