@@ -9,27 +9,19 @@ using Backend.Domain.Entities.Concretes;
 namespace Backend.Api.Controllers;
 [ApiController]
 [Route("api/[controller]")]
-public class ProductController : ControllerBase
+public class ProductController(IMediator mediator, IMapper mapper) : ControllerBase
 {
-    private readonly IMediator _mediator;
-    private readonly IMapper _mapper;
-    public ProductController(IMediator mediator, IMapper mapper)
-    {
-        _mediator = mediator;
-        _mapper = mapper;
-    }
-
     [HttpGet("{id}")]
     public ActionResult<ProductDto> GetById(Guid id)
     {
-        var product = _mediator.Send(new GetProductQuery(id)).Result;
+        var product = mediator.Send(new GetProductQuery(id)).Result;
 
         if (product == null)
         {
             return NotFound();
         }
 
-        var productDto = _mapper.Map<ProductDto>(product);
+        var productDto = mapper.Map<ProductDto>(product);
         return Ok(productDto);
     }
 
@@ -37,14 +29,14 @@ public class ProductController : ControllerBase
     public async Task<ActionResult<PageDto<ProductDto>>> GetAll([FromQuery] int page = 1, [FromQuery] int limit = 10)
     {
         var query = new GetAllProductsQuery(page, limit);
-        (List<Product> products, int total) = await _mediator.Send(query);
+        (List<Product> products, int total) = await mediator.Send(query);
 
-        var productsDto = _mapper.Map<List<ProductDto>>(products);
+        var productsDto = mapper.Map<List<ProductDto>>(products);
         PageDto<ProductDto> pageDto = PageDto<ProductDto>.Create(productsDto, total, page, limit);
         return Ok(pageDto);
     }
 
-    /* 
+    /*
     TODO : Out of scope for this project
         [HttpPost]
         public async Task<ActionResult<ProductDto>> Create([FromBody] CreateProductDto productDto)

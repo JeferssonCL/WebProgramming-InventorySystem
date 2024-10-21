@@ -1,30 +1,22 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Backend.Application.Dtos;
+using Backend.Application.Dtos.Order;
 using Backend.Application.Handlers.Orders.Request.Commands;
-
 
 namespace Backend.Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class OrderController : ControllerBase
+public class OrderController(IMediator mediator) : ControllerBase
 {
-    private readonly IMediator _mediator;
-    public OrderController(IMediator mediator)
-    {
-        _mediator = mediator;
-    }
-
     [HttpPost]
-    public ActionResult<Dictionary<string, bool>> ProcessShoppingCart(ProcessCartDto processCartDto)
+    public ActionResult<Dictionary<string, bool>> CreateOrder([FromBody] OrderDTO request)
     {
-        var result = _mediator.Send(new ProcessCartCommand(processCartDto));
+        var result = mediator.Send(new CreateOrderCommand(request));
 
         return Ok(new Dictionary<string, bool>
-            {
-                { "result", result.Result }
-            });
+        {
+            { "result", result != null }
+        });
     }
-
 }
