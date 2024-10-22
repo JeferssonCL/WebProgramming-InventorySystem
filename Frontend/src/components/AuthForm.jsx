@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { GoogleLoginButton, FacebookLoginButton } from "../components/SocialButtons";
 import "../styles/components/auth.css";
@@ -8,6 +8,7 @@ export function AuthForm({
   onSubmit,
   onSwitchAuth,
   errorMessage = "",
+  resetErrorMessage = () => {},
   fieldErrors = {},
   statusMessage = {},
   onSocialLoginSuccess,
@@ -22,14 +23,22 @@ export function AuthForm({
   const switchText = isLogin ? "Don't have an account?" : "Already have an account?";
   const switchButtonText = isLogin ? "SIGN UP" : "LOGIN";
 
+
+  useEffect(() => {
+    if (errorMessage !== "") {
+      alert(errorMessage);
+      resetErrorMessage();
+    }
+  }, [errorMessage]);
+
   return (
     <div className={`${isLogin ? "login" : "signup"}-container`}>
       <div className={`${isLogin ? "login" : "signup"}-sidebar`}>
         <div>
-          <img 
-            src="public/logo/m.png" 
-            alt="Merchant logo" 
-            className={`${isLogin ? "login" : "signup"}-logo`} 
+          <img
+            src="public/logo/m.png"
+            alt="Merchant logo"
+            className={`${isLogin ? "login" : "signup"}-logo`}
           />
           <p className={`${isLogin ? "login" : "signup"}-welcome`}>
             {isLogin ? "WELCOME BACK!" : "WELCOME!"}
@@ -55,9 +64,9 @@ export function AuthForm({
           <form onSubmit={onSubmit} noValidate>
             {!isLogin && (
               <div className="form-field">
-                <input 
-                  type="text" 
-                  name="name" 
+                <input
+                  type="text"
+                  name="name"
                   placeholder="Name"
                   className={fieldErrors.username ? "input-error" : ""}
                 />
@@ -81,7 +90,7 @@ export function AuthForm({
 
             <div className="form-field">
               <div className="password-input-wrapper">
-                <input 
+                <input
                   type={showPassword ? "text" : "password"}
                   name="password"
                   placeholder="Password"
@@ -103,7 +112,7 @@ export function AuthForm({
             {!isLogin && (
               <div className="form-field">
                 <div className="password-input-wrapper">
-                  <input 
+                  <input
                     type={showConfirmPassword ? "text" : "password"}
                     name="confirmPassword"
                     placeholder="Confirm Password"

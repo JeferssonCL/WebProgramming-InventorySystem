@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../config/firebase";
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile, getAdditionalUserInfo } from "firebase/auth";
 import { AuthForm } from "../components/AuthForm";
 import "../styles/components/auth.css";
+import axios from 'axios';
 
 export function Signup() {
   const navigate = useNavigate();
@@ -56,14 +57,15 @@ export function Signup() {
 
     try {
       const userCredential = await createUserWithEmailAndPassword(
-        auth, 
-        formData.email, 
+        auth,
+        formData.email,
         formData.password
       );
 
       await updateProfile(userCredential.user, {
         displayName: formData.name,
       });
+      await registerUser(userCredential)
 
       alert("Account created successfully!");
       navigate("/");
@@ -89,7 +91,8 @@ export function Signup() {
     }
   };
 
-  const handleSocialLoginSuccess = (user) => {
+  const handleSocialLoginSuccess = async (userCredential) => {
+    await registerUser(userCredential);
     navigate("/");
   };
 
@@ -101,12 +104,41 @@ export function Signup() {
     navigate("/login");
   };
 
+
+  const registerUser = async (userCredential) => {
+
+    let userInfo = getAdditionalUserInfo(userCredential);
+    if (!userInfo.isNewUser) return
+    let user = userCredential.user;
+
+    try {
+      await axios.post('http://localhost:5163/api/auth/signup', {
+        name: user.displayName,
+        email: user.email,
+        IdentityId: user.uid
+      });
+    } catch (error) {
+      const { status, data } = error.response;
+      if (status === 500 && data.detail.startsWith("System.Exception: User already exists.")) {
+        return
+      }
+      console.error("Error registering user:", error);
+    }
+  };
+
+
+  const resetErrorMessage = () => {
+    setErrorMessage("");
+  };
+
+
   return (
     <AuthForm
       isLogin={false}
       onSubmit={handleSignup}
       onSwitchAuth={handleSwitchToLogin}
       errorMessage={errorMessage}
+      resetErrorMessage={resetErrorMessage}
       fieldErrors={fieldErrors}
       onSocialLoginSuccess={handleSocialLoginSuccess}
       onSocialLoginError={handleSocialLoginError}

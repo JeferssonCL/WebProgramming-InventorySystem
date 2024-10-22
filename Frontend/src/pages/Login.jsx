@@ -12,7 +12,7 @@ export function Login({ onLogin }) {
 
   const validateForm = (email, password) => {
     const errors = {};
-    
+
     if (!email.trim()) {
       errors.email = "Email is required";
     }
@@ -66,9 +66,9 @@ export function Login({ onLogin }) {
   };
 
   return (
-    <AuthForm 
-      isLogin={true} 
-      onSubmit={handleLogin} 
+    <AuthForm
+      isLogin={true}
+      onSubmit={handleLogin}
       onSwitchAuth={handleSwitchToSignup}
       statusMessage={statusMessage}
       fieldErrors={fieldErrors}
