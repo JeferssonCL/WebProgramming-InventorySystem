@@ -1,4 +1,7 @@
 using Backend.Domain.Entities.Concretes;
 
 namespace Backend.Infrastructure.Repositories.Interfaces;
-public interface IUserRepository : ICrudRepository<User>;
+public interface IUserRepository : ICrudRepository<User>
+{
+    Task<User?> GetUserByIdentityId(string identityId);
+}

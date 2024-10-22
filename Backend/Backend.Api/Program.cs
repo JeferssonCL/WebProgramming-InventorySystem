@@ -7,6 +7,8 @@ using Backend.Infrastructure.Context;
 using Backend.Infrastructure.Repositories.Interfaces;
 using Backend.Infrastructure.Repositories.Concretes;
 using Backend.Application.Repositories.Concretes;
+using Backend.Application.Services.Auth.Interfaces;
+using Backend.Application.Services.Auth.Concretes;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,11 +31,6 @@ builder.Configuration.AddEnvironmentVariables();
 
 builder.Services.AddApplication();
 
-
-
-builder.Services.AddScoped<IOrderRepository, OrderRepository>();
-builder.Services.AddScoped<IProductRepository, ProductRepository>();
-builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 string connectionString = Env.GetString("POSTGRESSQLCONNECTION");
 

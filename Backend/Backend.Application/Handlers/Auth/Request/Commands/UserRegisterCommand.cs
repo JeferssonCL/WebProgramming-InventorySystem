@@ -7,13 +7,13 @@ public class UserRegisterCommand : IRequest<User>
 {
     public required string Email { get; set; }
     public required string Name { get; set; }
-    public required string Password { get; set; }
+    public required string IdentityId { get; set; }
 
 
-    public UserRegisterCommand(string email, string name, string password)
+    public UserRegisterCommand(string email, string name, string identityId)
     {
         Email = email;
         Name = name;
-        Password = password;
+        IdentityId = identityId;
     }
 }

@@ -11,4 +11,9 @@ public class UserRepository : BaseRepository<User>, IUserRepository
     public UserRepository(DbContext context) : base(context)
     {
     }
+
+    public async Task<User?> GetUserByIdentityId(string identityId)
+    {
+        return await _context.Set<User>().FirstOrDefaultAsync(u => u.IdentityId == identityId);
+    }
 }
