@@ -1,5 +1,5 @@
 -- Insert Categories
-INSERT INTO "Category" ("Id", "ParentCategoryId", "Name", "IsActive", "CreatedAt", "UpdatedAt") VALUES 
+INSERT INTO "Category" ("Id", "ParentCategoryId", "Name", "IsActive", "CreatedAt", "UpdatedAt") VALUES
 ('4e5cb421-968e-4f85-b654-a96e0ab0e3f0', NULL, 'Electronics', true, CURRENT_TIMESTAMP, NULL),
 ('cff773e7-398e-4820-987e-47c171efdee5', NULL, 'Clothing', true, CURRENT_TIMESTAMP, NULL),
 ('e0a21115-170c-438c-9b26-71ed8440b62f', '4e5cb421-968e-4f85-b654-a96e0ab0e3f0', 'Mobile Phones', true, CURRENT_TIMESTAMP, NULL),
@@ -10,24 +10,24 @@ INSERT INTO "Category" ("Id", "ParentCategoryId", "Name", "IsActive", "CreatedAt
 ('5e09170e-dedd-4ea9-ae0e-0a1091f80742', 'cff773e7-398e-4820-987e-47c171efdee5', 'Accessories', true, CURRENT_TIMESTAMP, NULL);
 
 -- Insert Users
-INSERT INTO "User" ("Id", "Name", "Email", "Password", "UserType", "IsActive", "CreatedAt", "UpdatedAt") VALUES 
+INSERT INTO "User" ("Id", "Name", "Email", "IdentityId", "UserType", "IsActive", "CreatedAt", "UpdatedAt") VALUES
 ('c4055860-c902-4787-ba54-0b34e18a1040', 'Jefersson Coronel', 'jefersoncoronel700@gmail.com', 'password123', 0, true, CURRENT_TIMESTAMP, NULL),
 ('e8489e3b-c12c-4197-8bc1-dac21bc6e82f', 'Karina Aguirre', 'karina123@gmail.com', 'password123', 3, true, CURRENT_TIMESTAMP, NULL);
 
 -- Insert Stores
-INSERT INTO "Store" ("Id", "UserId", "Name", "Description", "Address", "PhoneNumber", "IsActive", "CreatedAt", "UpdatedAt") VALUES 
+INSERT INTO "Store" ("Id", "UserId", "Name", "Description", "Address", "PhoneNumber", "IsActive", "CreatedAt", "UpdatedAt") VALUES
 ('708096b5-4119-4365-b974-3da5c04f0ba6', 'c4055860-c902-4787-ba54-0b34e18a1040', 'Best Electronics', 'Your one-stop shop for electronics', '789 Tech Ave', 76435676, true, CURRENT_TIMESTAMP, NULL),
 ('8330f716-3ad1-40f9-a8b4-5720b010328b', 'c4055860-c902-4787-ba54-0b34e18a1040', 'Fashion Hub', 'Latest fashion trends', '101 Fashion St', 65473899, true, CURRENT_TIMESTAMP, NULL);
 
 -- Insert Products
-INSERT INTO "Product" ("Id", "StoreId", "Name", "Description", "BasePrice", "Brand", "IsActive", "CreatedAt", "UpdatedAt") VALUES 
+INSERT INTO "Product" ("Id", "StoreId", "Name", "Description", "BasePrice", "Brand", "IsActive", "CreatedAt", "UpdatedAt") VALUES
 ('80381bb1-1d22-475a-8b7e-c4b84d02be0e', '708096b5-4119-4365-b974-3da5c04f0ba6', 'iPhone 14', 'Latest Apple smartphone', 999.99, 'Apple', true, CURRENT_TIMESTAMP, NULL),
 ('d98f6668-2b9f-4a7c-a866-99a73921eed6', '708096b5-4119-4365-b974-3da5c04f0ba6', 'Dell XPS 13', 'Compact laptop with powerful performance', 1199.99, 'Dell', true, CURRENT_TIMESTAMP, NULL),
 ('fba39c75-29fb-499f-a88a-b0863c1d0f2a', '8330f716-3ad1-40f9-a8b4-5720b010328b', 'T-Shirt', 'Cotton T-Shirt in various colors', 19.99, 'Fashion "Brand"', true, CURRENT_TIMESTAMP, NULL),
 ('53d78e6d-decc-4244-b116-18bab2f24f09', '8330f716-3ad1-40f9-a8b4-5720b010328b', 'Leather Jacket', 'Genuine leather jacket', 199.99, 'Fashion "Brand"', true, CURRENT_TIMESTAMP, NULL);
 
 -- Insert Images
-INSERT INTO "Image" ("Id", "ProductId", "AltText", "Url", "IsActive", "CreatedAt", "UpdatedAt") VALUES  
+INSERT INTO "Image" ("Id", "ProductId", "AltText", "Url", "IsActive", "CreatedAt", "UpdatedAt") VALUES
 ('3fe7bbff-d878-47be-a235-1ed9ebe2ed00', '80381bb1-1d22-475a-8b7e-c4b84d02be0e', 'iPhone 14', 'https://www.tiendaamiga.com.bo/media/catalog/product/cache/deb88dadd509903c96aaa309d3e790dc/c/e/celular_iphone_14_pro_128gb_negro.jpg', true, CURRENT_TIMESTAMP, NULL),
 ('0025a458-14f7-4067-b96a-13c6dec420bc', '80381bb1-1d22-475a-8b7e-c4b84d02be0e', 'iPhone 14', 'https://www.tiendaamiga.com.bo/media/catalog/product/cache/0f08319f92600c7a6bb31ae1a25ad318/c/e/celular_iphone_14_pro_128gb_black.jpg', true, CURRENT_TIMESTAMP, NULL),
 ('6be3577a-990a-4140-b726-8be55a2eeacc', '80381bb1-1d22-475a-8b7e-c4b84d02be0e', 'iPhone 14', 'https://www.tiendaamiga.com.bo/media/catalog/product/cache/0f08319f92600c7a6bb31ae1a25ad318/c/e/celular_iphone_14_pro_128gb_negro_mate.jpg', true, CURRENT_TIMESTAMP, NULL),
@@ -52,7 +52,7 @@ INSERT INTO "Image" ("Id", "ProductId", "AltText", "Url", "IsActive", "CreatedAt
 ('ca49da7c-6deb-45dc-8ae7-65e8abce34d8', '53d78e6d-decc-4244-b116-18bab2f24f09', 'Genuine Leather Jacket in black', 'https://domino.ua/media/iopt/catalog/product/cache/1338d3702d6df92e886ded663f0927b0/1/5/154584-1_1.webp', true, CURRENT_TIMESTAMP, NULL);
 
 -- Insert Product Variants
-INSERT INTO "ProductVariant"("Id", "ProductId", "ImageId", "PriceAdjustment", "StockQuantity", "IsActive", "CreatedAt", "UpdatedAt") VALUES 
+INSERT INTO "ProductVariant"("Id", "ProductId", "ImageId", "PriceAdjustment", "StockQuantity", "IsActive", "CreatedAt", "UpdatedAt") VALUES
 ('a793a3c8-8b6f-4f4e-a300-1427ac2cc7b8', '80381bb1-1d22-475a-8b7e-c4b84d02be0e', '7e47fdc4-3043-416a-afd2-d9a9e9de73b9', 0, 10, true, CURRENT_TIMESTAMP, NULL),
 ('be3f959b-ad95-442b-9cb1-39a967a15e16', '80381bb1-1d22-475a-8b7e-c4b84d02be0e', '88ae92e5-6569-47b8-ab80-4e70b98e18cb', 0, 20, true, CURRENT_TIMESTAMP, NULL),
 ('022109b8-5a11-46ed-92b5-d5ccf59cf02e', '80381bb1-1d22-475a-8b7e-c4b84d02be0e', '7adcaa29-4dd5-48de-a64b-66b5b4977b93', 0, 8, true, CURRENT_TIMESTAMP, NULL),
@@ -68,7 +68,7 @@ INSERT INTO "ProductVariant"("Id", "ProductId", "ImageId", "PriceAdjustment", "S
 ('6bcbfe56-043a-4fd2-95a8-96f7e0f5f8a3', '53d78e6d-decc-4244-b116-18bab2f24f09', NULL, 0, 15, true, CURRENT_TIMESTAMP, NULL);
 
 -- Insert Variants5
-INSERT INTO "Variant" ("Id", "Name", "IsActive", "CreatedAt", "UpdatedAt") VALUES 
+INSERT INTO "Variant" ("Id", "Name", "IsActive", "CreatedAt", "UpdatedAt") VALUES
 ('c84517ff-e146-4074-a232-4c0b2328d308', 'Color', true, CURRENT_TIMESTAMP, NULL),
 ('0952150e-7949-4166-a489-9a8eadcd803a', 'Size', true, CURRENT_TIMESTAMP, NULL);
 
@@ -89,12 +89,12 @@ INSERT INTO "ProductAttribute"("Id", "ProductVariantId", "VariantId", "Value",  
 ('ae2aa0ff-e020-4cef-9d24-0f40f24ea01d', '6bcbfe56-043a-4fd2-95a8-96f7e0f5f8a3', '0952150e-7949-4166-a489-9a8eadcd803a', 'XS', true, CURRENT_TIMESTAMP, NULL);
 
 -- Insert User Addresses
-INSERT INTO "UserAddress" ("Id", "UserId", "Address", "City", "Country", "IsActive", "CreatedAt", "UpdatedAt") VALUES 
+INSERT INTO "UserAddress" ("Id", "UserId", "Address", "City", "Country", "IsActive", "CreatedAt", "UpdatedAt") VALUES
 ('945ff41a-fd1d-431b-9a70-2ae6f1a9ec08', 'c4055860-c902-4787-ba54-0b34e18a1040', '123 Main St', 'Los Angeles', 'USA', true, CURRENT_TIMESTAMP, NULL),
 ('83249fea-26a9-4de8-9e2b-a14cf7969d81', 'e8489e3b-c12c-4197-8bc1-dac21bc6e82f', '456 Elm St', 'New York', 'USA', true, CURRENT_TIMESTAMP, NULL);
 
 -- Insert Products
-INSERT INTO "CategoryProduct" ("CategoriesId", "ProductsId") VALUES 
+INSERT INTO "CategoryProduct" ("CategoriesId", "ProductsId") VALUES
 ('e0a21115-170c-438c-9b26-71ed8440b62f', '80381bb1-1d22-475a-8b7e-c4b84d02be0e'),
 ('4e5cb421-968e-4f85-b654-a96e0ab0e3f0', '80381bb1-1d22-475a-8b7e-c4b84d02be0e'),
 ('4e5cb421-968e-4f85-b654-a96e0ab0e3f0', 'd98f6668-2b9f-4a7c-a866-99a73921eed6'),

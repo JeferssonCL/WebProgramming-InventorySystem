@@ -26,6 +26,7 @@ public abstract class BaseRepository<T>(DbContext context) : ICrudRepository<T>
         {
             entity.IsActive = false;
             await UpdateAsync(entity);
+            _context.SaveChanges();
         }
         return true;
     }
