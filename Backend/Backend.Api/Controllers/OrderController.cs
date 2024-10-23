@@ -10,9 +10,9 @@ namespace Backend.Api.Controllers;
 public class OrderController(IMediator mediator) : ControllerBase
 {
     [HttpPost]
-    public ActionResult<Dictionary<string, bool>> CreateOrder([FromBody] OrderDTO request)
+    public async Task<ActionResult<Dictionary<string, bool>>> CreateOrder([FromBody] OrderDTO request)
     {
-        var result = mediator.Send(new CreateOrderCommand(request));
+        var result = await mediator.Send(new CreateOrderCommand(request));
 
         return Ok(new Dictionary<string, bool>
         {

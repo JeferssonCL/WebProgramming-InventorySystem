@@ -22,57 +22,66 @@ public class CreateOrderCommandHandler : IRequestHandler<CreateOrderCommand, str
 
     public async Task<string> Handle(CreateOrderCommand request, CancellationToken cancellationToken)
     {
-        var service = new SessionService();
-        var sessionWithLineItems = await service.GetAsync(request.OrderToBeCreated.StripeSessionId, new SessionGetOptions
+        try
         {
-            Expand = ["line_items", "line_items.data.price.product",  "payment_intent"]
-        }, cancellationToken: cancellationToken);
+            var service = new SessionService();
+            var sessionWithLineItems = await service.GetAsync(request.OrderToBeCreated.StripeSessionId, new SessionGetOptions
+            {
+                Expand = ["line_items", "line_items.data.price.product", "payment_intent"]
+            }, cancellationToken: cancellationToken);
 
-        if (sessionWithLineItems == null) throw new InvalidOperationException("Failed to retrieve session from Stripe.");
+            if (sessionWithLineItems == null) throw new InvalidOperationException("Failed to retrieve session from Stripe.");
 
-        var paymentMethod = sessionWithLineItems.PaymentMethodTypes.FirstOrDefault() ?? "Unknown";
-        var transactionStatus = sessionWithLineItems.PaymentStatus ?? "Unknown";
-        var orderStatus = MapStripeStatusToOrderStatus(transactionStatus);
+            var paymentMethod = sessionWithLineItems.PaymentMethodTypes.FirstOrDefault() ?? "Unknown";
+            var transactionStatus = sessionWithLineItems.PaymentStatus ?? "Unknown";
+            var orderStatus = MapStripeStatusToOrderStatus(transactionStatus);
 
-        var order = new Order
+            var order = new Order
+            {
+                UserId = request.OrderToBeCreated.Customer.Id,
+                OrderDate = DateTime.UtcNow,
+                OrderStatus = orderStatus,
+                TotalPrice = sessionWithLineItems.AmountTotal ?? 0,
+            };
+            await _unitOfWork.OrdersRepository.AddAsync(order);
+
+            var userAddress = new UserAddress
+            {
+                UserId = request.OrderToBeCreated.Customer.Id,
+                Address = request.OrderToBeCreated.Customer.Address,
+                City = request.OrderToBeCreated.Customer.City,
+                Country = request.OrderToBeCreated.Customer.Country,
+            };
+            await _unitOfWork.UserAddressRepository.AddAsync(userAddress);
+
+            var orderItems = sessionWithLineItems.LineItems.Data.Select(item => new OrderItem
+            {
+                OrderId = order.Id,
+                ProductId = Guid.Parse(item.Price.Product.Metadata["ProductId"]),
+                Quantity = (int)item.Quantity!,
+                UnitPrice = (double)(item.Price.UnitAmount ?? 0) / 100,
+                DiscountPercent = 0,
+                TotalPrice = (double)(item.Price.UnitAmount ?? 0) * (item.Quantity ?? 0) / 100
+            }).ToList();
+            foreach (var orderItem in orderItems) await _unitOfWork.OrderItemRepository.AddAsync(orderItem);
+
+            var paymentTransaction = new PaymentTransaction
+            {
+                OrderId = order.Id,
+                PaymentMethod = MapPaymentMethodStringToEnum(paymentMethod),
+                TransactionOrderStatus = MapPaymentStatusStringToEnum(transactionStatus),
+                Amount = order.TotalPrice,
+            };
+            await _unitOfWork.PaymentTransactionRepository.AddAsync(paymentTransaction);
+
+            return order.Id.ToString();
+
+        }
+        catch (Exception ex)
         {
-            UserId = request.OrderToBeCreated.Customer.Id,
-            OrderDate = DateTime.UtcNow,
-            OrderStatus = orderStatus,
-            TotalPrice = sessionWithLineItems.AmountTotal ?? 0,
-        };
-        await _unitOfWork.OrdersRepository.AddAsync(order);
-
-        var userAddress = new UserAddress
-        {
-            UserId = request.OrderToBeCreated.Customer.Id,
-            Address = request.OrderToBeCreated.Customer.Address,
-            City = request.OrderToBeCreated.Customer.City,
-            Country = request.OrderToBeCreated.Customer.Country,
-        };
-        await _unitOfWork.UserAddressRepository.AddAsync(userAddress);
-
-        var orderItems = sessionWithLineItems.LineItems.Data.Select(item => new OrderItem
-        {
-            OrderId = order.Id,
-            ProductId = Guid.Parse(item.Price.Product.Metadata["ProductId"]),
-            Quantity = (int)item.Quantity!,
-            UnitPrice = (double)(item.Price.UnitAmount ?? 0) / 100,
-            DiscountPercent = 0,
-            TotalPrice = (double)(item.Price.UnitAmount ?? 0) * (item.Quantity ?? 0) / 100
-        }).ToList();
-        foreach (var orderItem in orderItems) await _unitOfWork.OrderItemRepository.AddAsync(orderItem);
-
-        var paymentTransaction = new PaymentTransaction
-        {
-            OrderId = order.Id,
-            PaymentMethod = MapPaymentMethodStringToEnum(paymentMethod),
-            TransactionOrderStatus = MapPaymentStatusStringToEnum(transactionStatus),
-            Amount = order.TotalPrice,
-        };
-        await _unitOfWork.PaymentTransactionRepository.AddAsync(paymentTransaction);
-
-        return order.Id.ToString();
+            Console.WriteLine(ex);
+            throw;
+        }
     }
 
     private OrderStatus MapStripeStatusToOrderStatus(string stripeStatus)

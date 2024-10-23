@@ -12,13 +12,15 @@ public class UnitOfWork(DbContext context, IOrderRepository ordersRepository,
     public IUserAddressRepository UserAddressRepository { get; } = userAddressRepository;
     public IOrderItemRepository OrderItemRepository { get; } = orderItemRepository;
 
+    private readonly DbContext _context = context;
+
     public async Task<int> CommitAsync()
     {
-        return await context.SaveChangesAsync();
+        return await _context.SaveChangesAsync();
     }
 
     public void Dispose()
     {
-        context.Dispose();
+        _context.Dispose();
     }
 }
