@@ -40,6 +40,11 @@ public class UserRepository(PostgresContext context) : BaseRepository<User>(cont
             .ConfigureAwait(false);
     }
 
+    public Task<User?> GetUserByIdentityId(string identityId)
+    {
+        return Context.Set<User>().FirstOrDefaultAsync(u => u.IdentityId == identityId);
+    }
+
     public override async Task<User> UpdateAsync(User entity)
     {
         if (entity == null) throw new ArgumentNullException(nameof(entity));
