@@ -1,4 +1,5 @@
 using Backend.Application.Handlers.Orders.Request.Commands;
+using Backend.Application.Services.Products.Interfaces;
 using Backend.Domain.Entities.Concretes;
 using Backend.Domain.Entities.Enums;
 using Backend.Infrastructure.Repositories.Interfaces;
@@ -12,12 +13,14 @@ namespace Backend.Application.Handlers.Orders.RequestHandlers.Commands;
 
 public class CreateOrderCommandHandler : IRequestHandler<CreateOrderCommand, string>
 {
-    private IUnitOfWork _unitOfWork;
+    private readonly IUnitOfWork _unitOfWork;
+    private readonly IInventoryService _inventoryService;
 
-    public CreateOrderCommandHandler(IUnitOfWork unitOfWork)
+    public CreateOrderCommandHandler(IUnitOfWork unitOfWork, IInventoryService inventoryService)
     {
         StripeConfiguration.ApiKey = Env.GetString("STRIPE_SECRET_KEY");
         _unitOfWork = unitOfWork;
+        _inventoryService = inventoryService;
     }
 
     public async Task<string> Handle(CreateOrderCommand request, CancellationToken cancellationToken)
@@ -73,6 +76,8 @@ public class CreateOrderCommandHandler : IRequestHandler<CreateOrderCommand, str
                 Amount = order.TotalPrice,
             };
             await _unitOfWork.PaymentTransactionRepository.AddAsync(paymentTransaction);
+
+            await _inventoryService.ReduceInventory(orderItems);
 
             return order.Id.ToString();
 
