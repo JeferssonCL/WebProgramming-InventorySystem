@@ -8,32 +8,36 @@ function CompleteOrder() {
 
     const { products, removeProductById } = useContext(ProductsContext);
 
-    const onSubmit = async () => {
-      try {
-        const stripe = await loadStripe(
-          "pk_test_51Q81UpP3WBhplXYwggVU8aKSusfUgfjKqFPz6amcMmjkcnJSJVOL22DHfqQiyou6mtPlbTpOtehXhG0wFRFIo47l00rb1JJ1Qc"
-        );
-        console.log(JSON.stringify(shoppingCartDtoList));
-        const response = await fetch('http://localhost:5163/api/ShoppingCart/Submit-cart', {
+      const shoppingCartDtoList = products.map(item => ({
+        id: item.id,
+        name: item.name,
+        price: item.price,
+        imageUrl: item.image.length > 0 ? item.image[0].url : '',
+        quantity: item.quantity
+      }));
+
+      const onSubmitCart = async () => {
+        const stripe = await loadStripe("pk_test_51Q81UpP3WBhplXYwggVU8aKSusfUgfjKqFPz6amcMmjkcnJSJVOL22DHfqQiyou6mtPlbTpOtehXhG0wFRFIo47l00rb1JJ1Qc");
+        const response = await fetch('http://localhost:5163/api/Checkout/submit-cart', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(shoppingCartDtoList)
         });
+
+        if (!response.ok) {
+          const errorMessage = await response.text();
+          console.error("Error from API:", errorMessage);
+          return;
+        }
+
         const session = await response.json();
         const result = stripe.redirectToCheckout({
           sessionId: session.id
         });
-
         if (result.error) {
           console.log(result.error);
         }
-
-        console.log(result);
-
-      } catch (error) {
-        console.error("Error al enviar el carrito:", error);
-      }
-    };
+      };
 
     const calculateTotalAmount = (products) => {
         if (!Array.isArray(products)) {
@@ -47,14 +51,6 @@ function CompleteOrder() {
       };
 
     const totalAmount = calculateTotalAmount(products);
-
-    const shoppingCartDtoList = products.map(item => ({
-      id: item.id,
-      name: item.name,
-      price: item.price,
-      imageUrl: item.image.length > 0 ? item.image[0].url : '',
-      quantity: item.quantity
-    }));
 
     return (
         <div className="m-6 flex flex-row justify-between space-x-6 bg-white text-black p-6 border rounded-lg">
@@ -74,7 +70,7 @@ function CompleteOrder() {
                 <div className="justify-self-end mt-2">
                   <button
                       className="justify-self-end rounded-md bg-violet-500 text-white pr-5 pl-5 pt-2 pb-2"
-                      onClick={onSubmit}
+                      onClick={onSubmitCart}
                   >Go to Checkout</button>
                 </div>
             </div>

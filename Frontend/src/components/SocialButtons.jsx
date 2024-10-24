@@ -1,9 +1,9 @@
 import React from 'react';
 import { auth } from '../config/firebase';
-import { 
-  GoogleAuthProvider, 
+import {
+  GoogleAuthProvider,
   FacebookAuthProvider,
-  signInWithPopup 
+  signInWithPopup
 } from 'firebase/auth';
 import { FaFacebook } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
@@ -11,11 +11,11 @@ import { FcGoogle } from "react-icons/fc";
 const handleSocialAuth = async (provider, onSuccess, onError) => {
   try {
     const result = await signInWithPopup(auth, provider);
-    onSuccess?.(result.user);
+    onSuccess?.(result);
   } catch (error) {
     console.error('Social auth error:', error);
     let errorMsg = "Error authenticating with social network";
-    
+
     switch (error.code) {
       case 'auth/popup-closed-by-user':
         errorMsg = "The process was cancelled";
@@ -26,7 +26,7 @@ const handleSocialAuth = async (provider, onSuccess, onError) => {
       default:
         errorMsg = "Error al autenticar. Por favor, intenta de nuevo";
     }
-    
+
     onError?.(errorMsg);
   }
 };

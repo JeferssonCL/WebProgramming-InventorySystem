@@ -1,5 +1,6 @@
 import { FaShoppingCart, FaRegSadTear } from "react-icons/fa";
 import { useState, useContext } from "react";
+import { loadStripe } from "@stripe/stripe-js";
 import '../styles/components/shoppingCart.css';
 import { ShoppingCartItem } from "./ShoppingCartItem";
 import { ProductsContext } from "../context/ProductsContext";

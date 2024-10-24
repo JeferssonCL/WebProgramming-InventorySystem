@@ -6,7 +6,8 @@ using Backend.Application;
 using Backend.Infrastructure.Context;
 using Backend.Infrastructure.Repositories.Interfaces;
 using Backend.Infrastructure.Repositories.Concretes;
-using Backend.Application.Repositories.Concretes;
+using Backend.Application.Services.Auth.Interfaces;
+using Backend.Application.Services.Auth.Concretes;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -31,18 +32,13 @@ builder.Services.AddApplication();
 
 
 
-builder.Services.AddScoped<IOrderRepository, OrderRepository>();
-builder.Services.AddScoped<IProductRepository, ProductRepository>();
-builder.Services.AddScoped<IUserRepository, UserRepository>();
-
 string connectionString = Env.GetString("POSTGRESSQLCONNECTION");
 
 builder.Services.AddDbContext<DbContext, PostgresContext>(options =>
     options.UseNpgsql(connectionString,
-        b => b.MigrationsAssembly("Backend.Api"))
-
-           .EnableSensitiveDataLogging()
-           .LogTo(Console.WriteLine, LogLevel.Information)
+            b => b.MigrationsAssembly("Backend.Api"))
+        .EnableSensitiveDataLogging()
+        .LogTo(Console.WriteLine, LogLevel.Information)
 );
 
 builder.Services.AddAuthorization();

@@ -12,8 +12,10 @@ export function ShoppingCartItem({ id, name, image, price, quantity }) {
   return (
     <div className="shopping-cart-item">
       <img src={image} alt={`Product item ${name}`} className="shopping-cart-item-image" />
-      <p className="shopping-cart-item-name">{name}</p>
-      <p className="shopping-cart-item-price">${price.toFixed(2)}</p>
+      <div className="shopping-cart-item-information">
+        <p className="shopping-cart-item-name">{name}</p>
+        <p className="shopping-cart-item-price">${price.toFixed(2)}</p>
+      </div>
       <StockQuantityInput id={id} quantity={quantity} increse={handleIncreaseQuantity} decrese={handleDecreaseQuantity} />
       <button className="shopping-cart-item-delete-to-cart" onClick={() => removeProductById(id)}>
         <FaRegTrashAlt />
@@ -26,5 +28,6 @@ ShoppingCartItem.propTypes = {
   id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
-  price: PropTypes.number.isRequired
+  price: PropTypes.number.isRequired,
+  quantity: PropTypes.number.isRequired
 };

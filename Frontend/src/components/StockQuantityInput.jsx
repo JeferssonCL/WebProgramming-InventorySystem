@@ -7,7 +7,7 @@ export function StockQuantityInput({ id, quantity, increse, decrese }) {
       <button className="quantity-input-decrese-button" onClick={() => decrese(id)}>
         <FaMinus />
       </button>
-      <input type="number" name="quantity-input" id="quantity-input" className="quantity-input" value={quantity} />
+      <input type="number" name="quantity-input" id="quantity-input" className="quantity-input" value={quantity} readOnly />
       <button className="quantity-input-decrese-button" onClick={() => increse(id)}>
         <FaPlus />
       </button>

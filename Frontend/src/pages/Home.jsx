@@ -6,6 +6,7 @@ import '../styles/pages/home.css';
 import PropTypes from "prop-types";
 
 export function Home() {
+  localStorage.removeItem('orderSubmitted');
   const [productList, setProductList] = useState([]);
 
   const { addProduct } = useContext(ProductsContext);

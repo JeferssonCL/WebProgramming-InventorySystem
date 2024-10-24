@@ -1,5 +1,4 @@
 using Backend.Application.Profiles;
-using Backend.Application.Repositories.Concretes;
 using Backend.Application.Services.Auth.Concretes;
 using Backend.Application.Services.Auth.Interfaces;
 using Backend.Infrastructure.Repositories.Concretes;
@@ -8,7 +7,6 @@ using DotNetEnv;
 using FirebaseAdmin;
 using Google.Apis.Auth.OAuth2;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 
@@ -55,15 +53,16 @@ namespace Backend.Application
             );
 
 
+
             services.AddScoped<IOrderRepository, OrderRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<IUserAddressRepository, UserAddressRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
-            services.AddSingleton<IAuthenticationService, AuthenticationService>();
-            services.AddHttpClient<IJwtProvider, JwtProvider>((sp, client) =>
-            {
-                var conf = sp.GetRequiredService<IConfiguration>();
-                client.BaseAddress = new Uri(Env.GetString("AUTH_JWT_VALIDATION_URL"));
-            });
+            services.AddScoped<IPaymentTransactionRepository, PaymentTransactionRepository>();
+            services.AddScoped<IOrderItemRepository, OrderItemRepository>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+            services.AddSingleton<IJwtDecoder, JwtDecoder>();
         }
     }
 }
