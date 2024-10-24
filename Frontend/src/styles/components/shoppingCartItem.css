@@ -1,8 +1,8 @@
 .shopping-cart-item {
-    width: 100%;
-    height: 100px;
+    width: fit-content;
+    height: fit-content;
     display: grid;
-    grid-template-columns: 20% 40% 30% 10%;
+    grid-template-columns: 20% 30% 15% 15% 20%;
     align-items: center;
     background-color: #f1f4ff;
     border-radius: 10px;
@@ -19,7 +19,6 @@
 }
 
 .shopping-cart-item-information {
-  width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -37,7 +36,6 @@
 
 .shopping-cart-item-name,
 .shopping-cart-item-price {
-  width: 100%;
   text-align: left;
 }
 
