@@ -8,3 +8,40 @@
     justify-content: space-between;
     padding: 0 40px;
 }
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .auth-buttons {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .auth-button {
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    text-decoration: none;
+    color: #333;
+    background-color: #f0f0f0;
+    transition: background-color 0.3s;
+  }
+  
+  .auth-button:hover {
+    background-color: #e0e0e0;
+  }
+  
+  .logout-button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    background-color: #44c7ff;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .logout-button:hover {
+    background-color: #00aeff;
+  }
