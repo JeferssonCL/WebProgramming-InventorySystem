@@ -6,7 +6,7 @@ import { StockQuantityInput } from "./StockQuantityInput";
 export function ShoppingCartItem({ id, name, image, price, removeToList, quantity, increseQuantity, decreseQuantity }) {
   return (
     <div className="shopping-cart-item">
-      <img src={image.url} alt={`Product item ${name}`} className="shopping-cart-item-image" />
+      <img src={image} alt={`Product item ${name}`} className="shopping-cart-item-image" />
       <div className="shopping-cart-item-information">
         <p className="shopping-cart-item-name">{name}</p>
         <p className="shopping-cart-item-price">${price.toFixed(2)}</p>

@@ -20,29 +20,25 @@ export function ShoppingCart({ shoppingCartList, removeToList, increse, decrese 
   }));
 
   const submitCart = async () => {
-    try {
-      const stripe = await loadStripe(
-        "pk_test_51Q81UpP3WBhplXYwggVU8aKSusfUgfjKqFPz6amcMmjkcnJSJVOL22DHfqQiyou6mtPlbTpOtehXhG0wFRFIo47l00rb1JJ1Qc"
-      );
-      console.log(JSON.stringify(shoppingCartDtoList));
-      const response = await fetch('http://localhost:5163/api/ShoppingCart/Submit-cart', {
+    const stripe = await loadStripe("pk_test_51Q81UpP3WBhplXYwggVU8aKSusfUgfjKqFPz6amcMmjkcnJSJVOL22DHfqQiyou6mtPlbTpOtehXhG0wFRFIo47l00rb1JJ1Qc");
+    const response = await fetch('http://localhost:5163/api/Checkout/submit-cart', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(shoppingCartDtoList)
-      });
-      const session = await response.json();
-      const result = stripe.redirectToCheckout({
-        sessionId: session.id
-      });
+    });
 
-      if (result.error) {
-        console.log(result.error);
-      }
+    if (!response.ok) {
+        const errorMessage = await response.text();
+        console.error("Error from API:", errorMessage);
+        return;
+    }
 
-      console.log(result);
-
-    } catch (error) {
-      console.error("Error al enviar el carrito:", error);
+    const session = await response.json();
+    const result = stripe.redirectToCheckout({
+      sessionId: session.id
+    });
+    if (result.error) {
+      console.log(result.error);
     }
   };
 
@@ -66,7 +62,7 @@ export function ShoppingCart({ shoppingCartList, removeToList, increse, decrese 
                   id={item.id}
                   name={item.name}
                   price={item.price}
-                  image={item.image[0]}
+                  image={item.image.length > 0 ? item.image[0].url : ''}
                   removeToList={removeToList}
                   quantity={item.quantity}
                   increseQuantity={increse}
