@@ -15,7 +15,7 @@
 # Backup files
 *.bak
 *.swp
-*~ 
+*~
 
 # Rider
 .idea/
@@ -53,7 +53,7 @@ coverage/
 .idea/
 
 # Ignore the .env file
-.env
+Backend/.env
 
 # Ignore user-specific files
 *.suo
