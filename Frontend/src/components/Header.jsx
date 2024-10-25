@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useContext } from "react"
 import "../styles/components/header.css"
 import { Link, useNavigate } from "react-router-dom";
 import { ShoppingCart } from "./ShoppingCart";
