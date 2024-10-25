@@ -36,12 +36,22 @@ export function ShoppingCart() {
                   price={item.price}
                   image={item.image[0].url}
                   quantity={item.quantity}
+                  isAvailableStock={item.stock > item.quantity}
                 />
               ))
             )
           }
         </div>
-        <a href="/complete-order" className={`shopping-cart-go-button ${products.length > 0 ? 'active' : ''}`}><FaShoppingCart /> Go to shopping cart</a>
+        <a href={products.length > 0 ? "/complete-order" : "#"} className={`shopping-cart-go-button ${products.length > 0 ? 'active' : 'disabled'}`}>
+
+        {products.length > 0 ? (
+          <>
+            <FaShoppingCart /> Go to checkout
+          </>
+        ) : (
+          "Add items to cart"
+        )}
+        </a>
       </div>
     </>
   );

@@ -20,11 +20,11 @@ INSERT INTO "Store" ("Id", "UserId", "Name", "Description", "Address", "PhoneNum
 ('8330f716-3ad1-40f9-a8b4-5720b010328b', 'c4055860-c902-4787-ba54-0b34e18a1040', 'Fashion Hub', 'Latest fashion trends', '101 Fashion St', 65473899, true, CURRENT_TIMESTAMP, NULL);
 
 -- Insert Products
-INSERT INTO "Product" ("Id", "StoreId", "Name", "Description", "BasePrice", "Brand", "IsActive", "CreatedAt", "UpdatedAt") VALUES
-('80381bb1-1d22-475a-8b7e-c4b84d02be0e', '708096b5-4119-4365-b974-3da5c04f0ba6', 'iPhone 14', 'Latest Apple smartphone', 999.99, 'Apple', true, CURRENT_TIMESTAMP, NULL),
-('d98f6668-2b9f-4a7c-a866-99a73921eed6', '708096b5-4119-4365-b974-3da5c04f0ba6', 'Dell XPS 13', 'Compact laptop with powerful performance', 1199.99, 'Dell', true, CURRENT_TIMESTAMP, NULL),
-('fba39c75-29fb-499f-a88a-b0863c1d0f2a', '8330f716-3ad1-40f9-a8b4-5720b010328b', 'T-Shirt', 'Cotton T-Shirt in various colors', 19.99, 'Fashion "Brand"', true, CURRENT_TIMESTAMP, NULL),
-('53d78e6d-decc-4244-b116-18bab2f24f09', '8330f716-3ad1-40f9-a8b4-5720b010328b', 'Leather Jacket', 'Genuine leather jacket', 199.99, 'Fashion "Brand"', true, CURRENT_TIMESTAMP, NULL);
+INSERT INTO "Product" ("Id", "StoreId", "Name", "Description", "BasePrice", "Stock","Brand", "IsActive", "CreatedAt", "UpdatedAt") VALUES
+('80381bb1-1d22-475a-8b7e-c4b84d02be0e', '708096b5-4119-4365-b974-3da5c04f0ba6', 'iPhone 14', 'Latest Apple smartphone', 999.99, 38,'Apple', true, CURRENT_TIMESTAMP, NULL),
+('d98f6668-2b9f-4a7c-a866-99a73921eed6', '708096b5-4119-4365-b974-3da5c04f0ba6', 'Dell XPS 13', 'Compact laptop with powerful performance', 1199.99, 20,'Dell', true, CURRENT_TIMESTAMP, NULL),
+('fba39c75-29fb-499f-a88a-b0863c1d0f2a', '8330f716-3ad1-40f9-a8b4-5720b010328b', 'T-Shirt', 'Cotton T-Shirt in various colors', 19.99, 100,'Fashion "Brand"', true, CURRENT_TIMESTAMP, NULL),
+('53d78e6d-decc-4244-b116-18bab2f24f09', '8330f716-3ad1-40f9-a8b4-5720b010328b', 'Leather Jacket', 'Genuine leather jacket', 199.99, 30,'Fashion "Brand"', true, CURRENT_TIMESTAMP, NULL);
 
 -- Insert Images
 INSERT INTO "Image" ("Id", "ProductId", "AltText", "Url", "IsActive", "CreatedAt", "UpdatedAt") VALUES

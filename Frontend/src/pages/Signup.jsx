@@ -5,6 +5,7 @@ import { createUserWithEmailAndPassword, updateProfile, getAdditionalUserInfo } 
 import { AuthForm } from "../components/AuthForm";
 import "../styles/components/auth.css";
 import axios from 'axios';
+import { toast } from 'sonner';
 
 export function Signup() {
   const navigate = useNavigate();
@@ -67,8 +68,16 @@ export function Signup() {
       });
       await registerUser(userCredential)
 
-      alert("Account created successfully!");
-      navigate("/");
+
+
+      toast.success("Account created successfully!", {
+        position: "top-center",
+        duration: 3000
+      });
+      setTimeout(() => {
+        navigate("/");
+      }, 3000);
+
     } catch (error) {
       let errorMsg = "Failed to create account";
 

@@ -36,6 +36,7 @@ CREATE TABLE IF NOT EXISTS "Product" (
     "Name" VARCHAR(255) NOT NULL,
     "Description" TEXT,
     "BasePrice" NUMERIC(10, 2) NOT NULL,
+    "Stock" INTEGER NOT NULL DEFAULT 0,
     "Brand" VARCHAR(255),
     "IsActive" BOOLEAN NOT NULL DEFAULT TRUE,
     "CreatedAt" TIMESTAMP  with time zone DEFAULT CURRENT_TIMESTAMP,

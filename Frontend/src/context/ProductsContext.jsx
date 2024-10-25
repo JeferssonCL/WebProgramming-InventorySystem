@@ -35,10 +35,14 @@ export const ProductsProvider = ({ children }) => {
             image: newProduct.images,
             variant: variantName,
             attributesMap: attributesMap,
-            quantity: 1
+            quantity: 1,
+            stock : newProduct.stock
         };
         const productExists = products.find(item => item.id === productToStore.id);
         if (!productExists) {
+            if (productToStore.stock <= 0) {
+                return;
+            }
             setProducts((prevProducts) => {
                 return [...prevProducts, productToStore];
             });
@@ -90,7 +94,7 @@ export const ProductsProvider = ({ children }) => {
     const handleIncreaseQuantity = (id) => {
         setProducts((prevProducts) =>
             prevProducts.map(item => {
-                if (item.id === id) {
+                if (item.id === id && item.quantity < item.stock) {
                     return { ...item, quantity: item.quantity + 1 };
                 }
                 return item;

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { GoogleLoginButton, FacebookLoginButton } from "../components/SocialButtons";
 import "../styles/components/auth.css";
+import {toast} from 'sonner';
 
 export function AuthForm({
   isLogin,
@@ -26,7 +27,7 @@ export function AuthForm({
 
   useEffect(() => {
     if (errorMessage !== "") {
-      alert(errorMessage);
+      toast.error(errorMessage, {position: 'top-right'});
       resetErrorMessage();
     }
   }, [errorMessage]);

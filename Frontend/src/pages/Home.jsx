@@ -37,6 +37,7 @@ export function Home() {
               price={product.price}
               image={product.images[0].url}
               onAddToCart={() => addProduct(product)}
+              isAvailableStock={product.stock > 0}
             />
           ))
         )
