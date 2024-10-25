@@ -16,22 +16,24 @@ public class CreateCheckoutSessionCommandHandler : IRequestHandler<CreateCheckou
     public async Task<string> Handle(CreateCheckoutSessionCommand request, CancellationToken cancellationToken)
     {
         var lineItems = request.ShoppingCartList.Select(product =>
-            new SessionLineItemOptions {
-            PriceData = new SessionLineItemPriceDataOptions
+            new SessionLineItemOptions
             {
-                Currency = "usd",
-                ProductData = new SessionLineItemPriceDataProductDataOptions
+                PriceData = new SessionLineItemPriceDataOptions
                 {
-                    Name = product.Name,
-                    Images = [product.ImageUrl],
-                    Metadata = new Dictionary<string, string>
+                    Currency = "usd",
+                    ProductData = new SessionLineItemPriceDataProductDataOptions
+                    {
+                        Name = product.Name,
+                        Images = [product.ImageUrl],
+                        Metadata = new Dictionary<string, string>
                     {
                         { "ProductId", product.Id.ToString() }
                     }
-                }, UnitAmount = (long)(product.Price * 100),
-            },
-            Quantity = product.Quantity,
-        }).ToList();
+                    },
+                    UnitAmount = (long)(product.Price * 100),
+                },
+                Quantity = product.Quantity,
+            }).ToList();
 
         var options = new SessionCreateOptions
         {
@@ -40,7 +42,15 @@ public class CreateCheckoutSessionCommandHandler : IRequestHandler<CreateCheckou
             Mode = "payment",
             SuccessUrl = "http://localhost:5173/payment_transaction/success?session_id={CHECKOUT_SESSION_ID}",
             CancelUrl = "http://localhost:5173/payment_transaction/failed?session_id={CHECKOUT_SESSION_ID}",
+            Discounts = new List<SessionDiscountOptions>
+            {
+                new SessionDiscountOptions
+                {
+                    PromotionCode = "promo_1QDWamP3WBhplXYwJGtEWiV7"
+                }
+            }
         };
+
         var service = new SessionService();
         var session = await service.CreateAsync(options, cancellationToken: cancellationToken);
         return await Task.FromResult(session.Id);
