@@ -36,6 +36,10 @@ function App() {
         item.id === productToStore.id ? { ...item, quantity: item.stock > item.quantity ? item.quantity + 1 : item.quantity } : item
       );
     } else {
+      if (productToStore.stock === 0) {
+        alert('Product out of stock');
+        return;
+      }
       updatedCart = [...shoppingCartList, productToStore];
     }
 
