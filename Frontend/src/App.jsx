@@ -5,104 +5,35 @@ import { Login } from './pages/Login'
 import { Signup } from './pages/Signup'
 import { Route, Routes, BrowserRouter } from 'react-router-dom'
 import { ProductDetail } from './pages/ProductDetail'
-import { useState, useEffect } from 'react'
+import CompleteOrder from './pages/CompleteOrder'
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+import { ProductsProvider } from './context/ProductsContext'
+
 import PaymentStatusSuccess from './pages/PaymentStatusSuccess'
 import PaymentStatusFailed from './pages/PaymentStatusSuccess'
-import{Toaster, toast} from 'sonner'
+import{Toaster} from 'sonner'
 
 function App() {
 
-  const [shoppingCartList, setShoppingCartList] = useState([]);
-
-  useEffect(() => {
-    const storageData = localStorage.getItem('cart');
-    setShoppingCartList(storageData ? JSON.parse(storageData) : []);
-  }, []);
-
-  const handleAddToCart = (product) => {
-    const productToStore = {
-      id: product.id,
-      name: product.name,
-      price: product.price,
-      image: product.images,
-      quantity: 1,
-      stock: product.stock
-    };
-
-    const productExists = shoppingCartList.find(item => item.id === productToStore.id);
-    let updatedCart;
-
-    if (productExists) {
-      updatedCart = shoppingCartList.map(item => {
-        if (item.id === productToStore.id) {
-          if (item.quantity >= item.stock) {
-            toast.warning(`There are only ${item.stock} products available to buy`, {position: "top-center", duration: 900});
-            return { ...item, quantity: item.stock };
-          } else {
-            return { ...item, quantity: item.quantity + 1 };
-          }
-        }
-        return item;
-      });
-    } else {
-      if (productToStore.stock === 0) {
-        return;
-      }
-      updatedCart = [...shoppingCartList, productToStore];
-    }
-
-    setShoppingCartList(updatedCart);
-    localStorage.setItem('cart', JSON.stringify(updatedCart));
-  };
-
-  const handleDecreaseQuantity = (id) => {
-    const updatedCart = shoppingCartList.map(item => {
-      if (item.id === id) {
-        return { ...item, quantity: item.quantity > 1 ? item.quantity - 1 : 0 };
-      }
-      return item;
-    }).filter(item => item.quantity > 0);
-
-    setShoppingCartList(updatedCart);
-    localStorage.setItem('cart', JSON.stringify(updatedCart));
-  };
-
-  const handleIncreaseQuantity = (id) => {
-    const updatedCart = shoppingCartList.map(item => {
-      if (item.id === id && item.stock > item.quantity){
-        return { ...item, quantity: item.quantity + 1 };
-      }
-      return item;
-    });
-
-    setShoppingCartList(updatedCart);
-    localStorage.setItem('cart', JSON.stringify(updatedCart));
-  };
-
-  const handleRemoveFromCart = (id) => {
-    const updatedCart = shoppingCartList.filter(item => item.id !== id);
-    setShoppingCartList(updatedCart);
-    localStorage.setItem('cart', JSON.stringify(updatedCart));
-  };
-
   return (
-    <BrowserRouter>
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
       <Toaster richColors />
-      <Header
-        cartList={shoppingCartList}
-        removeToList={handleRemoveFromCart}
-        increaseQuantity={handleIncreaseQuantity}
-        decreaseQuantity={handleDecreaseQuantity}
-      />
-      <Routes>
-        <Route path='/' element={<Home addToCart={handleAddToCart} />} />
-        <Route path="/product/:id" element={<ProductDetail />} />
-        <Route path="/payment_transaction/success" element={<PaymentStatusSuccess />} />
-        <Route path="/payment_transaction/failed" element={<PaymentStatusFailed />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-      </Routes>
-    </BrowserRouter>
+      <ProductsProvider>
+        <BrowserRouter>
+          <Header />
+          <Routes>
+            <Route path='/' element={<Home />} />
+            <Route path="/product/:id" element={<ProductDetail />} />
+            <Route path="/complete-order" element={<CompleteOrder />} />
+            <Route path="/payment_transaction/success" element={<PaymentStatusSuccess />} />
+            <Route path="/payment_transaction/failed" element={<PaymentStatusFailed />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+          </Routes>
+        </BrowserRouter>
+      </ProductsProvider>
+    </LocalizationProvider>
   )
 }
 
