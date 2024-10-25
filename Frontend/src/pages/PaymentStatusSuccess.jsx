@@ -22,14 +22,11 @@ const PaymentStatusSuccess = () => {
         country: "default"
       };
 
-      console.log(customer)
-
       const requestBody = {
         StripeSessionId: sessionId,
         Customer: customer,
       };
 
-      console.log(requestBody)
       const response = await fetch('http://localhost:5163/api/Order', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
