@@ -3,7 +3,7 @@ import '../styles/components/shoppingCartItem.css';
 import { FaRegTrashAlt } from "react-icons/fa";
 import { StockQuantityInput } from "./StockQuantityInput";
 
-export function ShoppingCartItem({ id, name, image, price, removeToList, quantity, increseQuantity, decreseQuantity }) {
+export function ShoppingCartItem({ id, name, image, price, removeToList, quantity, increseQuantity, decreseQuantity , isAvailableStock}) {
   return (
     <div className="shopping-cart-item">
       <img src={image} alt={`Product item ${name}`} className="shopping-cart-item-image" />
@@ -11,7 +11,7 @@ export function ShoppingCartItem({ id, name, image, price, removeToList, quantit
         <p className="shopping-cart-item-name">{name}</p>
         <p className="shopping-cart-item-price">${price.toFixed(2)}</p>
       </div>
-      <StockQuantityInput id={id} quantity={quantity} increse={increseQuantity} decrese={decreseQuantity} />
+      <StockQuantityInput id={id} quantity={quantity} increse={increseQuantity} decrese={decreseQuantity} isAvailableStock={isAvailableStock} />
       <button className="shopping-cart-item-delete-to-cart" onClick={() => removeToList(id)}>
         <FaRegTrashAlt />
       </button>

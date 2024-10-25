@@ -32,4 +32,12 @@
   background-color: #5275F5;
   border: none;
   border-radius: 5px;
+  cursor: pointer;
+}
+
+
+.disabled {
+  background-color: #ccc;
+  cursor: not-allowed!important;
+  opacity: 0.5;
 }

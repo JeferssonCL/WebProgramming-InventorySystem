@@ -8,6 +8,7 @@ import { ProductDetail } from './pages/ProductDetail'
 import { useState, useEffect } from 'react'
 import PaymentStatusSuccess from './pages/PaymentStatusSuccess'
 import PaymentStatusFailed from './pages/PaymentStatusSuccess'
+import{Toaster} from 'sonner'
 
 function App() {
 
@@ -37,7 +38,6 @@ function App() {
       );
     } else {
       if (productToStore.stock === 0) {
-        alert('Product out of stock');
         return;
       }
       updatedCart = [...shoppingCartList, productToStore];
@@ -79,6 +79,7 @@ function App() {
 
   return (
     <BrowserRouter>
+      <Toaster richColors />
       <Header
         cartList={shoppingCartList}
         removeToList={handleRemoveFromCart}

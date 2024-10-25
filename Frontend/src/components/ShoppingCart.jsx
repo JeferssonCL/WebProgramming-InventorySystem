@@ -67,6 +67,7 @@ export function ShoppingCart({ shoppingCartList, removeToList, increse, decrese 
                   quantity={item.quantity}
                   increseQuantity={increse}
                   decreseQuantity={decrese}
+                  isAvailableStock={item.stock > item.quantity}
                 />
               ))
             )

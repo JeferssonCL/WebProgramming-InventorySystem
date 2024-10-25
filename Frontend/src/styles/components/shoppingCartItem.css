@@ -54,6 +54,7 @@
   color: #f1f4ff;
   border-radius: 10px;
   margin: auto;
+  cursor: pointer;
 }
 
 .shopping-cart-item-image,

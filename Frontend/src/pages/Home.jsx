@@ -3,7 +3,6 @@ import { ProductCard } from "../components/ProductCard";
 import axios from 'axios';
 import '../styles/pages/home.css';
 import PropTypes from "prop-types";
-
 export function Home({ addToCart }) {
   localStorage.removeItem('orderSubmitted');
   const [productList, setProductList] = useState([]);
@@ -34,6 +33,7 @@ export function Home({ addToCart }) {
               price={product.price}
               image={product.images[0].url}
               onAddToCart={() => addToCart(product)}
+              isAvailableStock={product.stock > 0}
             />
           ))
         )
