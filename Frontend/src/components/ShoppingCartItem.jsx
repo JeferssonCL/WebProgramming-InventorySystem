@@ -5,10 +5,10 @@ import { StockQuantityInput } from "./StockQuantityInput";
 import { useContext } from "react";
 import { ProductsContext } from "../context/ProductsContext";
 
-export function ShoppingCartItem({ id, name, image, price, quantity }) {
+
+export function ShoppingCartItem({ id, name, image, price, quantity , isAvailableStock}) {
   const { removeProductById, handleDecreaseQuantity, handleIncreaseQuantity } = useContext(ProductsContext);
 
-  console.log(id);
   return (
     <div className="shopping-cart-item">
       <img src={image} alt={`Product item ${name}`} className="shopping-cart-item-image" />
@@ -16,7 +16,9 @@ export function ShoppingCartItem({ id, name, image, price, quantity }) {
         <p className="shopping-cart-item-name">{name}</p>
         <p className="shopping-cart-item-price">${price.toFixed(2)}</p>
       </div>
-      <StockQuantityInput id={id} quantity={quantity} increse={handleIncreaseQuantity} decrese={handleDecreaseQuantity} />
+
+
+      <StockQuantityInput id={id} quantity={quantity} increse={handleIncreaseQuantity} decrese={handleDecreaseQuantity} isAvailableStock={isAvailableStock} />
       <button className="shopping-cart-item-delete-to-cart" onClick={() => removeProductById(id)}>
         <FaRegTrashAlt />
       </button>

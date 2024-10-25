@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import '../styles/components/productCard.css'
 import { FaMoneyBill, FaCartPlus, FaTag } from "react-icons/fa";
 
-export function ProductCard({ id, name, price, brand, image, onAddToCart }) {
+export function ProductCard({ id, name, price, brand, image, onAddToCart , isAvailableStock}) {
   return (
     <div className="product-card">
       <img className='product-card-image' src={image} alt={`Product image: ${name}`} />
@@ -11,8 +11,14 @@ export function ProductCard({ id, name, price, brand, image, onAddToCart }) {
       <p className='product-card-brand'>
         <FaTag /> {brand}
       </p>
-      <button className="product-card-add-shop-cart" onClick={onAddToCart}>
-        <FaCartPlus /> Add to cart
+      <button className={`product-card-add-shop-cart ${isAvailableStock ? "" : "disabled"}`} onClick={onAddToCart}>
+      {isAvailableStock ? (
+          <>
+            <FaCartPlus /> Add to cart
+          </>
+        ) : (
+          "Out of stock"
+        )}
       </button>
     </div>
   );

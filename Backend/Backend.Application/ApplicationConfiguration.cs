@@ -1,6 +1,8 @@
 using Backend.Application.Profiles;
 using Backend.Application.Services.Auth.Concretes;
 using Backend.Application.Services.Auth.Interfaces;
+using Backend.Application.Services.Products.Concretes;
+using Backend.Application.Services.Products.Interfaces;
 using Backend.Infrastructure.Repositories.Concretes;
 using Backend.Infrastructure.Repositories.Interfaces;
 using DotNetEnv;
@@ -60,6 +62,7 @@ namespace Backend.Application
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IPaymentTransactionRepository, PaymentTransactionRepository>();
             services.AddScoped<IOrderItemRepository, OrderItemRepository>();
+            services.AddScoped<IInventoryService, InventoryService>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             services.AddSingleton<IJwtDecoder, JwtDecoder>();

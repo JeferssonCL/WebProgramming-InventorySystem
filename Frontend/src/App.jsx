@@ -10,15 +10,17 @@ import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { ProductsProvider } from './context/ProductsContext'
 
-import { useState, useEffect } from 'react'
 import PaymentStatusSuccess from './pages/PaymentStatusSuccess'
 import PaymentStatusFailed from './pages/PaymentStatusSuccess'
 import { AuthProvider } from './Context/AuthContext'
 import { PrivateRoute } from './Context/PrivateRoute'
+import{Toaster} from 'sonner'
 
 function App() {
+
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <Toaster richColors />
       <ProductsProvider>
         <BrowserRouter>
           <AuthProvider>
