@@ -6,7 +6,7 @@ import { useAuth } from "../Context/AuthContext";
 import { auth } from "../config/firebase";
 import { signOut } from "firebase/auth";
 
-export function Header({ cartList, removeToList, increaseQuantity, decreaseQuantity }) {
+export function Header() {
   const { user } = useAuth();
   const navigate = useNavigate();
 
@@ -25,12 +25,7 @@ export function Header({ cartList, removeToList, increaseQuantity, decreaseQuant
       <div className="header-actions">
         {user ? (
           <>
-            <ShoppingCart 
-              shoppingCartList={cartList} 
-              removeToList={removeToList} 
-              increse={increaseQuantity} 
-              decrese={decreaseQuantity} 
-            />
+            <ShoppingCart/>
             <button onClick={handleLogout} className="logout-button">
               Sign Out
             </button>
@@ -43,5 +38,5 @@ export function Header({ cartList, removeToList, increaseQuantity, decreaseQuant
         )}
       </div>
     </header>
-  );
+  ); 
 }

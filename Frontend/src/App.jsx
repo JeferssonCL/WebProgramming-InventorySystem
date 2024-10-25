@@ -22,14 +22,9 @@ function App() {
       <ProductsProvider>
         <BrowserRouter>
           <AuthProvider>
-            <Header
-              cartList={shoppingCartList}
-              removeToList={handleRemoveFromCart}
-              increaseQuantity={handleIncreaseQuantity}
-              decreaseQuantity={handleDecreaseQuantity}
-            />
+            <Header/>
             <Routes>
-              <Route path='/' element={<Home addToCart={handleAddToCart} />} />
+              <Route path='/' element={<Home/>} />
               <Route path="/product/:id" element={<ProductDetail />} />
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<Signup />} />
@@ -50,6 +45,14 @@ function App() {
                 }
               />
               <Route
+                path="/complete-order"
+                element={
+                  <PrivateRoute>
+                    <CompleteOrder />
+                  </PrivateRoute>
+                }
+              />
+              <Route
                 path="*"
                 element={<Navigate to="/" replace />}
               />
@@ -58,7 +61,7 @@ function App() {
         </BrowserRouter>
       </ProductsProvider>
     </LocalizationProvider>
-  )
+  );
 }
 
 export default App;
