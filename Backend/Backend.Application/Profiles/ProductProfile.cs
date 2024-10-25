@@ -9,7 +9,9 @@ public class ProductProfile : Profile
     public ProductProfile()
     {
 
-        /*         CreateMap<CreateProductDto, Product>()
+        /*
+            TODO: Add mapping for CreateProductDto
+                 CreateMap<CreateProductDto, Product>()
                     .ForMember(dest => dest.ProductVariants, opt => opt.MapFrom(src => src.Variants))
                     .ForMember(dest => dest.Images, opt => opt.MapFrom(src => src.Images))
                     .ForMember(dest => dest.BasePrice, opt => opt.MapFrom(src => src.Price))

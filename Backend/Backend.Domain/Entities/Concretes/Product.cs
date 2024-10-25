@@ -10,6 +10,7 @@ public class Product : BaseEntity
     public double BasePrice { get; set; }
     public string Brand { get; set; }
     public Store Store { get; set; }
+    public int Stock { get; set; }
     public OrderItem OrderItem { get; set; }
     public ICollection<Image> Images { get; set; }
     public ICollection<ProductVariant> ProductVariants { get; set; }

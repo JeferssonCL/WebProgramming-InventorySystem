@@ -24,7 +24,8 @@ function App() {
       name: product.name,
       price: product.price,
       image: product.images,
-      quantity: 1
+      quantity: 1,
+      stock: product.stock
     };
 
     const productExists = shoppingCartList.find(item => item.id === productToStore.id);
@@ -32,9 +33,13 @@ function App() {
 
     if (productExists) {
       updatedCart = shoppingCartList.map(item =>
-        item.id === productToStore.id ? { ...item, quantity: item.quantity + 1 } : item
+        item.id === productToStore.id ? { ...item, quantity: item.stock > item.quantity ? item.quantity + 1 : item.quantity } : item
       );
     } else {
+      if (productToStore.stock === 0) {
+        alert('Product out of stock');
+        return;
+      }
       updatedCart = [...shoppingCartList, productToStore];
     }
 
@@ -56,7 +61,7 @@ function App() {
 
   const handleIncreaseQuantity = (id) => {
     const updatedCart = shoppingCartList.map(item => {
-      if (item.id === id) {
+      if (item.id === id && item.stock > item.quantity){
         return { ...item, quantity: item.quantity + 1 };
       }
       return item;

@@ -6,6 +6,7 @@ public class ProductDto
     public string Description { get; set; } = string.Empty;
     public string Brand { get; set; } = string.Empty;
     public double Price { get; set; }
+    public int Stock { get; set; }
     public ReducedStoreDto? Store { get; set; }
     public List<ImageDto> Images { get; set; } = [];
     public List<ProductVariantDto> Variants { get; set; } = [];

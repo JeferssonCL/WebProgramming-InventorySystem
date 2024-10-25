@@ -18,11 +18,11 @@ public class ProductMap : IEntityTypeConfiguration<Product>
         builder.HasOne(p => p.Store)
             .WithMany(s => s.Products)
             .HasForeignKey(p => p.StoreId);
-        
+
         builder.HasOne(p => p.OrderItem)
             .WithOne(oi => oi.Product)
             .HasForeignKey<OrderItem>(oi => oi.ProductId);
-        
+
         builder.HasMany(p => p.Images)
             .WithOne(i => i.Product)
             .HasForeignKey(i => i.ProductId);
