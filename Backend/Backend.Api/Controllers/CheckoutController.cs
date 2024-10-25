@@ -11,6 +11,8 @@ public class CheckoutController(IMediator mediator) : ControllerBase
     [HttpPost("submit-cart")]
     public async Task<ActionResult<Dictionary<string, string>>> InitCheckoutSession(List<ShoppingCartItemDto> itemsToBuy)
     {
+        if (itemsToBuy == null || !itemsToBuy.Any()) return BadRequest();
+
         var result = await mediator.Send(new CreateCheckoutSessionCommand(itemsToBuy));
         return Ok(new Dictionary<string, string>
         {
