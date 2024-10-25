@@ -8,7 +8,7 @@ import { ProductDetail } from './pages/ProductDetail'
 import { useState, useEffect } from 'react'
 import PaymentStatusSuccess from './pages/PaymentStatusSuccess'
 import PaymentStatusFailed from './pages/PaymentStatusSuccess'
-import{Toaster} from 'sonner'
+import{Toaster, toast} from 'sonner'
 
 function App() {
 
@@ -33,9 +33,17 @@ function App() {
     let updatedCart;
 
     if (productExists) {
-      updatedCart = shoppingCartList.map(item =>
-        item.id === productToStore.id ? { ...item, quantity: item.stock > item.quantity ? item.quantity + 1 : item.quantity } : item
-      );
+      updatedCart = shoppingCartList.map(item => {
+        if (item.id === productToStore.id) {
+          if (item.quantity >= item.stock) {
+            toast.warning(`There are only ${item.stock} products available to buy`, {position: "top-center", duration: 900});
+            return { ...item, quantity: item.stock };
+          } else {
+            return { ...item, quantity: item.quantity + 1 };
+          }
+        }
+        return item;
+      });
     } else {
       if (productToStore.stock === 0) {
         return;

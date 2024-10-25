@@ -12,7 +12,13 @@ export function ProductCard({ id, name, price, brand, image, onAddToCart , isAva
         <FaTag /> {brand}
       </p>
       <button className={`product-card-add-shop-cart ${isAvailableStock ? "" : "disabled"}`} onClick={onAddToCart}>
-        <FaCartPlus /> Add to cart
+      {isAvailableStock ? (
+          <>
+            <FaCartPlus /> Add to cart
+          </>
+        ) : (
+          "Out of stock"
+        )}
       </button>
     </div>
   );
