@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { auth } from "../config/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { AuthForm } from "../components/AuthForm";
@@ -7,6 +7,8 @@ import "../styles/components/auth.css";
 
 export function Login({ onLogin }) {
   const navigate = useNavigate();
+  const location = useLocation();
+
   const [statusMessage, setStatusMessage] = useState({ type: '', message: '' });
   const [fieldErrors, setFieldErrors] = useState({});
 
@@ -40,7 +42,8 @@ export function Login({ onLogin }) {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
       if (onLogin) onLogin(user);
-      navigate("/");
+      const destination = location.state?.from?.pathname || "/";
+      navigate(destination);
     } catch (error) {
       console.error("Login failed:", error);
       setStatusMessage({
