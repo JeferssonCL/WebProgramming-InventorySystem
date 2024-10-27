@@ -25,11 +25,7 @@ public class ProductRepository(PostgresContext context) : BaseRepository<Product
     public override async Task<IEnumerable<Product>> GetAllAsync(int page, int limit)
     {
         List<Product> products = await Context.Set<Product>()
-            .Include(p => p.Store)
             .Include(p => p.Images)
-            .Include(p => p.ProductVariants)
-                .ThenInclude(pa => pa.Attributes)
-                    .ThenInclude(a => a.Variant)
             .Include(p => p.Categories)
             .Skip((page - 1) * limit)
                 .Take(limit)
@@ -41,11 +37,7 @@ public class ProductRepository(PostgresContext context) : BaseRepository<Product
     public override async Task<Product?> GetByIdAsync(Guid id)
     {
         return await Context.Set<Product>()
-            .Include(p => p.Store)
             .Include(p => p.Images)
-            .Include(p => p.ProductVariants)
-                .ThenInclude(pa => pa.Attributes)
-                .ThenInclude(pa => pa.Variant)
             .Include(p => p.Categories)
             .FirstOrDefaultAsync(p => p.Id == id)
             .ConfigureAwait(false);

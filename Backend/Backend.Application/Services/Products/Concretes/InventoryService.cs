@@ -13,6 +13,7 @@ namespace Backend.Application.Services.Products.Concretes
         {
             _unitOfWork = unitOfWork;
         }
+
         public async Task ReduceInventory(List<OrderItem> orderItems)
         {
             foreach (var item in orderItems)

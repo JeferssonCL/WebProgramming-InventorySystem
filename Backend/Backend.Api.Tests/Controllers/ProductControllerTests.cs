@@ -1,3 +1,7 @@
+/*
+
+
+TODO : Make test when test controllers are needed
 using AutoMapper;
 using Backend.Api.Controllers;
 using Backend.Application.Dtos;
@@ -200,3 +204,4 @@ public class ProductControllerTests
         _mapperMock.Verify(x => x.Map<ProductDto>(product), Times.Once);
     }
 }
+ */

@@ -1,6 +1,3 @@
-using Backend.Application.Dtos;
-using Backend.Domain.Entities.Concretes;
-
 namespace MerchantService.Application.Dtos
 {
     public class PageDto<T>

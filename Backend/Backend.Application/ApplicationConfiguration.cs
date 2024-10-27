@@ -1,6 +1,9 @@
 using Backend.Application.Profiles;
 using Backend.Application.Services.Auth.Concretes;
 using Backend.Application.Services.Auth.Interfaces;
+using Backend.Application.Services.Discounts.Abstracts;
+using Backend.Application.Services.Discounts.Concretes;
+using Backend.Application.Services.Discounts.Interfaces;
 using Backend.Application.Services.Products.Concretes;
 using Backend.Application.Services.Products.Interfaces;
 using Backend.Infrastructure.Repositories.Concretes;
@@ -64,6 +67,30 @@ namespace Backend.Application
             services.AddScoped<IOrderItemRepository, OrderItemRepository>();
             services.AddScoped<IInventoryService, InventoryService>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+            services.AddScoped<IDiscountService, DiscountService>(
+                provider => new DiscountService(
+                    [
+                        new StockAgeDiscount(new Dictionary<int, double>
+                            {
+                                { 9, 30.0 },
+                                { 6, 20.0 },
+                                { 3, 10.0 }
+                            }
+                            ),
+                        new BrandDiscount(
+                            new Dictionary<string, double>
+                            {
+                                { "Paceña", 10.0 },
+                                { "Taquiña", 15.0 },
+                                { "Kaiser", 12.0 },
+                                { "Bock", 8.0 },
+                                { "Boliviana", 20.0 }
+                            }
+                        )
+                    ]
+                )
+            );
 
             services.AddSingleton<IJwtDecoder, JwtDecoder>();
         }
