@@ -1,3 +1,4 @@
+using System.Linq.Expressions;
 using Backend.Domain.Entities.Concretes;
 using Backend.Infrastructure.Context;
 using Backend.Infrastructure.Repositories.Abstract;
@@ -68,5 +69,4 @@ public class ProductRepository(PostgresContext context) : BaseRepository<Product
 
         return existingProduct;
     }
-
 }

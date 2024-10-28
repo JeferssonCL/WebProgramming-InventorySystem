@@ -59,7 +59,7 @@ public abstract class BaseRepository<T>(DbContext context) : ICrudRepository<T>
         return await Context.Set<T>().CountAsync();
     }
 
-    public async Task<IEnumerable<T>> GetByAsync(Expression<Func<T, bool>> predicate, int pageNumber, int pageSize)
+    public virtual async Task<IEnumerable<T>> GetByAsync(Expression<Func<T, bool>> predicate, int pageNumber, int pageSize)
     {
         return await Context.Set<T>()
                         .Where(predicate)
