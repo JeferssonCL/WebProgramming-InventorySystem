@@ -18,10 +18,6 @@ public class ImageMap : IEntityTypeConfiguration<Image>
             .WithMany(p => p.Images)
             .HasForeignKey(i => i.ProductId);
 
-        builder.HasOne(i => i.ProductVariant)
-            .WithOne(pv => pv.Image)
-            .HasForeignKey<ProductVariant>(pv => pv.ImageId);
-
         builder.HasOne(i => i.Combo)
             .WithOne(c => c.Image)
             .HasForeignKey<Combo>(c => c.ImageId);

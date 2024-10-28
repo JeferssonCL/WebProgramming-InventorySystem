@@ -23,7 +23,6 @@ public class ImageRepository(PostgresContext context) : BaseRepository<Image>(co
         return await Context.Set<Image>()
             .Include(i => i.Product)
             .Include(i => i.Combo)
-            .Include(i => i.ProductVariant)
             .Skip((page - 1) * limit)
             .Take(limit)
             .ToListAsync()
@@ -35,7 +34,6 @@ public class ImageRepository(PostgresContext context) : BaseRepository<Image>(co
         return await Context.Set<Image>()
             .Include(i => i.Product)
             .Include(i => i.Combo)
-            .Include(i => i.ProductVariant)
             .FirstOrDefaultAsync(i => i.Id == id)
             .ConfigureAwait(false);
     }

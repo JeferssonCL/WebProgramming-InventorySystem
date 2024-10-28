@@ -9,6 +9,5 @@ public class Image : BaseEntity
     public string Url { get; set; }
     public Product Product { get; set; }
     public Combo Combo { get; set; }
-    public ProductVariant ProductVariant { get; set; }
 }
 
