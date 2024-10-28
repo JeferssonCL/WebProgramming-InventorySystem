@@ -1,4 +1,3 @@
-using System.Drawing;
 using Backend.Application.Handlers.Products.Requests.Queries;
 using Backend.Application.Services.Discounts.Interfaces;
 using Backend.Domain.Entities.Concretes;

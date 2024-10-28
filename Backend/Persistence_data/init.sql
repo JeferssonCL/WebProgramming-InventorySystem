@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS "Product" (
     "Stock" INTEGER NOT NULL DEFAULT 0,
     "AlcoholPercentage" DOUBLE PRECISION,
     "Brand" VARCHAR(255),
-    "Volume" DOUBLE PRECISION,
+    "Volume" VARCHAR(50),
     "IsActive" BOOLEAN NOT NULL DEFAULT TRUE,
     "CreatedAt" TIMESTAMP  with time zone DEFAULT CURRENT_TIMESTAMP,
     "UpdatedAt" TIMESTAMP  with time zone

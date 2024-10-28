@@ -9,7 +9,7 @@ public class Product : BaseEntity
     public double Price { get; set; }
     public string Brand { get; set; }
     public double AlcoholPercentage { get; set; }
-    public double Volume { get; set; }
+    public string? Volume { get; set; }
     public int Stock { get; set; }
     public double DiscountPercentage { get; set; }
     public double PriceWithDiscount { get; set; }
