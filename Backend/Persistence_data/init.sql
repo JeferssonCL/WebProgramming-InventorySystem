@@ -30,17 +30,51 @@ CREATE TABLE IF NOT EXISTS "Store" (
     "UpdatedAt" TIMESTAMP with time zone
 );
 
-CREATE TABLE IF NOT EXISTS "Product" (
-    "Id" UUID PRIMARY KEY,
-    "StoreId" UUID REFERENCES "Store"("Id"),
-    "Name" VARCHAR(255) NOT NULL,
-    "Description" TEXT,
-    "BasePrice" NUMERIC(10, 2) NOT NULL,
-    "Stock" INTEGER NOT NULL DEFAULT 0,
-    "Brand" VARCHAR(255),
-    "IsActive" BOOLEAN NOT NULL DEFAULT TRUE,
-    "CreatedAt" TIMESTAMP  with time zone DEFAULT CURRENT_TIMESTAMP,
-    "UpdatedAt" TIMESTAMP  with time zone
+CREATE TABLE IF NOT EXISTS "Product"
+(
+    "Id" uuid NOT NULL,
+    "StoreId" uuid NOT NULL,
+    "Name" text COLLATE pg_catalog."default" NOT NULL,
+    "Description" text COLLATE pg_catalog."default" NOT NULL,
+    "BasePrice" double precision NOT NULL,
+    "Brand" text COLLATE pg_catalog."default" NOT NULL,
+    "Stock" integer NOT NULL,
+    "CreatedAt" timestamp with time zone NOT NULL,
+    "UpdatedAt" timestamp with time zone,
+    "IsActive" boolean NOT NULL,
+    CONSTRAINT "PK_Product" PRIMARY KEY ("Id"),
+    CONSTRAINT "FK_Product_Store_StoreId" FOREIGN KEY ("StoreId")
+        REFERENCES public."Store" ("Id") MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS "Combo"
+(
+    "Id" uuid NOT NULL,
+    "Name" text COLLATE pg_catalog."default" NOT NULL,
+    "Description" text COLLATE pg_catalog."default" NOT NULL,
+    "Price" double precision NOT NULL,
+    "DiscountPercent" integer NOT NULL,
+    "CreatedAt" timestamp with time zone NOT NULL,
+    "UpdatedAt" timestamp with time zone,
+    "IsActive" boolean NOT NULL,
+    CONSTRAINT "PK_Combo" PRIMARY KEY ("Id")
+);
+
+CREATE TABLE IF NOT EXISTS "ComboProduct"
+(
+    "CombosId" uuid NOT NULL,
+    "ProductsId" uuid NOT NULL,
+    CONSTRAINT "PK_ComboProduct" PRIMARY KEY ("CombosId", "ProductsId"),
+    CONSTRAINT "FK_ComboProduct_Combo_CombosId" FOREIGN KEY ("CombosId")
+        REFERENCES public."Combo" ("Id") MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE CASCADE,
+    CONSTRAINT "FK_ComboProduct_Product_ProductsId" FOREIGN KEY ("ProductsId")
+        REFERENCES public."Product" ("Id") MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS "Image" (

@@ -13,6 +13,7 @@ public class Product : BaseEntity
     public int Stock { get; set; }
     public OrderItem OrderItem { get; set; }
     public ICollection<Image> Images { get; set; }
+    public ICollection<Combo> Combos { get; set; }
     public ICollection<ProductVariant> ProductVariants { get; set; }
     public ICollection<Category> Categories { get; set; }
 }
