@@ -30,7 +30,7 @@ public class DiscountService : IDiscountService
 
     private double GetBestDiscountedPrice(Product product)
     {
-        double bestDiscountedPrice = product.Price, discountedPrice = 0.0;
+        double bestDiscountedPrice = double.MaxValue, discountedPrice = 0.0;
 
         foreach (var discount in _discounts)
         {
@@ -40,6 +40,11 @@ public class DiscountService : IDiscountService
                 bestDiscountedPrice = discountedPrice;
             }
         }
-        return discountedPrice == 0 ? 0.0 : bestDiscountedPrice;
+
+        if (bestDiscountedPrice != double.MaxValue){
+            return bestDiscountedPrice;
+        }
+
+        return discountedPrice;
     }
 }
