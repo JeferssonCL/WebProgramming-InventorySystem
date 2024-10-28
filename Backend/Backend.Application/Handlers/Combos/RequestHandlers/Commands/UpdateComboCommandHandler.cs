@@ -19,7 +19,7 @@ public class UpdateComboCommandHandler(IComboRepository comboRepository, IProduc
         comboToUpdate.DiscountPercent = request.ComboDto.DiscountPercent ?? comboToUpdate.DiscountPercent;
         comboToUpdate.IsActive = request.ComboDto.IsActive ?? comboToUpdate.IsActive;
         double totalPrice = 0;
-        if (request.ComboDto.ProductsIds != null && request.ComboDto.ProductsIds.Any())
+        if (request.ComboDto.ProductsIds != null && request.ComboDto.ProductsIds.Count != 0)
         {
             comboToUpdate.Products = new List<Product>();
             foreach (var id in request.ComboDto.ProductsIds)
@@ -29,9 +29,12 @@ public class UpdateComboCommandHandler(IComboRepository comboRepository, IProduc
                 totalPrice += product.BasePrice;
                 comboToUpdate.Products.Add(product);
             }
+            comboToUpdate.Price = totalPrice;
+        } else {
+            comboToUpdate.Products = comboToUpdate.Products;
+            comboToUpdate.Price = comboToUpdate.Price;
         }
 
-        comboToUpdate.Price = totalPrice;
         comboToUpdate.UpdatedAt = DateTime.UtcNow;
         await comboRepository.UpdateAsync(comboToUpdate);
         return new ComboDto

@@ -23,15 +23,19 @@ public class CreateComboCommandHandler(IComboRepository comboRepository,  IProdu
         };
 
         double totalPrice = 0;
-        foreach (var id in comboDto.ProductIds)
+        if (comboDto.ProductIds.Count > 0)
         {
-            var product = await productRepository.GetByIdAsync(id);
-            if (product == null) throw new Exception("We not found this product in our db to add into combo.");
-            totalPrice += product.BasePrice;
-            combo.Products.Add(product);
-        }
+            foreach (var id in comboDto.ProductIds)
+            {
+                var product = await productRepository.GetByIdAsync(id);
+                if (product == null) throw new Exception("We not found this product in our db to add into combo.");
+                totalPrice += product.BasePrice;
+                combo.Products.Add(product);
+            }
 
-        combo.Price = totalPrice;
+            combo.Price = totalPrice;
+        } else throw new ArgumentException("There must be at least one product in the combo.");
+
         combo = await comboRepository.AddAsync(combo);
         return combo;
     }
