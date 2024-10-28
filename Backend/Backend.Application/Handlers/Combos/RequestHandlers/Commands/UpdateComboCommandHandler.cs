@@ -26,7 +26,7 @@ public class UpdateComboCommandHandler(IComboRepository comboRepository, IProduc
             {
                 var product = await productRepository.GetByIdAsync(id);
                 if (product == null) throw new Exception("We could not find this product in our database to add to the combo.");
-                totalPrice += product.BasePrice;
+                totalPrice += product.Price;
                 comboToUpdate.Products.Add(product);
             }
             comboToUpdate.Price = totalPrice;
@@ -49,7 +49,7 @@ public class UpdateComboCommandHandler(IComboRepository comboRepository, IProduc
                 Name = p.Name,
                 Description = p.Description,
                 Brand = p.Brand,
-                Price = p.BasePrice
+                Price = p.Price
             }).ToList(),
             IsActive = comboToUpdate.IsActive
         };

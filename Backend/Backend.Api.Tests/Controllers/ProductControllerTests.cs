@@ -173,7 +173,7 @@ public class ProductControllerTests
             Name = "Test Product",
             Description = "Test Description",
             Brand = "Test Brand",
-            BasePrice = 99.99
+            Price = 99.99
         };
         var productDto = new ProductDto
         {
@@ -199,7 +199,7 @@ public class ProductControllerTests
         Assert.Equal(product.Name, returnedDto.Name);
         Assert.Equal(product.Description, returnedDto.Description);
         Assert.Equal(product.Brand, returnedDto.Brand);
-        Assert.Equal(product.BasePrice, returnedDto.Price);
+        Assert.Equal(product.Price, returnedDto.Price);
 
         _mapperMock.Verify(x => x.Map<ProductDto>(product), Times.Once);
     }

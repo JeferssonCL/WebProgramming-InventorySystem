@@ -32,11 +32,7 @@ CREATE TABLE IF NOT EXISTS "Product"
     "CreatedAt" timestamp with time zone NOT NULL,
     "UpdatedAt" timestamp with time zone,
     "IsActive" boolean NOT NULL,
-    CONSTRAINT "PK_Product" PRIMARY KEY ("Id"),
-    CONSTRAINT "FK_Product_Store_StoreId" FOREIGN KEY ("StoreId")
-        REFERENCES public."Store" ("Id") MATCH SIMPLE
-        ON UPDATE NO ACTION
-        ON DELETE CASCADE
+    CONSTRAINT "PK_Product" PRIMARY KEY ("Id")
 );
 
 CREATE TABLE IF NOT EXISTS "Combo"
