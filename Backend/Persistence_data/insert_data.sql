@@ -280,7 +280,38 @@ VALUES
         NULL
     );
 
-
+INSERT INTO
+    "User" (
+        "Id",
+        "Name",
+        "Email",
+        "IdentityId",
+        "UserType",
+        "IsActive",
+        "CreatedAt",
+        "UpdatedAt"
+    )
+VALUES
+    (
+        'c4055860-c902-4787-ba54-0b34e18a1040',
+        'Jefersson Coronel',
+        'jefersoncoronel700@gmail.com',
+        'password123',
+        0,
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        'e8489e3b-c12c-4197-8bc1-dac21bc6e82f',
+        'Karina Aguirre',
+        'karina123@gmail.com',
+        'password123',
+        3,
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    );
 
 INSERT INTO
     "Product" (
@@ -494,3 +525,258 @@ VALUES
         CURRENT_TIMESTAMP,
         NULL
     );
+
+INSERT INTO
+    "Image" (
+        "Id",
+        "ProductId",
+        "AltText",
+        "Url",
+        "IsActive",
+        "CreatedAt",
+        "UpdatedAt"
+    )
+VALUES
+    (
+        'a389e63d-322f-4fae-a94a-7ec313522b9e',
+        'b7f8461c-38a5-4d2a-b719-830592b268a5',
+        'Pepsi image',
+        'https://i.postimg.cc/j208Qd2M/download.jpg',
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        '8b12f497-ec6a-4c6a-813a-4dfcca6f946b',
+        '13c45b8e-8e5f-4673-9d89-3b2452c9d91d',
+        'Coca Cola image',
+        'https://i.postimg.cc/hP0CTnB0/df3f957f-2bf8-46cd-b4d7-100537bf55b7-107cd909-4796-4c68-95af-323e378461e4.webp',
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        '0ff06aa1-2c8c-4361-ba98-11368e324454',
+        '89eeb09a-3fda-4e4b-bbe1-6c0d9a69e96e',
+        'Mountain Dew image',
+        'https://i.postimg.cc/DwjBpcmJ/c91cc27d-61a8-4cc7-be8c-52f09180bd02-1-c976b9c0ead012567b3d3bd8be7efe7c.webp',
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        '52427ca0-6b26-4087-9825-3a15e9bae35c',
+        '8db8e9a5-3c2f-4a27-87bb-293f41ec198b',
+        'Aquafina image',
+        'https://i.postimg.cc/bvZL7226/100021123-7-aquafina-packaged-drinking-water.webp',
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        '1fbb3a78-e7f0-4153-b3d2-0f39dbfca0f9',
+        'edc97824-9f3b-4e82-8e79-34e7c93fda4f',
+        'Minute Maid Orange Juice image',
+        'https://i.postimg.cc/TPBQfYVT/Minute-Maid-100-Orange-Juice-Beverage-450-m-L-6ff04a24-6c0a-455f-9771-9463b1fda6ce-1-245e9522e31d6a36.webp',
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        '69a36e7a-131d-45b7-8800-2b684ac002b6',
+        '20e9a0df-d1b2-4c6f-8e3d-b324b2b92d7a',
+        'Heineken image',
+        'https://i.postimg.cc/k48s43sK/heineken-pint-330ml-476443-1200x1200.webp',
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        '988b615b-20dd-4200-acee-f3c27cfd62e3',
+        '08fa3c5d-6f5e-4d21-bac3-1abfe147d7b6',
+        'Jack Daniels image',
+        'https://i.postimg.cc/hvtXYVXv/photo-1521201795527-a80e2debb4c8.avif',
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        'f78bf348-fdf0-4fd6-9f4a-7d15b2d75f48',
+        '32cfa947-f2db-4a83-bf27-3c7d9f9d06c9',
+        'Grey Goose image',
+        'https://i.postimg.cc/3Nz3ZGpP/image-9b9da7d3-3787-4914-a4f4-3a8582e1ff48-600x.webp',
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        '00d68077-388c-4940-b8ce-b1c5898851c6',
+        'a7d6ef01-ef88-4418-b84d-44e6a9e9d19d',
+        'Baileys Irish Cream image',
+        'https://i.postimg.cc/hjfjbc6Q/images.jpg',
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        'fff48fd4-a939-4956-bc57-67ace0e42b27',
+        '6f9a293b-2a65-4a9b-8217-b21f19353df8',
+        'Corona Extra image',
+        'https://i.postimg.cc/L5FpYSpp/00-D92-FCB-5482-46-A6-9906-5-D3896-A404-EC.jpg',
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        '032d55c0-5436-45b2-8e25-54b2ad22b6aa',
+        '9bd4fe4e-5e8b-4e8f-9d45-d5f43be798d6',
+        'Moët & Chandon image',
+        'https://i.postimg.cc/2jGcBmm7/2a0ee211-13cf-4b6b-aaa0-c710b8a36d90.webp',
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        'a0cd835b-0fa3-490e-bec4-1e07e5320586',
+        '5b2df2d4-56a4-45e5-a2b8-e3db601ca28f',
+        'Smirnoff Ice image',
+        'https://i.postimg.cc/HL14hPdL/0008200072569.webp',
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        '4f58c7a6-a4dc-4085-8d9e-a4d8ba4b50bb',
+        '2b3b6c0e-4f88-4b97-a8a1-506ff2bc26af',
+        'Captain Morgan image',
+        'https://i.postimg.cc/L6rzJ0qV/68e9bccc045554f91a612ee9b1279b26.jpg',
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        'adb707a9-0645-421c-a4a2-2e474bff1fc1',
+        '8f0a629e-b6ec-4dd4-9f68-2b18a62d8c1e',
+        'Patrón Silver image',
+        'https://i.postimg.cc/hvXdj9cw/Patron-Silver-Tequila-40-ABV-750-ml-Bottle-25164305-31d3-486a-b2ac-0bee35c731aa-5440134119a2b08155c2.avif',
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        '6ac157ca-e38f-41f9-bf8e-05bc42608b81',
+        '4ac4c10b-5406-49b8-98bc-841c94cf93a3',
+        ' image',
+        'https://i.postimg.cc/fT0dQjHS/Hennessy-VS-no-box-image-983x700.webp',
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    );
+
+INSERT INTO
+    "UserAddress" (
+        "Id",
+        "UserId",
+        "Address",
+        "City",
+        "Country",
+        "IsActive",
+        "CreatedAt",
+        "UpdatedAt"
+    )
+VALUES
+    (
+        '945ff41a-fd1d-431b-9a70-2ae6f1a9ec08',
+        'c4055860-c902-4787-ba54-0b34e18a1040',
+        '123 Main St',
+        'Los Angeles',
+        'USA',
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        '83249fea-26a9-4de8-9e2b-a14cf7969d81',
+        'e8489e3b-c12c-4197-8bc1-dac21bc6e82f',
+        '456 Elm St',
+        'New York',
+        'USA',
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    );
+
+INSERT INTO
+    "CategoryProduct" ("CategoriesId", "ProductsId")
+VALUES
+    -- Beers Category
+    (
+        '4e5cb421-968e-4f85-b654-a96e0ab0e3f0',
+        '20e9a0df-d1b2-4c6f-8e3d-b324b2b92d7a'
+    ), -- Heineken
+    (
+        '4e5cb421-968e-4f85-b654-a96e0ab0e3f0',
+        '6f9a293b-2a65-4a9b-8217-b21f19353df8'
+    ), -- Corona Extra
+    (
+        '4e5cb421-968e-4f85-b654-a96e0ab0e3f0',
+        '5b2df2d4-56a4-45e5-a2b8-e3db601ca28f'
+    ), -- Smirnoff Ice
+    -- Wines Category
+    (
+        '05563658-5b6d-4022-8920-d3a2784b2033',
+        '9bd4fe4e-5e8b-4e8f-9d45-d5f43be798d6'
+    ), -- Moët & Chandon
+    -- Spirits Category
+    (
+        '0dc28a1d-8619-4dc7-9667-cd38266d37db',
+        '08fa3c5d-6f5e-4d21-bac3-1abfe147d7b6'
+    ), -- Jack Daniel's
+    (
+        '0dc28a1d-8619-4dc7-9667-cd38266d37db',
+        '32cfa947-f2db-4a83-bf27-3c7d9f9d06c9'
+    ), -- Grey Goose
+    (
+        '0dc28a1d-8619-4dc7-9667-cd38266d37db',
+        '2b3b6c0e-4f88-4b97-a8a1-506ff2bc26af'
+    ), -- Captain Morgan
+    (
+        '0dc28a1d-8619-4dc7-9667-cd38266d37db',
+        '8f0a629e-b6ec-4dd4-9f68-2b18a62d8c1e'
+    ), -- Patrón Silver
+    (
+        '0dc28a1d-8619-4dc7-9667-cd38266d37db',
+        '4ac4c10b-5406-49b8-98bc-841c94cf93a3'
+    ), -- Hennessy VS
+    -- Liqueurs Category
+    (
+        'c5f76b16-5662-42b3-841e-1378638440e6',
+        'a7d6ef01-ef88-4418-b84d-44e6a9e9d19d'
+    ), -- Baileys Irish Cream
+    -- Sodas Category
+    (
+        '13e8fb28-8fab-4c2f-b5e7-48b5bd43f624',
+        'b7f8461c-38a5-4d2a-b719-830592b268a5'
+    ), -- Pepsi
+    (
+        '13e8fb28-8fab-4c2f-b5e7-48b5bd43f624',
+        '13c45b8e-8e5f-4673-9d89-3b2452c9d91d'
+    ), -- Coca-Cola
+    (
+        '13e8fb28-8fab-4c2f-b5e7-48b5bd43f624',
+        '89eeb09a-3fda-4e4b-bbe1-6c0d9a69e96e'
+    ), -- Mountain Dew
+    -- Waters Category
+    (
+        '5d04716c-cfdf-4f52-9855-acfeb23f6449',
+        '8db8e9a5-3c2f-4a27-87bb-293f41ec198b'
+    ), -- Aquafina
+    -- Juices Category
+    (
+        '106b3d2b-a416-4a23-9632-928a44a99228',
+        'edc97824-9f3b-4e82-8e79-34e7c93fda4f'
+    );
+
+-- Minute Maid Orange Juice
+
+
