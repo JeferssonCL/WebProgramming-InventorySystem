@@ -2,6 +2,8 @@ import React, {useEffect, useState} from 'react';
 import { Box, IconButton, useTheme } from '@mui/material';
 import { ArrowBackIos, ArrowForwardIos } from '@mui/icons-material';
 import BrandsCarousel from "../components/BrandsCarousel.jsx";
+import CombosCarousel from "../components/CombosCarousel.jsx";
+import OffersCarousel from "../components/OffersCarousel.jsx";
 
 const layers = [
     "https://firebasestorage.googleapis.com/v0/b/merchant-auth-9c7f2.appspot.com/o/Twitter%20header%20-%201.png?alt=media&token=03aaa313-6706-445a-9b05-87542476fb1f",
@@ -46,6 +48,7 @@ export function HomePage() {
                 position="relative"
                 width="100%"
                 height="400px"
+                className="mb-10"
                 sx={{ overflow: 'hidden' }}
             >
                 <IconButton
@@ -89,7 +92,12 @@ export function HomePage() {
                     <ArrowForwardIos />
                 </IconButton>
             </Box>
+            <label className="pl-6 text-2xl font-bold text-black">BRANDS</label>
             <BrandsCarousel></BrandsCarousel>
+            <label className="pl-6 text-2xl font-bold text-black">COMBOS</label>
+            <CombosCarousel></CombosCarousel>
+            <label className="pl-6 text-2xl font-bold text-black">OFFERS</label>
+            <OffersCarousel></OffersCarousel>
         </div>
     );
 }

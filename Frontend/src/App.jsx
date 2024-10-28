@@ -16,6 +16,7 @@ import { AuthProvider } from './Context/AuthContext'
 import { PrivateRoute } from './Context/PrivateRoute'
 import{Toaster} from 'sonner'
 import {HomePage} from "./pages/HomePage.jsx";
+import Footer from "./components/Footer.jsx";
 
 function App() {
 
@@ -66,6 +67,7 @@ function App() {
                 }
               />
             </Routes>
+            <Footer/>
           </AuthProvider>
         </BrowserRouter>
       </ProductsProvider>
