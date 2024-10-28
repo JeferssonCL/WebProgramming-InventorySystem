@@ -22,7 +22,6 @@ public class UserRepository(PostgresContext context) : BaseRepository<User>(cont
     {
         return await Context.Set<User>()
             .Include(u => u.Orders)
-            .Include(u => u.Stores)
             .Include(u => u.Addresses)
             .Skip((page - 1) * limit)
             .Take(limit)
@@ -34,7 +33,6 @@ public class UserRepository(PostgresContext context) : BaseRepository<User>(cont
     {
         return await Context.Set<User>()
             .Include(u => u.Orders)
-            .Include(u => u.Stores)
             .Include(u => u.Addresses)
             .FirstOrDefaultAsync(u => u.Id == id)
             .ConfigureAwait(false);

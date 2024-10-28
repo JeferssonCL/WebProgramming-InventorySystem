@@ -27,3 +27,4 @@ public class ImageMap : IEntityTypeConfiguration<Image>
             .HasForeignKey<Combo>(c => c.ImageId);
     }
 }
+

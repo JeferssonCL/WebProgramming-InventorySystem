@@ -11,3 +11,4 @@ public class Image : BaseEntity
     public Combo Combo { get; set; }
     public ProductVariant ProductVariant { get; set; }
 }
+

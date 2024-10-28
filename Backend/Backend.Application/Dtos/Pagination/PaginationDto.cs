@@ -1,6 +1,3 @@
-using Backend.Application.Dtos;
-using Backend.Domain.Entities.Concretes;
-
 namespace MerchantService.Application.Dtos
 {
     public class PageDto<T>
@@ -16,7 +13,7 @@ namespace MerchantService.Application.Dtos
             Data = data ?? throw new ArgumentNullException(nameof(data));
             TotalItems = totalItems;
             Page = page;
-            PageSize = pageSize;
+            PageSize = data.Count();
             TotalPages = (int)Math.Ceiling(totalItems / (double)pageSize);
         }
 

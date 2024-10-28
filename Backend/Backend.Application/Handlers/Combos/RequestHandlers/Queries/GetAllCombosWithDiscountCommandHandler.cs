@@ -36,7 +36,7 @@ public class GetAllCombosWithDiscountCommandHandler(IComboRepository comboReposi
                 Products = combo.Products.Select(p => new ProductComboDto
                 {
                     Name = p.Name,
-                    Price = p.BasePrice,
+                    Price = p.Price,
                     Brand = p.Brand,
                     Description = p.Description
                 }).ToList(),

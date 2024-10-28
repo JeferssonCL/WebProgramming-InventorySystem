@@ -27,8 +27,8 @@ public class ComboHandlersTests
 
         var products = new List<Product>
         {
-            new() { Id = product1Id, Name = "Product1", BasePrice = 100 },
-            new() { Id = product2Id, Name = "Product2", BasePrice = 150 }
+            new() { Id = product1Id, Name = "Product1", Price = 100 },
+            new() { Id = product2Id, Name = "Product2", Price = 150 }
         };
 
         var createComboDto = new CreateComboDto
@@ -108,7 +108,7 @@ public class ComboHandlersTests
         _mockComboRepository.Setup(x => x.GetByIdAsync(comboId))
             .ReturnsAsync(existingCombo);
         _mockProductRepository.Setup(x => x.GetByIdAsync(productId))
-            .ReturnsAsync(new Product { Id = productId, BasePrice = 100 });
+            .ReturnsAsync(new Product { Id = productId, Price = 100 });
 
         // Act
         var result = await handler.Handle(new UpdateComboCommand(updateDto), CancellationToken.None);
@@ -334,7 +334,7 @@ public class ComboHandlersTests
         var comboId = Guid.NewGuid();
         var existingProducts = new List<Product>
         {
-            new() { Id = Guid.NewGuid(), BasePrice = 100 }
+            new() { Id = Guid.NewGuid(), Price = 100 }
         };
 
         var existingCombo = new Combo

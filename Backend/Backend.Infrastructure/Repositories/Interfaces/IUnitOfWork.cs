@@ -7,6 +7,7 @@ public interface IUnitOfWork : IDisposable
     public IUserAddressRepository UserAddressRepository { get; }
     public IOrderItemRepository OrderItemRepository { get; }
     public IProductRepository ProductRepository { get; }
+    public IUserRepository UserRepository { get; }
     public Task<int> CommitAsync();
 }
 

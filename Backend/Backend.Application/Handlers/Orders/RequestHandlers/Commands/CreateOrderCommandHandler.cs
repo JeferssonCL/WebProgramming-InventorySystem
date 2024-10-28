@@ -1,3 +1,4 @@
+using Backend.Application.Dtos.checkoutSession;
 using Backend.Application.Handlers.Orders.Request.Commands;
 using Backend.Application.Services.Products.Interfaces;
 using Backend.Domain.Entities.Concretes;
@@ -39,23 +40,26 @@ public class CreateOrderCommandHandler : IRequestHandler<CreateOrderCommand, str
             var transactionStatus = sessionWithLineItems.PaymentStatus ?? "Unknown";
             var orderStatus = MapStripeStatusToOrderStatus(transactionStatus);
 
+            User? user = await _unitOfWork.UserRepository.GetUserByIdentityId(request.OrderToBeCreated.Customer.Id);
+
+
+            if (user == null)
+            {
+                throw new InvalidOperationException("User not found.");
+            }
+
+
             var order = new Order
             {
-                UserId = request.OrderToBeCreated.Customer.Id,
+                UserId = user.Id,
                 OrderDate = DateTime.UtcNow,
                 OrderStatus = orderStatus,
                 TotalPrice = sessionWithLineItems.AmountTotal ?? 0,
             };
             await _unitOfWork.OrdersRepository.AddAsync(order);
 
-            var userAddress = new UserAddress
-            {
-                UserId = request.OrderToBeCreated.Customer.Id,
-                Address = request.OrderToBeCreated.Customer.Address,
-                City = request.OrderToBeCreated.Customer.City,
-                Country = request.OrderToBeCreated.Customer.Country,
-            };
-            await _unitOfWork.UserAddressRepository.AddAsync(userAddress);
+            await HandleUserAddress(request.OrderToBeCreated.Customer, user.Id);
+
 
             var orderItems = sessionWithLineItems.LineItems.Data.Select(item => new OrderItem
             {
@@ -115,5 +119,20 @@ public class CreateOrderCommandHandler : IRequestHandler<CreateOrderCommand, str
             "card" => PaymentMethod.CreditCard,
             _ => throw new ArgumentOutOfRangeException()
         };
+    }
+
+
+    private async Task HandleUserAddress(CustomerDTO customer, Guid userId)
+    {
+
+        var newUserAddress = new UserAddress
+        {
+            UserId = userId,
+            Address = customer.Address,
+            City = customer.City,
+            Country = customer.Country
+        };
+
+        await _unitOfWork.UserAddressRepository.AddAsync(newUserAddress);
     }
 }
