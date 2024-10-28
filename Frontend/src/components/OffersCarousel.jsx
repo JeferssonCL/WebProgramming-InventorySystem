@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import SwipeableViews from "react-swipeable-views";
 import { IconButton, MobileStepper, Box } from "@mui/material";
 import { KeyboardArrowLeft, KeyboardArrowRight } from "@mui/icons-material";
 import ProductOffersCard from "./ProductOnOffertCard.jsx";
+import axios from "axios";
 
 const productsWithOffers = [
     {
@@ -121,6 +122,19 @@ const productsWithOffers = [
 
 const OffersCarousel = () => {
     const [activeStep, setActiveStep] = useState(0);
+    const [productsWithOffer, setProductsWithOffer] = useState([]);
+
+    useEffect(() => {
+        const apiUrl = "http://localhost:5163/api/Combo?page=1&pageSize=10";
+
+        const fetchProducts = async () => {
+            const response = await axios.get(apiUrl);
+            setProductsWithOffer(response.data.data);
+        };
+
+        fetchProducts();
+    }, []);
+
 
     const maxSteps = Math.ceil(productsWithOffers.length / 3);
 

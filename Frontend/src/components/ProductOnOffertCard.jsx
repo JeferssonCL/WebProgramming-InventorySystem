@@ -7,7 +7,10 @@ const ProductOffersCard = ({ product }) => {
     return(
         <Card
             variant="outlined"
-            className="p-5 w-full flex flex-row space-x-3 justify-start"
+            className="p-5 w-full flex flex-row space-x-3 justify-start cursor-pointer"
+            onClick={() => {
+                // TODO: Implement redirection
+            }}
         >
             <CardMedia
                 component="img"

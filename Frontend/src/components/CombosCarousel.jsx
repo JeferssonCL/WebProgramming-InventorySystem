@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, {useContext, useEffect, useState} from "react";
 import SwipeableViews from "react-swipeable-views";
 import { IconButton, MobileStepper, Box } from "@mui/material";
 import { KeyboardArrowLeft, KeyboardArrowRight } from "@mui/icons-material";
 import ComboCard from "./ComboCard.jsx";
+import {ProductsContext} from "../Context/ProductsContext.jsx";
+import axios from "axios";
 
 const combosList = [
     {
@@ -184,6 +186,18 @@ const combosList = [
 
 const CombosCarousel = () => {
     const [activeStep, setActiveStep] = useState(0);
+    const [combosListToReceive, setCombosListToReceive] = useState([]);
+
+    useEffect(() => {
+        const apiUrl = "http://localhost:5163/api/Combo?page=1&pageSize=10";
+
+        const fetchProducts = async () => {
+            const response = await axios.get(apiUrl);
+            setCombosListToReceive(response.data.data);
+        };
+
+        fetchProducts();
+    }, []);
 
     const maxSteps = Math.ceil(combosList.length / 3);
 

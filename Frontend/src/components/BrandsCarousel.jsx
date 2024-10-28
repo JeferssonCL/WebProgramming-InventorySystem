@@ -100,7 +100,8 @@ const BrandsCarousel = () => {
   };
 
   return (
-    <Box sx={{position: "relative", width: "100%", overflow: "hidden", bgcolor: "white", padding: "20px"}}>
+    <Box
+        sx={{position: "relative", width: "100%", overflow: "hidden", bgcolor: "white", padding: "20px"}}>
       <SwipeableViews
         index={activeStep}
         onChangeIndex={handleStepChange}
@@ -124,7 +125,11 @@ const BrandsCarousel = () => {
                   component="img"
                   src={image.logo_url}
                   alt={`Brand ${groupIndex * 5 + index + 1} - ${image.name}`}
+                  className="cursor-pointer"
                   sx={{marginBottom: "10px", width: "200px", height: "200px", objectFit: "contain", borderRadius: "100%", border: "2px solid #000"}}
+                  onClick={() => {
+                    // TODO: Implement redirection
+                  }}
                 />
               ))}
           </Box>

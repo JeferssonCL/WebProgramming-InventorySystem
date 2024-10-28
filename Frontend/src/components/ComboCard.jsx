@@ -7,7 +7,11 @@ const ComboCard = ({ combo }) => {
     return(
         <Card
             variant="outlined"
-            className="p-5 w-full flex flex-row space-x-3 justify-start"
+            className="p-5 w-full flex flex-row space-x-3 justify-start cursor-pointer"
+            onClick={() => {
+                console.log("CLICK")
+                // TODO: Implement redirection to product details
+            }}
         >
             <CardMedia
                 component="img"
