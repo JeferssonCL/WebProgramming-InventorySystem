@@ -1,10 +1,7 @@
 using Backend.Domain.Entities.Concretes;
-using Backend.Infrastructure.Context;
 using Backend.Infrastructure.Repositories.Abstract;
 using Backend.Infrastructure.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
-
 namespace Backend.Infrastructure.Repositories.Concretes;
 
 public class OrderRepository(DbContext context) : BaseRepository<Order>(context), IOrderRepository

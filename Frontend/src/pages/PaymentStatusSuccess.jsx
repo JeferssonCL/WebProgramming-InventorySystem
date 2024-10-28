@@ -2,9 +2,11 @@ import React, { useEffect, useRef } from 'react';
 import '../styles/components/success.css';
 import { useLocation, useNavigate } from 'react-router-dom';
 import successImage from '../assets/succesImage.png';
+import { useAuth } from '../Context/AuthContext';
 
 const PaymentStatusSuccess = () => {
     const location = useLocation();
+    const { user } = useAuth();
     const query = new URLSearchParams(location.search);
     const sessionId = query.get('session_id');
 
@@ -13,8 +15,8 @@ const PaymentStatusSuccess = () => {
 
     const submitOrder = async () => {
       const customer = {
-        id: "c4055860-c902-4787-ba54-0b34e18a1040",
-        email: "customer@example.com",
+        Id: user.uid,
+        email: user.email,
         address : "default",
         city: "default",
         country: "default"
@@ -24,6 +26,7 @@ const PaymentStatusSuccess = () => {
         StripeSessionId: sessionId,
         Customer: customer,
       };
+
       const response = await fetch('http://localhost:5163/api/Order', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },

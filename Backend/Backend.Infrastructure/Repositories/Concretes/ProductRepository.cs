@@ -1,3 +1,4 @@
+using System.Linq.Expressions;
 using Backend.Domain.Entities.Concretes;
 using Backend.Infrastructure.Context;
 using Backend.Infrastructure.Repositories.Abstract;
@@ -25,12 +26,11 @@ public class ProductRepository(PostgresContext context) : BaseRepository<Product
     public override async Task<IEnumerable<Product>> GetAllAsync(int page, int limit)
     {
         List<Product> products = await Context.Set<Product>()
-            .Include(p => p.Store)
             .Include(p => p.Images)
-            .Include(p => p.ProductVariants)
-                .ThenInclude(pa => pa.Attributes)
-                    .ThenInclude(a => a.Variant)
             .Include(p => p.Categories)
+                .ThenInclude(c => c.ParentCategory)
+            .Include(p => p.Combos)
+
             .Skip((page - 1) * limit)
                 .Take(limit)
                 .ToListAsync()
@@ -41,12 +41,10 @@ public class ProductRepository(PostgresContext context) : BaseRepository<Product
     public override async Task<Product?> GetByIdAsync(Guid id)
     {
         return await Context.Set<Product>()
-            .Include(p => p.Store)
             .Include(p => p.Images)
-            .Include(p => p.ProductVariants)
-                .ThenInclude(pa => pa.Attributes)
-                .ThenInclude(pa => pa.Variant)
+            .Include(p => p.Combos)
             .Include(p => p.Categories)
+                .ThenInclude(c => c.ParentCategory)
             .FirstOrDefaultAsync(p => p.Id == id)
             .ConfigureAwait(false);
     }
@@ -71,5 +69,4 @@ public class ProductRepository(PostgresContext context) : BaseRepository<Product
 
         return existingProduct;
     }
-
 }

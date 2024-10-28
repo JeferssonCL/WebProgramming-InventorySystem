@@ -18,12 +18,9 @@ public class UserMap : IEntityTypeConfiguration<User>
             .WithOne(o => o.User)
             .HasForeignKey(o => o.UserId);
         
-        builder.HasMany(u => u.Stores)
-            .WithOne(s => s.User)
-            .HasForeignKey(s => s.UserId);
 
-        builder.HasMany(u => u.Addresses) 
-            .WithOne(ua => ua.User) 
+        builder.HasMany(u => u.Addresses)
+            .WithOne(ua => ua.User)
             .HasForeignKey(ua => ua.UserId);
     }
 }
