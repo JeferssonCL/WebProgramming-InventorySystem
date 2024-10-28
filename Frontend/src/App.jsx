@@ -15,6 +15,7 @@ import PaymentStatusFailed from './pages/PaymentStatusSuccess'
 import { AuthProvider } from './Context/AuthContext'
 import { PrivateRoute } from './Context/PrivateRoute'
 import{Toaster} from 'sonner'
+import {HomePage} from "./pages/HomePage.jsx";
 
 function App() {
 
@@ -57,6 +58,12 @@ function App() {
               <Route
                 path="*"
                 element={<Navigate to="/" replace />}
+              />
+              <Route
+                path="/home-page"
+                element={
+                  <HomePage></HomePage>
+                }
               />
             </Routes>
           </AuthProvider>
