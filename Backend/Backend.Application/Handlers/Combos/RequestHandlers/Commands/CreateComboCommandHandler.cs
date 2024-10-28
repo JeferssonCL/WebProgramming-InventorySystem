@@ -29,7 +29,7 @@ public class CreateComboCommandHandler(IComboRepository comboRepository,  IProdu
             {
                 var product = await productRepository.GetByIdAsync(id);
                 if (product == null) throw new Exception("We not found this product in our db to add into combo.");
-                totalPrice += product.BasePrice;
+                totalPrice += product.Price;
                 combo.Products.Add(product);
             }
 

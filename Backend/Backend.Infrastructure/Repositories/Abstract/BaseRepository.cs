@@ -1,3 +1,4 @@
+using System.Linq.Expressions;
 using Backend.Domain.Entities.Bases;
 using Backend.Infrastructure.Context;
 using Backend.Infrastructure.Repositories.Interfaces;
@@ -58,4 +59,13 @@ public abstract class BaseRepository<T>(DbContext context) : ICrudRepository<T>
         return await Context.Set<T>().CountAsync();
     }
 
+    public virtual async Task<IEnumerable<T>> GetByAsync(Expression<Func<T, bool>> predicate, int pageNumber, int pageSize)
+    {
+        return await Context.Set<T>()
+                        .Where(predicate)
+                        .Skip((pageNumber - 1) * pageSize)
+                        .Take(pageSize)
+                        .ToListAsync();
+
+    }
 }
