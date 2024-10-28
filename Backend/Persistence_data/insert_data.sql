@@ -1,4 +1,3 @@
--- Insert Categories
 INSERT INTO
     "Category" (
         "Id",
@@ -8,7 +7,7 @@ INSERT INTO
         "CreatedAt",
         "UpdatedAt"
     )
-VALUES -- Beers and Subcategories
+VALUES
     (
         '4e5cb421-968e-4f85-b654-a96e0ab0e3f0',
         NULL,
@@ -57,7 +56,6 @@ VALUES -- Beers and Subcategories
         CURRENT_TIMESTAMP,
         NULL
     ),
-    -- Wines and Subcategories
     (
         '05563658-5b6d-4022-8920-d3a2784b2033',
         NULL,
@@ -106,7 +104,6 @@ VALUES -- Beers and Subcategories
         CURRENT_TIMESTAMP,
         NULL
     ),
-    -- Spirits and Subcategories
     (
         '0dc28a1d-8619-4dc7-9667-cd38266d37db',
         NULL,
@@ -163,7 +160,6 @@ VALUES -- Beers and Subcategories
         CURRENT_TIMESTAMP,
         NULL
     ),
-    -- Liqueurs and Subcategories
     (
         'c5f76b16-5662-42b3-841e-1378638440e6',
         NULL,
@@ -196,7 +192,6 @@ VALUES -- Beers and Subcategories
         CURRENT_TIMESTAMP,
         NULL
     ),
-    -- Cocktails and Subcategories
     (
         '8a6c5bd6-5439-4011-b546-c9fbb5a6efb9',
         NULL,
@@ -237,7 +232,6 @@ VALUES -- Beers and Subcategories
         CURRENT_TIMESTAMP,
         NULL
     ),
-    -- Non alcoholic
     (
         'b1f3e5d2-8c9e-4b89-920f-7314d4b9a3a2',
         NULL,
@@ -326,7 +320,7 @@ INSERT INTO
         "CreatedAt",
         "UpdatedAt"
     )
-VALUES -- Non-Alcoholic
+VALUES
     (
         'b7f8461c-38a5-4d2a-b719-830592b268a5',
         'Pepsi',
@@ -392,7 +386,6 @@ VALUES -- Non-Alcoholic
         CURRENT_TIMESTAMP,
         NULL
     ),
-    -- Alcoholic
     (
         '20e9a0df-d1b2-4c6f-8e3d-b324b2b92d7a',
         'Heineken',
@@ -524,7 +517,75 @@ VALUES -- Non-Alcoholic
         NULL
     );
 
--- Minute Maid Orange Juice
+INSERT INTO
+    "ComboImage" ("Id", "AltText", "Url")
+VALUES
+    (
+        '03617116-55df-4cd7-9299-74031845721d',
+        'Grey Goose, Smirnoff Ice, and Coca-Cola',
+        'https://i.postimg.cc/52ZxLvJL/Grey-Goose-Refresh-Pack.jpg'
+    ),
+    (
+        '154bc524-d3b1-4ba5-a89c-0deb3a921f56',
+        'Includes Heineken, Coca-Cola, and Pepsi',
+        'https://i.postimg.cc/4y93r5Xf/images.jpg'
+    ),
+    (
+        'be1e772f-56a3-4d37-8db9-007ea0960c3c',
+        'Jack Daniels, Grey Goose, and Mountain Dew',
+        'https://i.postimg.cc/qBSjfX89/csabkbfstqv31.jpg'
+    ),
+    (
+        '1025c3d2-ea65-46f9-bbf4-c9c9c3eb412b',
+        'Baileys Irish Cream, Smirnoff Ice, and Aquafina',
+        'https://i.postimg.cc/3xH1N8f1/IMG-5822-768x512.jpg'
+    ),
+    (
+        '699860c2-3fd8-48cd-b806-00509c5ea032',
+        'Corona Extra, Captain Morgan, and Coca-Cola',
+        'https://i.postimg.cc/FKTVTjrC/4bf98fc72554aed5d58399b9d00b0c50.jpg'
+    ),
+    (
+        '73199553-0b87-496b-82bd-7a5f14d6ed8b',
+        'Moët & Chandon, Grey Goose, and Pepsi',
+        'https://i.postimg.cc/W1nG4Mkp/images.jpg'
+    ),
+    (
+        '53e2a69c-38d1-4ef7-9899-aa4795988c82',
+        'Captain Morgan, Coca-Cola, and Pepsi',
+        'https://i.postimg.cc/HLvbwdzf/images.jpg'
+    ),
+    (
+        '656114bf-cab3-47ba-af71-613709b808f4',
+        'Patrón Silver, Corona Extra, and Aquafina',
+        'https://i.postimg.cc/FFL0StLB/images.jpg'
+    ),
+    (
+        '2aba9662-0810-4f79-8ef2-108e694f9e09',
+        'Hennessy VS, Minute Maid Orange Juice, and Pepsi',
+        'https://i.postimg.cc/T3Cbxfzp/Pure-White-Hennessy-Cognac-Girly-Drinks-300x200.jpg'
+    ),
+    (
+        'd4dca427-f1a7-4ea3-993f-5406b9f739df',
+        'Jack Daniels, Coca-Cola, and Aquafina',
+        'https://i.postimg.cc/hvWzsjd3/COCACOLA.png'
+    ),
+    (
+        '0bb5f070-f43f-41ff-8bff-b56a9ba295c6',
+        'Baileys Irish Cream, Smirnoff Ice, and Mountain Dew',
+        'https://i.postimg.cc/x8vk42Gj/images.jpg'
+    ),
+    (
+        '1e244dea-2afd-46e8-9536-adc53340b425',
+        'Moët & Chandon, Hennessy VS, and Aquafina',
+        'https://i.postimg.cc/pXv5nmxm/bfce5bbac257fed1ea6de7f26b3ecf0ee1c98b6c.jpg'
+    ),
+    (
+        'c5ba8006-0011-4d26-b408-15650a0e8a6c',
+        'Jack Daniels, Captain Morgan, and Pepsi',
+        'https://i.postimg.cc/XYHrhx55/images.jpg'
+    );
+
 INSERT INTO
     "Combo" (
         "Id",
@@ -532,6 +593,7 @@ INSERT INTO
         "Description",
         "Price",
         "DiscountPercent",
+        "ComboImageId",
         "IsActive",
         "CreatedAt",
         "UpdatedAt"
@@ -543,6 +605,7 @@ VALUES
         'Includes Heineken, Coca-Cola, and Pepsi',
         45,
         10,
+        '154bc524-d3b1-4ba5-a89c-0deb3a921f56',
         true,
         CURRENT_TIMESTAMP,
         NULL
@@ -553,6 +616,7 @@ VALUES
         'Jack Daniels, Grey Goose, and Mountain Dew',
         110,
         15,
+        'be1e772f-56a3-4d37-8db9-007ea0960c3c',
         true,
         CURRENT_TIMESTAMP,
         NULL
@@ -563,6 +627,7 @@ VALUES
         'Baileys Irish Cream, Smirnoff Ice, and Aquafina',
         65,
         12,
+        '1025c3d2-ea65-46f9-bbf4-c9c9c3eb412b',
         true,
         CURRENT_TIMESTAMP,
         NULL
@@ -573,6 +638,7 @@ VALUES
         'Corona Extra, Captain Morgan, and Coca-Cola',
         70,
         10,
+        '699860c2-3fd8-48cd-b806-00509c5ea032',
         true,
         CURRENT_TIMESTAMP,
         NULL
@@ -583,6 +649,7 @@ VALUES
         'Moët & Chandon, Grey Goose, and Pepsi',
         150,
         20,
+        '73199553-0b87-496b-82bd-7a5f14d6ed8b',
         true,
         CURRENT_TIMESTAMP,
         NULL
@@ -593,6 +660,7 @@ VALUES
         'Captain Morgan, Coca-Cola, and Pepsi',
         50,
         8,
+        '53e2a69c-38d1-4ef7-9899-aa4795988c82',
         true,
         CURRENT_TIMESTAMP,
         NULL
@@ -603,6 +671,7 @@ VALUES
         'Patrón Silver, Corona Extra, and Aquafina',
         90,
         15,
+        '656114bf-cab3-47ba-af71-613709b808f4',
         true,
         CURRENT_TIMESTAMP,
         NULL
@@ -613,6 +682,7 @@ VALUES
         'Hennessy VS, Minute Maid Orange Juice, and Pepsi',
         70,
         10,
+        '2aba9662-0810-4f79-8ef2-108e694f9e09',
         true,
         CURRENT_TIMESTAMP,
         NULL
@@ -623,6 +693,7 @@ VALUES
         'Grey Goose, Smirnoff Ice, and Coca-Cola',
         95,
         18,
+        '03617116-55df-4cd7-9299-74031845721d',
         true,
         CURRENT_TIMESTAMP,
         NULL
@@ -633,6 +704,7 @@ VALUES
         'Jack Daniels, Coca-Cola, and Aquafina',
         55,
         10,
+        'd4dca427-f1a7-4ea3-993f-5406b9f739df',
         true,
         CURRENT_TIMESTAMP,
         NULL
@@ -643,6 +715,7 @@ VALUES
         'Baileys Irish Cream, Smirnoff Ice, and Mountain Dew',
         50,
         12,
+        '0bb5f070-f43f-41ff-8bff-b56a9ba295c6',
         true,
         CURRENT_TIMESTAMP,
         NULL
@@ -653,6 +726,7 @@ VALUES
         'Moët & Chandon, Hennessy VS, and Aquafina',
         160,
         25,
+        '1e244dea-2afd-46e8-9536-adc53340b425',
         true,
         CURRENT_TIMESTAMP,
         NULL
@@ -663,12 +737,12 @@ VALUES
         'Jack Daniels, Captain Morgan, and Pepsi',
         85,
         15,
+        'c5ba8006-0011-4d26-b408-15650a0e8a6c',
         true,
         CURRENT_TIMESTAMP,
         NULL
     );
 
--- Fiesta Combo: Heineken, Coca-Cola, Pepsi
 INSERT INTO
     "ComboProduct" ("CombosId", "ProductsId")
 VALUES
@@ -676,146 +750,111 @@ VALUES
         'f3e7d5b1-4b2e-4f9b-8f5e-c5d4b6f0e9a1',
         '20e9a0df-d1b2-4c6f-8e3d-b324b2b92d7a'
     ),
-    -- Heineken
     (
         'f3e7d5b1-4b2e-4f9b-8f5e-c5d4b6f0e9a1',
         '13c45b8e-8e5f-4673-9d89-3b2452c9d91d'
     ),
-    -- Coca-Cola
     (
         'f3e7d5b1-4b2e-4f9b-8f5e-c5d4b6f0e9a1',
         'b7f8461c-38a5-4d2a-b719-830592b268a5'
     ),
-    -- Pepsi
-    -- Party Starter: Jack Daniels, Grey Goose, Mountain Dew
     (
         'd2f3a6b2-3a4c-4c7d-9e1d-f3e2c9b4d0a2',
         '08fa3c5d-6f5e-4d21-bac3-1abfe147d7b6'
     ),
-    -- Jack Daniels
     (
         'd2f3a6b2-3a4c-4c7d-9e1d-f3e2c9b4d0a2',
         '32cfa947-f2db-4a83-bf27-3c7d9f9d06c9'
     ),
-    -- Grey Goose
     (
         'd2f3a6b2-3a4c-4c7d-9e1d-f3e2c9b4d0a2',
         '89eeb09a-3fda-4e4b-bbe1-6c0d9a69e96e'
     ),
-    -- Mountain Dew
-    -- Premium Mixer: Baileys Irish Cream, Smirnoff Ice, Aquafina
     (
         'e9c5d4f3-5f1a-4b3c-9f5a-b3d6e4f2d1b3',
         'a7d6ef01-ef88-4418-b84d-44e6a9e9d19d'
     ),
-    -- Baileys Irish Cream
     (
         'e9c5d4f3-5f1a-4b3c-9f5a-b3d6e4f2d1b3',
         '5b2df2d4-56a4-45e5-a2b8-e3db601ca28f'
     ),
-    -- Smirnoff Ice
     (
         'e9c5d4f3-5f1a-4b3c-9f5a-b3d6e4f2d1b3',
         '8db8e9a5-3c2f-4a27-87bb-293f41ec198b'
     ),
-    -- Aquafina
-    -- Mexican Delight: Corona Extra, Captain Morgan, Coca-Cola
     (
         'b7d6e3a2-6f2d-4c5e-8d4e-f6b2c3a4d1c4',
         '6f9a293b-2a65-4a9b-8217-b21f19353df8'
     ),
-    -- Corona Extra
     (
         'b7d6e3a2-6f2d-4c5e-8d4e-f6b2c3a4d1c4',
         '2b3b6c0e-4f88-4b97-a8a1-506ff2bc26af'
     ),
-    -- Captain Morgan
     (
         'b7d6e3a2-6f2d-4c5e-8d4e-f6b2c3a4d1c4',
         '13c45b8e-8e5f-4673-9d89-3b2452c9d91d'
     ),
-    -- Coca-Cola
-    -- Celebration Combo: Moët & Chandon, Grey Goose, Pepsi
     (
         'c3f7b6d5-7b3f-4a2e-9c3f-d1e9f5a3b2e5',
         '9bd4fe4e-5e8b-4e8f-9d45-d5f43be798d6'
     ),
-    -- Moët & Chandon
     (
         'c3f7b6d5-7b3f-4a2e-9c3f-d1e9f5a3b2e5',
         '32cfa947-f2db-4a83-bf27-3c7d9f9d06c9'
     ),
-    -- Grey Goose
     (
         'c3f7b6d5-7b3f-4a2e-9c3f-d1e9f5a3b2e5',
         'b7f8461c-38a5-4d2a-b719-830592b268a5'
     ),
-    -- Pepsi
-    -- Caribbean Pack: Captain Morgan, Coca-Cola, Pepsi
     (
         'a4d5f7c3-8c2e-4f6a-9b7e-c5b3d4e2f1f6',
         '2b3b6c0e-4f88-4b97-a8a1-506ff2bc26af'
     ),
-    -- Captain Morgan
     (
         'a4d5f7c3-8c2e-4f6a-9b7e-c5b3d4e2f1f6',
         '13c45b8e-8e5f-4673-9d89-3b2452c9d91d'
     ),
-    -- Coca-Cola
     (
         'a4d5f7c3-8c2e-4f6a-9b7e-c5b3d4e2f1f6',
         'b7f8461c-38a5-4d2a-b719-830592b268a5'
     ),
-    -- Pepsi
-    -- Tequila Time: Patrón Silver, Corona Extra, Aquafina
     (
         'd1e9b6a5-9d3e-4c7f-8e2d-b2a5c4f3e6d7',
         '8f0a629e-b6ec-4dd4-9f68-2b18a62d8c1e'
     ),
-    -- Patrón Silver
     (
         'd1e9b6a5-9d3e-4c7f-8e2d-b2a5c4f3e6d7',
         '6f9a293b-2a65-4a9b-8217-b21f19353df8'
     ),
-    -- Corona Extra
     (
         'd1e9b6a5-9d3e-4c7f-8e2d-b2a5c4f3e6d7',
         '8db8e9a5-3c2f-4a27-87bb-293f41ec198b'
     ),
-    -- Aquafina
-    -- Brunch Combo: Hennessy VS, Minute Maid Orange Juice, Pepsi
     (
         'b3f5c6a2-0a3f-4d6e-9f4a-d2c3e9b1f4e8',
         '4ac4c10b-5406-49b8-98bc-841c94cf93a3'
     ),
-    -- Hennessy VS
     (
         'b3f5c6a2-0a3f-4d6e-9f4a-d2c3e9b1f4e8',
         'edc97824-9f3b-4e82-8e79-34e7c93fda4f'
     ),
-    -- Minute Maid Orange Juice
     (
         'b3f5c6a2-0a3f-4d6e-9f4a-d2c3e9b1f4e8',
         'b7f8461c-38a5-4d2a-b719-830592b268a5'
     ),
-    -- Pepsi
-    -- Vodka Fusion: Grey Goose, Smirnoff Ice, Coca-Cola
     (
         'c2a5f3d7-1e2b-4a3f-8f5d-b1c6e4f9d2e9',
         '32cfa947-f2db-4a83-bf27-3c7d9f9d06c9'
     ),
-    -- Grey Goose
     (
         'c2a5f3d7-1e2b-4a3f-8f5d-b1c6e4f9d2e9',
         '5b2df2d4-56a4-45e5-a2b8-e3db601ca28f'
     ),
-    -- Smirnoff Ice
     (
         'c2a5f3d7-1e2b-4a3f-8f5d-b1c6e4f9d2e9',
         '13c45b8e-8e5f-4673-9d89-3b2452c9d91d'
     );
 
--- Coca-Cola
 INSERT INTO
     "Image" (
         "Id",
@@ -998,83 +1037,63 @@ VALUES
 
 INSERT INTO
     "CategoryProduct" ("CategoriesId", "ProductsId")
-VALUES -- Beers Category
+VALUES
     (
         '4e5cb421-968e-4f85-b654-a96e0ab0e3f0',
         '20e9a0df-d1b2-4c6f-8e3d-b324b2b92d7a'
     ),
-    -- Heineken
     (
         '4e5cb421-968e-4f85-b654-a96e0ab0e3f0',
         '6f9a293b-2a65-4a9b-8217-b21f19353df8'
     ),
-    -- Corona Extra
     (
         '4e5cb421-968e-4f85-b654-a96e0ab0e3f0',
         '5b2df2d4-56a4-45e5-a2b8-e3db601ca28f'
     ),
-    -- Smirnoff Ice
-    -- Wines Category
     (
         '05563658-5b6d-4022-8920-d3a2784b2033',
         '9bd4fe4e-5e8b-4e8f-9d45-d5f43be798d6'
     ),
-    -- Moët & Chandon
-    -- Spirits Category
     (
         '0dc28a1d-8619-4dc7-9667-cd38266d37db',
         '08fa3c5d-6f5e-4d21-bac3-1abfe147d7b6'
     ),
-    -- Jack Daniel's
     (
         '0dc28a1d-8619-4dc7-9667-cd38266d37db',
         '32cfa947-f2db-4a83-bf27-3c7d9f9d06c9'
     ),
-    -- Grey Goose
     (
         '0dc28a1d-8619-4dc7-9667-cd38266d37db',
         '2b3b6c0e-4f88-4b97-a8a1-506ff2bc26af'
     ),
-    -- Captain Morgan
     (
         '0dc28a1d-8619-4dc7-9667-cd38266d37db',
         '8f0a629e-b6ec-4dd4-9f68-2b18a62d8c1e'
     ),
-    -- Patrón Silver
     (
         '0dc28a1d-8619-4dc7-9667-cd38266d37db',
         '4ac4c10b-5406-49b8-98bc-841c94cf93a3'
     ),
-    -- Hennessy VS
-    -- Liqueurs Category
     (
         'c5f76b16-5662-42b3-841e-1378638440e6',
         'a7d6ef01-ef88-4418-b84d-44e6a9e9d19d'
     ),
-    -- Baileys Irish Cream
-    -- Sodas Category
     (
         '13e8fb28-8fab-4c2f-b5e7-48b5bd43f624',
         'b7f8461c-38a5-4d2a-b719-830592b268a5'
     ),
-    -- Pepsi
     (
         '13e8fb28-8fab-4c2f-b5e7-48b5bd43f624',
         '13c45b8e-8e5f-4673-9d89-3b2452c9d91d'
     ),
-    -- Coca-Cola
     (
         '13e8fb28-8fab-4c2f-b5e7-48b5bd43f624',
         '89eeb09a-3fda-4e4b-bbe1-6c0d9a69e96e'
     ),
-    -- Mountain Dew
-    -- Waters Category
     (
         '5d04716c-cfdf-4f52-9855-acfeb23f6449',
         '8db8e9a5-3c2f-4a27-87bb-293f41ec198b'
     ),
-    -- Aquafina
-    -- Juices Category
     (
         '106b3d2b-a416-4a23-9632-928a44a99228',
         'edc97824-9f3b-4e82-8e79-34e7c93fda4f'
