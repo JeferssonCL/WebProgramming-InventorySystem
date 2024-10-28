@@ -13,6 +13,7 @@ public class ComboHandlersTests
 {
     private readonly Mock<IComboRepository> _mockComboRepository = new();
     private readonly Mock<IProductRepository> _mockProductRepository = new();
+    private readonly Mock<IImageRepository> _mockImageRepository = new();
 
     #region CreateComboCommandHandler Tests
 
@@ -142,7 +143,7 @@ public class ComboHandlersTests
     public async Task Handle_ValidRequest_ShouldReturnPaginatedCombos()
     {
         // Arrange
-        var handler = new GetAllCombosQueryHandler(_mockComboRepository.Object);
+        var handler = new GetAllCombosQueryHandler(_mockComboRepository.Object, _mockImageRepository.Object);
         var comboId = Guid.NewGuid();
         var combos = new List<Combo>
         {
@@ -177,7 +178,7 @@ public class ComboHandlersTests
     public async Task Handle_ShouldReturnOnlyCombosWithDiscount()
     {
         // Arrange
-        var handler = new GetAllCombosWithDiscountCommandHandler(_mockComboRepository.Object);
+        var handler = new GetAllCombosWithDiscountCommandHandler(_mockComboRepository.Object, _mockImageRepository.Object);
         var combo1Id = Guid.NewGuid();
         var combo2Id = Guid.NewGuid();
 
@@ -216,7 +217,7 @@ public class ComboHandlersTests
     public async Task Handle_EmptyDiscountList_ShouldReturnEmptyResult()
     {
         // Arrange
-        var handler = new GetAllCombosWithDiscountCommandHandler(_mockComboRepository.Object);
+        var handler = new GetAllCombosWithDiscountCommandHandler(_mockComboRepository.Object, _mockImageRepository.Object);
         var combos = new List<Combo>
         {
             new() {
@@ -247,7 +248,7 @@ public class ComboHandlersTests
     public async Task Handle_ExistingId_ShouldReturnCombo()
     {
         // Arrange
-        var handler = new GetComboByIdQueryHandler(_mockComboRepository.Object);
+        var handler = new GetComboByIdQueryHandler(_mockComboRepository.Object, _mockImageRepository.Object);
         var comboId = Guid.NewGuid();
         var combo = new Combo
         {
@@ -272,7 +273,7 @@ public class ComboHandlersTests
     public async Task Handle_NonExistentId_ShouldThrowException()
     {
         // Arrange
-        var handler = new GetComboByIdQueryHandler(_mockComboRepository.Object);
+        var handler = new GetComboByIdQueryHandler(_mockComboRepository.Object, _mockImageRepository.Object);
         var nonExistentId = Guid.NewGuid();
 
         _mockComboRepository.Setup(x => x.GetByIdAsync(nonExistentId))
