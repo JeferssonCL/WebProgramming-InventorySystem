@@ -1,0 +1,13 @@
+namespace Backend.Application.Dtos.Combo;
+
+public class ComboWithDiscountDto
+{
+    public Guid Id { get; set; }
+    public string? Name { get; set; }
+    public string? Description { get; set; }
+    public double? Price { get; set; }
+    public double? PriceWithDiscount { get; set; }
+    public int? DiscountPercent { get; set; }
+    public List<ProductComboDto> Products { get; set; }
+    public bool? IsActive { get; set; }
+}

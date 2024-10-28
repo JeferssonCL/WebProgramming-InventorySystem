@@ -29,6 +29,9 @@ public class ProductMap : IEntityTypeConfiguration<Product>
             .WithOne(i => i.Product)
             .HasForeignKey(i => i.ProductId);
 
+        builder.HasMany(p => p.Combos)
+            .WithMany(c => c.Products);
+
         builder.HasMany(p => p.Categories)
             .WithMany(c => c.Products);
     }

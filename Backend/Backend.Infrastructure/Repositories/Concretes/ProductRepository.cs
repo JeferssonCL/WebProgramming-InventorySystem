@@ -28,6 +28,8 @@ public class ProductRepository(PostgresContext context) : BaseRepository<Product
             .Include(p => p.Images)
             .Include(p => p.Categories)
                 .ThenInclude(c => c.ParentCategory)
+            .Include(p => p.Combos)
+
             .Skip((page - 1) * limit)
                 .Take(limit)
                 .ToListAsync()
@@ -39,6 +41,7 @@ public class ProductRepository(PostgresContext context) : BaseRepository<Product
     {
         return await Context.Set<Product>()
             .Include(p => p.Images)
+            .Include(p => p.Combos)
             .Include(p => p.Categories)
                 .ThenInclude(c => c.ParentCategory)
             .FirstOrDefaultAsync(p => p.Id == id)
