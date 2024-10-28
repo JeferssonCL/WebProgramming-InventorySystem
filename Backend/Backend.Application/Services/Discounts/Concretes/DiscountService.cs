@@ -22,7 +22,7 @@ public class DiscountService : IDiscountService
     public Product ApplyDiscount(Product product)
     {
         double bestPercentageDiscount = GetBestDiscountedPrice(product);
-        product.PriceWithDiscount = product.Price - (bestPercentageDiscount * product.Price / 100);
+        product.PriceWithDiscount = Math.Round(product.Price - (bestPercentageDiscount * product.Price / 100),2);
         product.DiscountPercentage = bestPercentageDiscount;
 
         return product;
