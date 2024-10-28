@@ -19,7 +19,8 @@ public class CreateComboCommandHandler(IComboRepository comboRepository,  IProdu
             Description = comboDto.Description,
             Price = 0,
             DiscountPercent = comboDto.DiscountPercent,
-            Products = new List<Product>()
+            Products = new List<Product>(),
+            ImageId = comboDto.ComboImageId
         };
 
         double totalPrice = 0;

@@ -59,6 +59,7 @@ namespace Backend.Application
             services.AddScoped<IOrderRepository, OrderRepository>();
             services.AddScoped<IComboRepository, ComboRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<IImageRepository, ImageRepository>();
             services.AddScoped<IUserAddressRepository, UserAddressRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IPaymentTransactionRepository, PaymentTransactionRepository>();
