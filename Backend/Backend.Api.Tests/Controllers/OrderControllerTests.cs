@@ -28,7 +28,7 @@ public class OrderControllerTests
             StripeSessionId = "cs_test_123",
             Customer = new CustomerDTO
             {
-                Id = Guid.NewGuid(),
+                Id = "null",
                 Address = "Test Address",
                 City = "Test City",
                 Country = "Test Country"
@@ -59,7 +59,7 @@ public class OrderControllerTests
             StripeSessionId = "cs_test_123",
             Customer = new CustomerDTO
             {
-                Id = Guid.NewGuid(),
+                Id = "null",
                 Address = "Test Address",
                 City = "Test City",
                 Country = "Test Country"
@@ -87,7 +87,7 @@ public class OrderControllerTests
             StripeSessionId = "cs_test_123",
             Customer = new CustomerDTO
             {
-                Id = Guid.NewGuid(),
+                Id = "null",
                 Address = "Test Address",
                 City = "Test City",
                 Country = "Test Country"
@@ -112,7 +112,7 @@ public class OrderControllerTests
             StripeSessionId = invalidSessionId,
             Customer = new CustomerDTO
             {
-                Id = Guid.NewGuid(),
+                Id = "null",
                 Address = "Test Address",
                 City = "Test City",
                 Country = "Test Country"

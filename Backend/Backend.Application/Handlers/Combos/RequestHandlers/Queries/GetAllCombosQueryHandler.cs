@@ -6,29 +6,44 @@ using MediatR;
 
 namespace Backend.Application.Handlers.Combos.RequestHandlers.Queries;
 
-public class GetAllCombosQueryHandler(IComboRepository comboRepository)
+public class GetAllCombosQueryHandler(IComboRepository comboRepository, IImageRepository imageRepository)
     : IRequestHandler<GetAllCombosQuery, PaginatedResponseDto<ComboDto>>
 {
     public async Task<PaginatedResponseDto<ComboDto>> Handle(GetAllCombosQuery request, CancellationToken cancellationToken)
     {
         var totalCombos = await comboRepository.GetAllAsync(request.Page, request.PageSize);
         var count = await comboRepository.GetCountAsync();
-        var totalCombosDto = totalCombos.Select(combo => new ComboDto
+
+        var totalCombosDto = new List<ComboDto>();
+
+        foreach (var combo in totalCombos)
         {
-            Id = combo.Id,
-            Name = combo.Name,
-            Description = combo.Description,
-            Price = combo.Price,
-            DiscountPercent = combo.DiscountPercent,
-            Products = combo.Products.Select(p => new ProductComboDto
+            var comboImage = await imageRepository.GetByIdAsync(combo.ImageId);
+
+            var comboDto = new ComboDto
             {
-                Name = p.Name,
-                Price = p.Price,
-                Brand = p.Brand,
-                Description = p.Description
-            }).ToList(),
-            IsActive = combo.IsActive,
-        }).ToList();
+                Id = combo.Id,
+                Name = combo.Name,
+                Description = combo.Description,
+                Price = combo.Price,
+                DiscountPercent = combo.DiscountPercent,
+                ComboImageDto = (comboImage != null ? new ComboImageDto
+                {
+                    AltText = comboImage.AltText,
+                    Url = comboImage.Url
+                } : null)!,
+                Products = combo.Products.Select(p => new ProductComboDto
+                {
+                    Name = p.Name,
+                    Price = p.Price,
+                    Brand = p.Brand,
+                    Description = p.Description
+                }).ToList(),
+                IsActive = combo.IsActive,
+            };
+
+            totalCombosDto.Add(comboDto);
+        }
 
         return new PaginatedResponseDto<ComboDto>
         {

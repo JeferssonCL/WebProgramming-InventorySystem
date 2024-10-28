@@ -9,5 +9,6 @@ public class ComboWithDiscountDto
     public double? PriceWithDiscount { get; set; }
     public int? DiscountPercent { get; set; }
     public List<ProductComboDto> Products { get; set; }
+    public ComboImageDto ComboImageDto { get; set; }
     public bool? IsActive { get; set; }
 }

@@ -18,6 +18,7 @@ public class UpdateComboCommandHandler(IComboRepository comboRepository, IProduc
         comboToUpdate.Description = request.ComboDto.Description ?? comboToUpdate.Description;
         comboToUpdate.DiscountPercent = request.ComboDto.DiscountPercent ?? comboToUpdate.DiscountPercent;
         comboToUpdate.IsActive = request.ComboDto.IsActive ?? comboToUpdate.IsActive;
+        comboToUpdate.ImageId = request.ComboDto.ImageId ?? comboToUpdate.ImageId;
         double totalPrice = 0;
         if (request.ComboDto.ProductsIds != null && request.ComboDto.ProductsIds.Count != 0)
         {
