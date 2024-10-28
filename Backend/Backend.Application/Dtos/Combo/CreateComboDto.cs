@@ -6,4 +6,5 @@ public class CreateComboDto
     public string Description { get; set; }
     public int DiscountPercent { get; set; }
     public List<Guid> ProductIds { get; set; }
+    public Guid ComboImageId { get; set; }
 }
