@@ -22,7 +22,7 @@ public class DiscountService : IDiscountService
     public Product ApplyDiscount(Product product)
     {
         double bestPercentageDiscount = GetBestDiscountedPrice(product);
-        product.PriceWithDiscount = product.Price -  (bestPercentageDiscount * product.Price / 100);
+        product.PriceWithDiscount = product.Price - (bestPercentageDiscount * product.Price / 100);
         product.DiscountPercentage = bestPercentageDiscount;
 
         return product;
@@ -30,16 +30,16 @@ public class DiscountService : IDiscountService
 
     private double GetBestDiscountedPrice(Product product)
     {
-        double bestDiscountedPrice = product.Price, discountedPrice;
+        double bestDiscountedPrice = product.Price, discountedPrice = 0.0;
 
         foreach (var discount in _discounts)
         {
             discountedPrice = discount.GetDiscount(product);
-            if (discountedPrice < bestDiscountedPrice)
+            if (discountedPrice > 0.0 && discountedPrice < bestDiscountedPrice)
             {
                 bestDiscountedPrice = discountedPrice;
             }
         }
-        return bestDiscountedPrice == product.Price ? 0 : bestDiscountedPrice;
+        return discountedPrice == 0 ? 0.0 : bestDiscountedPrice;
     }
 }
