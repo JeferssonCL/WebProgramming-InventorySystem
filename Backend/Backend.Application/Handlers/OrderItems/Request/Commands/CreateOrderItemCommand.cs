@@ -1,5 +1,3 @@
-using Backend.Application.Dtos.checkoutSession;
-using Backend.Application.Dtos.Order;
 using Backend.Domain.Entities.Concretes;
 using MediatR;
 

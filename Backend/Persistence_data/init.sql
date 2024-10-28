@@ -18,35 +18,21 @@ CREATE TABLE IF NOT EXISTS "User" (
     "UpdatedAt" TIMESTAMP  with time zone
 );
 
-CREATE TABLE IF NOT EXISTS "Store" (
-    "Id" UUID PRIMARY KEY,
-    "UserId" UUID REFERENCES "User"("Id"),
-    "Name" VARCHAR(255) NOT NULL,
-    "Description" TEXT,
-    "Address" VARCHAR(255) NOT NULL,
-    "PhoneNumber" INTEGER,
-    "IsActive" BOOLEAN NOT NULL DEFAULT TRUE,
-    "CreatedAt" TIMESTAMP with time zone DEFAULT CURRENT_TIMESTAMP,
-    "UpdatedAt" TIMESTAMP with time zone
-);
 
 CREATE TABLE IF NOT EXISTS "Product"
 (
     "Id" uuid NOT NULL,
-    "StoreId" uuid NOT NULL,
     "Name" text COLLATE pg_catalog."default" NOT NULL,
     "Description" text COLLATE pg_catalog."default" NOT NULL,
-    "BasePrice" double precision NOT NULL,
-    "Brand" text COLLATE pg_catalog."default" NOT NULL,
+    "Price" double precision NOT NULL,
     "Stock" integer NOT NULL,
+    "AlcoholPercentage" DOUBLE PRECISION,
+    "Volume" VARCHAR(50),
+    "Brand" text COLLATE pg_catalog."default" NOT NULL,
     "CreatedAt" timestamp with time zone NOT NULL,
     "UpdatedAt" timestamp with time zone,
     "IsActive" boolean NOT NULL,
-    CONSTRAINT "PK_Product" PRIMARY KEY ("Id"),
-    CONSTRAINT "FK_Product_Store_StoreId" FOREIGN KEY ("StoreId")
-        REFERENCES public."Store" ("Id") MATCH SIMPLE
-        ON UPDATE NO ACTION
-        ON DELETE CASCADE
+    CONSTRAINT "PK_Product" PRIMARY KEY ("Id")
 );
 
 CREATE TABLE IF NOT EXISTS "Combo"
@@ -86,44 +72,6 @@ CREATE TABLE IF NOT EXISTS "Image" (
     "CreatedAt" TIMESTAMP  with time zone DEFAULT CURRENT_TIMESTAMP,
     "UpdatedAt" TIMESTAMP  with time zone
 );
-
-CREATE TABLE IF NOT EXISTS "ProductVariant"
-(
-    "Id" UUID PRIMARY KEY,
-    "ProductId" UUID REFERENCES "Product"("Id"),
-    "ImageId" UUID REFERENCES "Image"("Id"),
-    "PriceAdjustment" DOUBLE PRECISION,
-    "StockQuantity" INTEGER,
-    "IsActive" BOOLEAN NOT NULL DEFAULT TRUE,
-    "CreatedAt" TIMESTAMP  with time zone DEFAULT CURRENT_TIMESTAMP,
-    "UpdatedAt" TIMESTAMP  with time zone
-);
-
-CREATE TABLE IF NOT EXISTS "Variant" (
-    "Id" UUID PRIMARY KEY,
-    "ProductAttributeId" UUID,
-    "Name" VARCHAR(255) NOT NULL,
-    "IsActive" BOOLEAN NOT NULL DEFAULT TRUE,
-    "CreatedAt" TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-    "UpdatedAt" TIMESTAMP WITH TIME ZONE
-);
-
-CREATE TABLE IF NOT EXISTS "ProductAttribute" (
-    "Id" UUID PRIMARY KEY,
-    "ProductVariantId" UUID,
-    "VariantId" UUID,
-    "Value" VARCHAR(255) NOT NULL,
-    "IsActive" BOOLEAN NOT NULL DEFAULT TRUE,
-    "CreatedAt" TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-    "UpdatedAt" TIMESTAMP WITH TIME ZONE
-);
-
-ALTER TABLE "Variant"
-    ADD CONSTRAINT fk_productattribute FOREIGN KEY ("ProductAttributeId") REFERENCES "ProductAttribute"("Id");
-
-ALTER TABLE "ProductAttribute"
-    ADD CONSTRAINT fk_productvariant FOREIGN KEY ("ProductVariantId") REFERENCES "ProductVariant"("Id"),
-    ADD CONSTRAINT fk_variant FOREIGN KEY ("VariantId") REFERENCES "Variant"("Id");
 
 CREATE TABLE IF NOT EXISTS "UserAddress" (
     "Id" UUID PRIMARY KEY,

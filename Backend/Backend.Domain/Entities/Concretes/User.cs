@@ -10,6 +10,5 @@ public class User : BaseEntity
     public string? IdentityId { get; set; }
     public UserType UserType { get; set; }
     public ICollection<Order> Orders { get; set; }
-    public ICollection<Store> Stores { get; set; }
     public ICollection<UserAddress> Addresses { get; set; }
 }
