@@ -81,11 +81,11 @@ namespace Backend.Application
                         new BrandDiscount(
                             new Dictionary<string, double>
                             {
-                                { "Paceña", 10.0 },
-                                { "Taquiña", 15.0 },
-                                { "Kaiser", 12.0 },
-                                { "Bock", 8.0 },
-                                { "Boliviana", 20.0 }
+                                { "Pepsi", 10.0 },
+                                { "Jack Daniels", 9.0 },
+                                { "Heineken", 12.0 },
+                                { "Coca-Cola", 8.0 },
+                                { "Moët & Chandon", 20.0 }
                             }
                         )
                     ]
