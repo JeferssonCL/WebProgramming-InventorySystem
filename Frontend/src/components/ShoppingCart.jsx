@@ -7,7 +7,6 @@ import { ProductsContext } from "../context/ProductsContext";
 
 export function ShoppingCart() {
   const [isOpen, setIsOpen] = useState(false);
-
   const { products } = useContext(ProductsContext);
 
   const openMenu = () => {
@@ -37,20 +36,28 @@ export function ShoppingCart() {
                   image={item.image[0].url}
                   quantity={item.quantity}
                   isAvailableStock={item.stock > item.quantity}
+                  discountPercentage={item.discountPercentage || 0}
+                  priceWithDiscount={
+                    item.discountPercentage 
+                      ? item.price * (1 - item.discountPercentage / 100) 
+                      : item.price
+                  }
                 />
               ))
             )
           }
         </div>
-        <a href={products.length > 0 ? "/complete-order" : "#"} className={`shopping-cart-go-button ${products.length > 0 ? 'active' : 'disabled'}`}>
-
-        {products.length > 0 ? (
-          <>
-            <FaShoppingCart /> Go to checkout
-          </>
-        ) : (
-          "Add items to cart"
-        )}
+        <a 
+          href={products.length > 0 ? "/complete-order" : "#"} 
+          className={`shopping-cart-go-button ${products.length > 0 ? 'active' : 'disabled'}`}
+        >
+          {products.length > 0 ? (
+            <>
+              <FaShoppingCart /> Go to checkout
+            </>
+          ) : (
+            "Add items to cart"
+          )}
         </a>
       </div>
     </>
