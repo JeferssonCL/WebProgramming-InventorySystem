@@ -1,16 +1,17 @@
 import { Card, Typography, CardMedia } from '@mui/material';
 import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import PropTypes from 'prop-types';
+import {useNavigate} from "react-router-dom";
 
 const ComboCard = ({ combo }) => {
+    const navigate = useNavigate();
 
     return(
         <Card
             variant="outlined"
             className="p-5 w-full flex flex-col justify-start cursor-pointer space-y-2"
             onClick={() => {
-                console.log("CLICK")
-                // TODO: Implement redirection to product details
+                navigate("/combo/" + combo.id);
             }}
         >
             <img

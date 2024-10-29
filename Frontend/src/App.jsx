@@ -17,6 +17,7 @@ import { PrivateRoute } from './Context/PrivateRoute'
 import{Toaster} from 'sonner'
 import {HomePage} from "./pages/HomePage.jsx";
 import Footer from "./components/Footer.jsx";
+import {ComboDetail} from "./pages/ComboDetail.jsx";
 
 function App() {
 
@@ -30,6 +31,7 @@ function App() {
             <Routes>
               <Route path='/' element={<HomePage/>} />
               <Route path="/product/:id" element={<ProductDetail />} />
+              <Route path="/combo/:id" element={<ComboDetail />} />
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<Signup />} />
               <Route
