@@ -114,6 +114,8 @@ const BrandsCarousel = () => {
             sx={{
               display: "flex",
               justifyContent: "space-between",
+              marginLeft: '50px',
+              marginRight: '50px',
               gap: 2,
             }}
           >
