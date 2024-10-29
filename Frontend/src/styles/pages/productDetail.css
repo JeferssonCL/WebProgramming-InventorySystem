@@ -1,20 +1,25 @@
 .product-detail-page {
-  width: 100%;
+  width: 75%;
   background-color: aliceblue;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin: auto;
+  border-radius: 10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .product-info-section {
   width: 100%;
   height: 100%;
   padding: 20px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: top;
+  display: grid;
+  grid-template-columns: 40% 60%;
+
   gap: 10px;
 }
 
@@ -34,7 +39,7 @@
   display: flex;
   flex-direction: row;
   align-items: top;
-  color: #7790ED;
+  color: #7790ed;
 }
 
 .currency-price {
@@ -46,5 +51,28 @@
 }
 
 table {
-  border: 2px solid #7790ED;
+  border: 2px solid #7790ed;
+}
+
+td {
+  height: 40px;
+  line-height: 40px;
+  padding: 5px 10px;
+  border: 2px solid #fff;
+}
+
+.name-info {
+  background-color: #7790ed;
+  color: aliceblue;
+  width: 200px;
+  text-align: right;
+}
+
+.add-to-cart {
+  height: 40px;
+  background-color: #7790ed;
+  color: aliceblue;
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: none;
 }

@@ -22,6 +22,7 @@
   border-radius: 10px;
   display: none;
   padding: 10px;
+  z-index: 1000;
 }
 
 .shopping-cart-list-section.open {

@@ -1,13 +1,16 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "../styles/pages/productDetail.css";
 import { Images } from "../components/ProductDetails/Images";
+import { ProductsContext } from "../context/ProductsContext";
 
 export function ProductDetail() {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  const { addProduct } = useContext(ProductsContext)
 
   useEffect(() => {
     const fetchProductById = async () => {
@@ -19,7 +22,6 @@ export function ProductDetail() {
         }
 
         const data = await response.json();
-        console.log(data);
         setProduct(data);
         setLoading(false);
       } catch (error) {
@@ -46,19 +48,22 @@ export function ProductDetail() {
             <p className="price">{product.price}</p>
           </div>
           <table className="more-info-table">
+            <tbody>
             <tr>
-              <td>Alcohol percentage</td>
+              <td className="name-info">Alcohol percentage</td>
               <td>{product.alcoholPercentage} %</td>
             </tr>
             <tr>
-              <td>Brand</td>
+              <td className="name-info">Brand</td>
               <td>{product.brand}</td>
             </tr>
             <tr>
-              <td>Volume</td>
+              <td className="name-info">Volume</td>
               <td>{product.volume} ml</td>
             </tr>
+            </tbody>
           </table>
+          <button className="add-to-cart" onClick={() => addProduct(product)}>Add to cart</button>
         </div>
       </div>
     </div>

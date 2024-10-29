@@ -592,6 +592,24 @@ VALUES
         NULL
     ),
     (
+        'a9dba352-3011-45a3-9660-730a7965cec0',
+        '08fa3c5d-6f5e-4d21-bac3-1abfe147d7b6',
+        'Jack Daniels image',
+        'https://i.postimg.cc/FzzzLySj/photo-1609325331523-2e2a388676b9.avif',
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        'cf375b24-76cf-4f8f-90f5-6b8a70c206ef',
+        '08fa3c5d-6f5e-4d21-bac3-1abfe147d7b6',
+        'Jack Daniels image',
+        'https://i.postimg.cc/CLtBbQmd/photo-1609790026016-54ace8b92d81.avif',
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
         'f78bf348-fdf0-4fd6-9f4a-7d15b2d75f48',
         '32cfa947-f2db-4a83-bf27-3c7d9f9d06c9',
         'Grey Goose image',

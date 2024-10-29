@@ -23,18 +23,11 @@ export const ProductsProvider = ({ children }) => {
     }, [products]);
 
     const addProduct = (newProduct) => {
-        const attributesMap = getAttributesMap(newProduct.variants);
-        const variantName = Object.keys(attributesMap).map(key => {
-                                        const firstValue = attributesMap[key][0];
-                                        return `${key}: ${firstValue.attributes.value}`;
-                                    }).join(', ');
         const productToStore = {
             id: newProduct.id,
             name: newProduct.name,
             price: newProduct.price,
             image: newProduct.images,
-            variant: variantName,
-            attributesMap: attributesMap,
             quantity: 1,
             stock : newProduct.stock
         };
