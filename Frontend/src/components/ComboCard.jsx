@@ -7,25 +7,23 @@ const ComboCard = ({ combo }) => {
     return(
         <Card
             variant="outlined"
-            className="p-5 w-full flex flex-row space-x-3 justify-start cursor-pointer"
+            className="p-5 w-full flex flex-col justify-start cursor-pointer space-y-2"
             onClick={() => {
                 console.log("CLICK")
                 // TODO: Implement redirection to product details
             }}
         >
-            <CardMedia
-                component="img"
+            <img
+                className="h-60 w-full object-cover"
+                src="https://images.pexels.com/photos/340996/pexels-photo-340996.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
                 alt="Combo of products image"
-                src={combo.image}
-                sx={{width: { xs: '100%', sm: 120 },
-                }}
             />
-            <div className="w-full">
+            <div className="w-full h-full">
                 <div className="flex flex-row justify-between">
-                    <label className="font-bold text-lg">{combo.name}</label>
+                    <label className="font-bold text-lg h-full">{combo.name}</label>
                     <div className="flex flex-row items-center align-top font-light bg-red-600 text-white pr-3 pl-3 pt-0.5 pb-0.5">
                         <LocalOfferIcon fontSize="small"/>
-                        <label className="ml-1">{combo.discount} %</label>
+                        <label className="ml-1">{combo.discountPercent} %</label>
                     </div>
                 </div>
                 <div className="flex flex-col justify-between h-full pb-7">
@@ -35,8 +33,10 @@ const ComboCard = ({ combo }) => {
                             <li>{product.name}</li>
                         ))}
                     </ul>
-                    <label className="text-sm text-end line-through">Price: {combo.price} $</label>
-                    <label className="text-end ">Price: <b>{combo.price - (combo.price * combo.discount / 100)} $</b></label>
+                    <div className="flex flex-col">
+                        <label className="text-sm text-end line-through">Price: {combo.price} $</label>
+                        <label className="text-end ">Price: <b>{combo.price - (combo.price * combo.discountPercent / 100)} $</b></label>
+                    </div>
                 </div>
             </div>
         </Card>
@@ -45,10 +45,13 @@ const ComboCard = ({ combo }) => {
 
 ComboCard.propTypes = {
     combo: PropTypes.shape({
+        id: PropTypes.string.isRequired,
         name: PropTypes.string.isRequired,
-        discount: PropTypes.number.isRequired,
+        description: PropTypes.string.isRequired,
+        discountPercent: PropTypes.number.isRequired,
         price: PropTypes.number.isRequired,
-        image: PropTypes.string.isRequired,
+        comboImageDto: PropTypes.string.isRequired,
+        isActive: PropTypes.bool.isRequired,
         products: PropTypes.arrayOf(
             PropTypes.shape({
                 id: PropTypes.number.isRequired,

@@ -193,13 +193,13 @@ const CombosCarousel = () => {
 
         const fetchProducts = async () => {
             const response = await axios.get(apiUrl);
-            setCombosListToReceive(response.data.data);
+            setCombosListToReceive(response.data.items);
         };
 
         fetchProducts();
     }, []);
 
-    const maxSteps = Math.ceil(combosList.length / 3);
+    const maxSteps = Math.ceil(combosListToReceive.length / 3);
 
     const handleNext = () => {
         setActiveStep((prevStep) => (prevStep + 1) % maxSteps);
@@ -230,7 +230,7 @@ const CombosCarousel = () => {
                             gap: 2,
                         }}
                     >
-                        {combosList
+                        {combosListToReceive
                             .slice(groupIndex * 3, groupIndex * 3 + 3)
                             .map((combo, index) => (
                                 <ComboCard combo={combo}>
