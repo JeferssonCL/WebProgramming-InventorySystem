@@ -3,6 +3,7 @@ using Backend.Application.Handlers.Combos.RequestHandlers.Queries;
 using Backend.Application.Handlers.Combos.Requests.Commands;
 using Backend.Application.Handlers.Combos.Requests.Queries;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Backend.Api.Controllers;
@@ -12,6 +13,7 @@ namespace Backend.Api.Controllers;
 public class ComboController(IMediator mediator) : ControllerBase
 {
     [HttpPost]
+    [Authorize]
     public async Task<ActionResult<Dictionary<string, bool>>> Create([FromBody] CreateComboDto request)
     {
         var result = await mediator.Send(new CreateComboCommand(request));
@@ -45,6 +47,7 @@ public class ComboController(IMediator mediator) : ControllerBase
     }
 
     [HttpPut("{id}")]
+    [Authorize]
     public async Task<IActionResult> Update(Guid id, [FromBody] UpdateComboDto request)
     {
         if (id != request.Id) return BadRequest();
@@ -54,6 +57,7 @@ public class ComboController(IMediator mediator) : ControllerBase
     }
 
     [HttpDelete("{id}")]
+    [Authorize]
     public async Task<IActionResult> Delete(Guid id)
     {
         var result = await mediator.Send(new DeleteComboCommand(id));
