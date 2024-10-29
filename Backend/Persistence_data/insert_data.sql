@@ -1,106 +1,1100 @@
--- Insert Categories
-INSERT INTO "Category" ("Id", "ParentCategoryId", "Name", "IsActive", "CreatedAt", "UpdatedAt") VALUES
-('4e5cb421-968e-4f85-b654-a96e0ab0e3f0', NULL, 'Electronics', true, CURRENT_TIMESTAMP, NULL),
-('cff773e7-398e-4820-987e-47c171efdee5', NULL, 'Clothing', true, CURRENT_TIMESTAMP, NULL),
-('e0a21115-170c-438c-9b26-71ed8440b62f', '4e5cb421-968e-4f85-b654-a96e0ab0e3f0', 'Mobile Phones', true, CURRENT_TIMESTAMP, NULL),
-('3e76ea5d-aaaf-468b-ace8-e4944caea1bf', '4e5cb421-968e-4f85-b654-a96e0ab0e3f0', 'Laptops', true, CURRENT_TIMESTAMP, NULL),
-('95790aaf-adb1-4bad-a916-2122411b5092', '4e5cb421-968e-4f85-b654-a96e0ab0e3f0', 'Cameras', true, CURRENT_TIMESTAMP, NULL),
-('d7c2fa22-0abf-461f-942d-a4e235f46b8c', 'cff773e7-398e-4820-987e-47c171efdee5', 'Men Clothing', true, CURRENT_TIMESTAMP, NULL),
-('111687c4-9ff6-46aa-98b6-3a55c0d880fa', 'cff773e7-398e-4820-987e-47c171efdee5', 'Women Clothing', true, CURRENT_TIMESTAMP, NULL),
-('5e09170e-dedd-4ea9-ae0e-0a1091f80742', 'cff773e7-398e-4820-987e-47c171efdee5', 'Accessories', true, CURRENT_TIMESTAMP, NULL);
+INSERT INTO
+    "Category" (
+        "Id",
+        "ParentCategoryId",
+        "Name",
+        "IsActive",
+        "CreatedAt",
+        "UpdatedAt"
+    )
+VALUES
+    (
+        '4e5cb421-968e-4f85-b654-a96e0ab0e3f0',
+        NULL,
+        'Beers',
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        '1fe140b5-7133-4d9b-92b6-87038dde690b',
+        '4e5cb421-968e-4f85-b654-a96e0ab0e3f0',
+        'Lager',
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        '82c596e3-d2d2-48b2-9f6a-1cfd8b21d8b1',
+        '4e5cb421-968e-4f85-b654-a96e0ab0e3f0',
+        'Pilsner',
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        'f4c7d64a-6c5e-4a3d-bde5-1c689d918b8a',
+        '4e5cb421-968e-4f85-b654-a96e0ab0e3f0',
+        'Ale',
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        'e373bf32-7b9d-4a10-9e8f-3f22f9be7b5b',
+        '4e5cb421-968e-4f85-b654-a96e0ab0e3f0',
+        'Stout and Porter',
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        '2b7e0175-bf7d-403b-8d7b-d8d67456a2a5',
+        '4e5cb421-968e-4f85-b654-a96e0ab0e3f0',
+        'Craft',
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        '05563658-5b6d-4022-8920-d3a2784b2033',
+        NULL,
+        'Wines',
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        '27e46b32-dbe4-48a8-b377-d6b8418ef0bb',
+        '05563658-5b6d-4022-8920-d3a2784b2033',
+        'Red',
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        'cdef417f-2af8-46f2-981e-9a4697e1d8cd',
+        '05563658-5b6d-4022-8920-d3a2784b2033',
+        'White',
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        'f7b51cf1-7f28-4c2a-8334-23d3ea39d4cd',
+        '05563658-5b6d-4022-8920-d3a2784b2033',
+        'Rosé',
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        '3e2f6e2d-8d9d-4baf-b4fe-8c00e3454e1f',
+        '05563658-5b6d-4022-8920-d3a2784b2033',
+        'Sparkling',
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        'bc5a6d4f-8c84-4233-bd26-1f9b5d734fbb',
+        '05563658-5b6d-4022-8920-d3a2784b2033',
+        'Fortified',
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        '0dc28a1d-8619-4dc7-9667-cd38266d37db',
+        NULL,
+        'Spirits',
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        '27d4e847-98f8-42e2-b2ff-9eabe2839c60',
+        '0dc28a1d-8619-4dc7-9667-cd38266d37db',
+        'Whiskey',
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        'd2a2a1c5-9f9d-411f-9274-e0f684ed1db1',
+        '0dc28a1d-8619-4dc7-9667-cd38266d37db',
+        'Vodka',
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        'a0e1b7f4-df29-4e3a-bb2e-c5bc1df0569e',
+        '0dc28a1d-8619-4dc7-9667-cd38266d37db',
+        'Rum',
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        'b5f3a947-4a41-4e99-8374-8cf707d5f57d',
+        '0dc28a1d-8619-4dc7-9667-cd38266d37db',
+        'Tequila',
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        '6c2b9b35-5b96-4a5b-9f42-7d5c4749e62f',
+        '0dc28a1d-8619-4dc7-9667-cd38266d37db',
+        'Gin',
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        '1a4b5f3c-d42f-4b35-bb6f-d6f789ac73b7',
+        '0dc28a1d-8619-4dc7-9667-cd38266d37db',
+        'Brandy and Cognac',
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        'c5f76b16-5662-42b3-841e-1378638440e6',
+        NULL,
+        'Liqueurs',
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        'fa4b9a1e-cdf9-4d27-8f72-1f2e9c8b5c1a',
+        'c5f76b16-5662-42b3-841e-1378638440e6',
+        'Bitters',
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        '3a69e5b2-4c8a-42e2-9e24-5f91a2b8e99c',
+        'c5f76b16-5662-42b3-841e-1378638440e6',
+        'Fruit Liqueurs',
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        'bb438d5e-fb37-4a27-8cbe-9f4d287fc64a',
+        'c5f76b16-5662-42b3-841e-1378638440e6',
+        'Cream Liqueurs',
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        '8a6c5bd6-5439-4011-b546-c9fbb5a6efb9',
+        NULL,
+        'Cocktails',
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        '38b7c6f2-df7e-4fa2-8d94-d5a7cfcb93b5',
+        '8a6c5bd6-5439-4011-b546-c9fbb5a6efb9',
+        'Margaritas',
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        'e7d2d347-9b9b-46a6-9d6b-81b7a3b89465',
+        '8a6c5bd6-5439-4011-b546-c9fbb5a6efb9',
+        'Mojitos',
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        '28d2c4a1-6a5d-4fb4-b8be-c7d7a6cbb53c',
+        '8a6c5bd6-5439-4011-b546-c9fbb5a6efb9',
+        'Piña Colada',
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        '4e2c7c9f-5a9f-44a9-bd4b-1d4d728ca6a3',
+        '8a6c5bd6-5439-4011-b546-c9fbb5a6efb9',
+        'Aperitifs',
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        'b1f3e5d2-8c9e-4b89-920f-7314d4b9a3a2',
+        NULL,
+        'Non-Alcoholic Beverages',
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        '13e8fb28-8fab-4c2f-b5e7-48b5bd43f624',
+        'b1f3e5d2-8c9e-4b89-920f-7314d4b9a3a2',
+        'Sodas',
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        '5d04716c-cfdf-4f52-9855-acfeb23f6449',
+        'b1f3e5d2-8c9e-4b89-920f-7314d4b9a3a2',
+        'Waters',
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        '106b3d2b-a416-4a23-9632-928a44a99228',
+        'b1f3e5d2-8c9e-4b89-920f-7314d4b9a3a2',
+        'Juices',
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        '88ffbfa6-52bb-47c6-85e1-9a842fedb243',
+        'b1f3e5d2-8c9e-4b89-920f-7314d4b9a3a2',
+        'Energy Drinks',
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    );
 
--- Insert Users
-INSERT INTO "User" ("Id", "Name", "Email", "IdentityId", "UserType", "IsActive", "CreatedAt", "UpdatedAt") VALUES
-('c4055860-c902-4787-ba54-0b34e18a1040', 'Jefersson Coronel', 'jefersoncoronel700@gmail.com', 'password123', 0, true, CURRENT_TIMESTAMP, NULL),
-('e8489e3b-c12c-4197-8bc1-dac21bc6e82f', 'Karina Aguirre', 'karina123@gmail.com', 'password123', 3, true, CURRENT_TIMESTAMP, NULL);
+INSERT INTO
+    "User" (
+        "Id",
+        "Name",
+        "Email",
+        "IdentityId",
+        "UserType",
+        "IsActive",
+        "CreatedAt",
+        "UpdatedAt"
+    )
+VALUES
+    (
+        'c4055860-c902-4787-ba54-0b34e18a1040',
+        'Jefersson Coronel',
+        'jefersoncoronel700@gmail.com',
+        'password123',
+        0,
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        'e8489e3b-c12c-4197-8bc1-dac21bc6e82f',
+        'Karina Aguirre',
+        'karina123@gmail.com',
+        'password123',
+        3,
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    );
 
--- Insert Stores
-INSERT INTO "Store" ("Id", "UserId", "Name", "Description", "Address", "PhoneNumber", "IsActive", "CreatedAt", "UpdatedAt") VALUES
-('708096b5-4119-4365-b974-3da5c04f0ba6', 'c4055860-c902-4787-ba54-0b34e18a1040', 'Best Electronics', 'Your one-stop shop for electronics', '789 Tech Ave', 76435676, true, CURRENT_TIMESTAMP, NULL),
-('8330f716-3ad1-40f9-a8b4-5720b010328b', 'c4055860-c902-4787-ba54-0b34e18a1040', 'Fashion Hub', 'Latest fashion trends', '101 Fashion St', 65473899, true, CURRENT_TIMESTAMP, NULL);
+INSERT INTO
+    "Product" (
+        "Id",
+        "Name",
+        "Description",
+        "Price",
+        "Stock",
+        "AlcoholPercentage",
+        "Brand",
+        "Volume",
+        "IsActive",
+        "CreatedAt",
+        "UpdatedAt"
+    )
+VALUES
+    (
+        'b7f8461c-38a5-4d2a-b719-830592b268a5',
+        'Pepsi',
+        'Classic cola soft drink',
+        12,
+        100,
+        0,
+        'Pepsi',
+        500,
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        '13c45b8e-8e5f-4673-9d89-3b2452c9d91d',
+        'Coca-Cola',
+        'Carbonated soft drink',
+        12,
+        100,
+        0,
+        'Coca-Cola',
+        500,
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        '89eeb09a-3fda-4e4b-bbe1-6c0d9a69e96e',
+        'Mountain Dew',
+        'Citrus-flavored soft drink',
+        10,
+        80,
+        0,
+        'Mountain Dew',
+        500,
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        '8db8e9a5-3c2f-4a27-87bb-293f41ec198b',
+        'Aquafina',
+        'Purified bottled water',
+        8,
+        200,
+        0,
+        'Aquafina',
+        600,
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        'edc97824-9f3b-4e82-8e79-34e7c93fda4f',
+        'Minute Maid Orange Juice',
+        '100% pure orange juice',
+        15,
+        150,
+        0,
+        'Minute Maid',
+        450,
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        '20e9a0df-d1b2-4c6f-8e3d-b324b2b92d7a',
+        'Heineken',
+        'Dutch pale lager beer',
+        20,
+        120,
+        5,
+        'Heineken',
+        330,
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        '08fa3c5d-6f5e-4d21-bac3-1abfe147d7b6',
+        'Jack Daniels',
+        'Tennessee whiskey',
+        45,
+        75,
+        40,
+        'Jack Daniels',
+        750,
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        '32cfa947-f2db-4a83-bf27-3c7d9f9d06c9',
+        'Grey Goose',
+        'Premium French vodka',
+        60,
+        60,
+        40,
+        'Grey Goose',
+        700,
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        'a7d6ef01-ef88-4418-b84d-44e6a9e9d19d',
+        'Baileys Irish Cream',
+        'Cream-based liqueur',
+        30,
+        50,
+        17,
+        'Baileys',
+        750,
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        '6f9a293b-2a65-4a9b-8217-b21f19353df8',
+        'Corona Extra',
+        'Mexican pale lager',
+        18,
+        140,
+        4.6,
+        'Corona',
+        355,
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        '9bd4fe4e-5e8b-4e8f-9d45-d5f43be798d6',
+        'Moët & Chandon',
+        'Champagne',
+        90,
+        30,
+        12,
+        'Moët & Chandon',
+        750,
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        '5b2df2d4-56a4-45e5-a2b8-e3db601ca28f',
+        'Smirnoff Ice',
+        'Flavored malt beverage',
+        25,
+        90,
+        4.5,
+        'Smirnoff',
+        330,
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        '2b3b6c0e-4f88-4b97-a8a1-506ff2bc26af',
+        'Captain Morgan',
+        'Caribbean rum with spices',
+        40,
+        70,
+        35,
+        'Captain Morgan',
+        750,
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        '8f0a629e-b6ec-4dd4-9f68-2b18a62d8c1e',
+        'Patrón Silver',
+        'Premium tequila',
+        75,
+        40,
+        40,
+        'Patrón',
+        750,
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        '4ac4c10b-5406-49b8-98bc-841c94cf93a3',
+        'Hennessy VS',
+        'Cognac',
+        55,
+        65,
+        40,
+        'Hennessy',
+        700,
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    );
 
--- Insert Products
-INSERT INTO "Product" ("Id", "StoreId", "Name", "Description", "BasePrice", "Stock","Brand", "IsActive", "CreatedAt", "UpdatedAt") VALUES
-('80381bb1-1d22-475a-8b7e-c4b84d02be0e', '708096b5-4119-4365-b974-3da5c04f0ba6', 'iPhone 14', 'Latest Apple smartphone', 999.99, 38,'Apple', true, CURRENT_TIMESTAMP, NULL),
-('d98f6668-2b9f-4a7c-a866-99a73921eed6', '708096b5-4119-4365-b974-3da5c04f0ba6', 'Dell XPS 13', 'Compact laptop with powerful performance', 1199.99, 20,'Dell', true, CURRENT_TIMESTAMP, NULL),
-('fba39c75-29fb-499f-a88a-b0863c1d0f2a', '8330f716-3ad1-40f9-a8b4-5720b010328b', 'T-Shirt', 'Cotton T-Shirt in various colors', 19.99, 100,'Fashion "Brand"', true, CURRENT_TIMESTAMP, NULL),
-('53d78e6d-decc-4244-b116-18bab2f24f09', '8330f716-3ad1-40f9-a8b4-5720b010328b', 'Leather Jacket', 'Genuine leather jacket', 199.99, 30,'Fashion "Brand"', true, CURRENT_TIMESTAMP, NULL);
+INSERT INTO
+    "ComboImage" ("Id", "AltText", "Url")
+VALUES
+    (
+        '03617116-55df-4cd7-9299-74031845721d',
+        'Grey Goose, Smirnoff Ice, and Coca-Cola',
+        'https://i.postimg.cc/52ZxLvJL/Grey-Goose-Refresh-Pack.jpg'
+    ),
+    (
+        '154bc524-d3b1-4ba5-a89c-0deb3a921f56',
+        'Includes Heineken, Coca-Cola, and Pepsi',
+        'https://i.postimg.cc/4y93r5Xf/images.jpg'
+    ),
+    (
+        'be1e772f-56a3-4d37-8db9-007ea0960c3c',
+        'Jack Daniels, Grey Goose, and Mountain Dew',
+        'https://i.postimg.cc/qBSjfX89/csabkbfstqv31.jpg'
+    ),
+    (
+        '1025c3d2-ea65-46f9-bbf4-c9c9c3eb412b',
+        'Baileys Irish Cream, Smirnoff Ice, and Aquafina',
+        'https://i.postimg.cc/3xH1N8f1/IMG-5822-768x512.jpg'
+    ),
+    (
+        '699860c2-3fd8-48cd-b806-00509c5ea032',
+        'Corona Extra, Captain Morgan, and Coca-Cola',
+        'https://i.postimg.cc/FKTVTjrC/4bf98fc72554aed5d58399b9d00b0c50.jpg'
+    ),
+    (
+        '73199553-0b87-496b-82bd-7a5f14d6ed8b',
+        'Moët & Chandon, Grey Goose, and Pepsi',
+        'https://i.postimg.cc/W1nG4Mkp/images.jpg'
+    ),
+    (
+        '53e2a69c-38d1-4ef7-9899-aa4795988c82',
+        'Captain Morgan, Coca-Cola, and Pepsi',
+        'https://i.postimg.cc/HLvbwdzf/images.jpg'
+    ),
+    (
+        '656114bf-cab3-47ba-af71-613709b808f4',
+        'Patrón Silver, Corona Extra, and Aquafina',
+        'https://i.postimg.cc/FFL0StLB/images.jpg'
+    ),
+    (
+        '2aba9662-0810-4f79-8ef2-108e694f9e09',
+        'Hennessy VS, Minute Maid Orange Juice, and Pepsi',
+        'https://i.postimg.cc/T3Cbxfzp/Pure-White-Hennessy-Cognac-Girly-Drinks-300x200.jpg'
+    ),
+    (
+        'd4dca427-f1a7-4ea3-993f-5406b9f739df',
+        'Jack Daniels, Coca-Cola, and Aquafina',
+        'https://i.postimg.cc/hvWzsjd3/COCACOLA.png'
+    ),
+    (
+        '0bb5f070-f43f-41ff-8bff-b56a9ba295c6',
+        'Baileys Irish Cream, Smirnoff Ice, and Mountain Dew',
+        'https://i.postimg.cc/x8vk42Gj/images.jpg'
+    ),
+    (
+        '1e244dea-2afd-46e8-9536-adc53340b425',
+        'Moët & Chandon, Hennessy VS, and Aquafina',
+        'https://i.postimg.cc/pXv5nmxm/bfce5bbac257fed1ea6de7f26b3ecf0ee1c98b6c.jpg'
+    ),
+    (
+        'c5ba8006-0011-4d26-b408-15650a0e8a6c',
+        'Jack Daniels, Captain Morgan, and Pepsi',
+        'https://i.postimg.cc/XYHrhx55/images.jpg'
+    );
 
--- Insert Images
-INSERT INTO "Image" ("Id", "ProductId", "AltText", "Url", "IsActive", "CreatedAt", "UpdatedAt") VALUES
-('3fe7bbff-d878-47be-a235-1ed9ebe2ed00', '80381bb1-1d22-475a-8b7e-c4b84d02be0e', 'iPhone 14', 'https://www.tiendaamiga.com.bo/media/catalog/product/cache/deb88dadd509903c96aaa309d3e790dc/c/e/celular_iphone_14_pro_128gb_negro.jpg', true, CURRENT_TIMESTAMP, NULL),
-('0025a458-14f7-4067-b96a-13c6dec420bc', '80381bb1-1d22-475a-8b7e-c4b84d02be0e', 'iPhone 14', 'https://www.tiendaamiga.com.bo/media/catalog/product/cache/0f08319f92600c7a6bb31ae1a25ad318/c/e/celular_iphone_14_pro_128gb_black.jpg', true, CURRENT_TIMESTAMP, NULL),
-('6be3577a-990a-4140-b726-8be55a2eeacc', '80381bb1-1d22-475a-8b7e-c4b84d02be0e', 'iPhone 14', 'https://www.tiendaamiga.com.bo/media/catalog/product/cache/0f08319f92600c7a6bb31ae1a25ad318/c/e/celular_iphone_14_pro_128gb_negro_mate.jpg', true, CURRENT_TIMESTAMP, NULL),
-('7e47fdc4-3043-416a-afd2-d9a9e9de73b9', '80381bb1-1d22-475a-8b7e-c4b84d02be0e', 'iPhone 14 in Red', 'https://res.cloudinary.com/mozillion/image/upload/f_auto,q_auto/v1662628007/rclapiepv9xbrfkjwanf.png', true, CURRENT_TIMESTAMP, NULL),
-('88ae92e5-6569-47b8-ab80-4e70b98e18cb', '80381bb1-1d22-475a-8b7e-c4b84d02be0e', 'iPhone 14 in Black', 'https://res.cloudinary.com/mozillion/image/upload/f_auto,q_auto/v1662630243/leujufqlgebytn8c2ync.png', true, CURRENT_TIMESTAMP, NULL),
-('7adcaa29-4dd5-48de-a64b-66b5b4977b93', '80381bb1-1d22-475a-8b7e-c4b84d02be0e', 'iPhone 14 in Yellow', 'https://media.croma.com/image/upload/v1708671880/Croma%20Assets/Communication/Mobiles/Images/270412_5_tynkco.png', true, CURRENT_TIMESTAMP, NULL),
-('d870b361-4faf-4a32-8406-cc043d231f63', 'd98f6668-2b9f-4a7c-a866-99a73921eed6', 'Dell XPS 13 Laptop', 'https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/notebooks/xps-notebooks/xps-13-9315/media-gallery/notebook-xps-9315-nt-blue-gallery-3.psd?fmt=png-alpha&pscan=auto&scl=1&hei=402&wid=575&qlt=100,1&resMode=sharp2&size=575,402&chrss=full', true, CURRENT_TIMESTAMP, NULL),
-('ea4cdcfd-2e68-4981-b2b4-7b73ca7d65d3', 'd98f6668-2b9f-4a7c-a866-99a73921eed6', 'Dell XPS 13 Laptop', 'https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/notebooks/xps-notebooks/xps-13-9315/spi/blue/ng/notebook-xps-13-9315-blue-campaign-hero-504x350-ng.psd?fmt=jpg&wid=570&hei=400', true, CURRENT_TIMESTAMP, NULL),
-('6a52de15-4011-4ee6-bd58-afd45a9e4d84', 'd98f6668-2b9f-4a7c-a866-99a73921eed6', 'Dell XPS 13 Laptop', 'https://static.sinerji.gen.tr/Images/LG/KJ1-450x-cqbslnzcjf42820230102dell-xps-9315-02.jpg', true, CURRENT_TIMESTAMP, NULL),
-('08e3b2b2-686a-4418-a669-d5d311059ce5', 'd98f6668-2b9f-4a7c-a866-99a73921eed6', 'Dell XPS 13 Laptop in silver', 'https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/notebooks/xps-notebooks/xps-13-9315/media-gallery/notebook-xps-9315-nt-blue-hero-right.psd?fmt=pjpg&pscan=auto&scl=1&wid=5000&hei=5000&qlt=100,1&resMode=sharp2&size=5000,5000&chrss=full&imwidth=5000', true, CURRENT_TIMESTAMP, NULL),
-('a8a65793-c46f-49b9-a7cd-5df88b255acf', 'd98f6668-2b9f-4a7c-a866-99a73921eed6', 'Dell XPS 13 Laptop in purple', 'https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/notebooks/xps-notebooks/xps-13-9315/media-gallery/umber/notebook-xps-9315-nt-umber-hero-right.psd?fmt=pjpg&pscan=auto&scl=1&wid=5000&hei=5000&qlt=100,1&resMode=sharp2&size=5000,5000&chrss=full&imwidth=5000', true, CURRENT_TIMESTAMP, NULL),
-('b4798521-b246-41d6-bf84-8512a3190731', 'fba39c75-29fb-499f-a88a-b0863c1d0f2a', 'Cotton T-Shirt', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6qkuuNGspBfSgJ9fc8xYnxLJ4T1Xe6A-BRQ&s', true, CURRENT_TIMESTAMP, NULL),
-('4d421151-d7af-4fce-ab78-c072a381c220', 'fba39c75-29fb-499f-a88a-b0863c1d0f2a', 'Cotton T-Shirt', 'https://m.media-amazon.com/images/I/31Yc9uDf+yS._AC_UY350_.jpg', true, CURRENT_TIMESTAMP, NULL),
-('f961135a-d76f-4c54-a16f-a7872353d325', 'fba39c75-29fb-499f-a88a-b0863c1d0f2a', 'Cotton T-Shirt', 'https://assets.ajio.com/medias/sys_master/root/20230125/dHe5/63d12a38aeb269c651f8cba5/-473Wx593H-469436599-black-MODEL3.jpg', true, CURRENT_TIMESTAMP, NULL),
-('248c4196-6203-485c-96c5-10d9f0fa38ad', 'fba39c75-29fb-499f-a88a-b0863c1d0f2a', 'Cotton T-Shirt in black', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6qkuuNGspBfSgJ9fc8xYnxLJ4T1Xe6A-BRQ&s', true, CURRENT_TIMESTAMP, NULL),
-('63d3ea71-40a3-44df-9a23-0815eec12b94', 'fba39c75-29fb-499f-a88a-b0863c1d0f2a', 'Cotton T-Shirt in blue', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZDqRnogdz6C8l5FNh3kO4rHxwo3lZK5K-7Q&s', true, CURRENT_TIMESTAMP, NULL),
-('90bea788-43b6-46b8-b027-bbce10fb9e10', 'fba39c75-29fb-499f-a88a-b0863c1d0f2a', 'Cotton T-Shirt in gray', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAyiaoqjI0VG4XNawst5XS_7lqrIxwZnKont0VtTBcQjppjVVRLUr_t0Pf7ZvOCDfw4us&usqp=CAU', true, CURRENT_TIMESTAMP, NULL),
-('c667ed65-b7fa-4ee8-ae42-8db97a7fbde0', '53d78e6d-decc-4244-b116-18bab2f24f09', 'Genuine Leather Jacket', 'https://domino.ua/media/iopt/catalog/product/cache/1338d3702d6df92e886ded663f0927b0/1/5/154584-1_1.webp', true, CURRENT_TIMESTAMP, NULL),
-('fa555c36-d992-4c11-9804-daaf197b1d99', '53d78e6d-decc-4244-b116-18bab2f24f09', 'Genuine Leather Jacket', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwBI1CgniTfVxA_1xfU4N8XNieGp3xP55OqFF_2HKpoqLnldYSeEMKQjLs1yD533SQums&usqp=CAU', true, CURRENT_TIMESTAMP, NULL),
-('d0f286e9-dd58-43c9-b4bd-f8eb4ce6798a', '53d78e6d-decc-4244-b116-18bab2f24f09', 'Genuine Leather Jacket', 'https://ae01.alicdn.com/kf/Sa95145b7028f463991ed3acca8579db9Z/Leather-Jackets-for-Women-2023-New-Zipper-Spliced-Short-PU-Leather-Polo-Collar-Outerwear-Coat-Long.jpg', true, CURRENT_TIMESTAMP, NULL),
-('2358bcfa-0a2f-4bf8-b4ca-8230b99106f7', '53d78e6d-decc-4244-b116-18bab2f24f09', 'Genuine Leather Jacket in brown', 'https://m.media-amazon.com/images/I/61gUmHvIDQL._AC_UF350,350_QL50_.jpg', true, CURRENT_TIMESTAMP, NULL),
-('ca49da7c-6deb-45dc-8ae7-65e8abce34d8', '53d78e6d-decc-4244-b116-18bab2f24f09', 'Genuine Leather Jacket in black', 'https://domino.ua/media/iopt/catalog/product/cache/1338d3702d6df92e886ded663f0927b0/1/5/154584-1_1.webp', true, CURRENT_TIMESTAMP, NULL);
+INSERT INTO
+    "Combo" (
+        "Id",
+        "Name",
+        "Description",
+        "Price",
+        "DiscountPercent",
+        "ImageId",
+        "IsActive",
+        "CreatedAt",
+        "UpdatedAt"
+    )
+VALUES
+    (
+        'f3e7d5b1-4b2e-4f9b-8f5e-c5d4b6f0e9a1',
+        'Fiesta Combo',
+        'Includes Heineken, Coca-Cola, and Pepsi',
+        45,
+        10,
+        '154bc524-d3b1-4ba5-a89c-0deb3a921f56',
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        'd2f3a6b2-3a4c-4c7d-9e1d-f3e2c9b4d0a2',
+        'Party Starter',
+        'Jack Daniels, Grey Goose, and Mountain Dew',
+        110,
+        15,
+        'be1e772f-56a3-4d37-8db9-007ea0960c3c',
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        'e9c5d4f3-5f1a-4b3c-9f5a-b3d6e4f2d1b3',
+        'Premium Mixer',
+        'Baileys Irish Cream, Smirnoff Ice, and Aquafina',
+        65,
+        12,
+        '1025c3d2-ea65-46f9-bbf4-c9c9c3eb412b',
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        'b7d6e3a2-6f2d-4c5e-8d4e-f6b2c3a4d1c4',
+        'Mexican Delight',
+        'Corona Extra, Captain Morgan, and Coca-Cola',
+        70,
+        10,
+        '699860c2-3fd8-48cd-b806-00509c5ea032',
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        'c3f7b6d5-7b3f-4a2e-9c3f-d1e9f5a3b2e5',
+        'Celebration Combo',
+        'Moët & Chandon, Grey Goose, and Pepsi',
+        150,
+        20,
+        '73199553-0b87-496b-82bd-7a5f14d6ed8b',
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        'a4d5f7c3-8c2e-4f6a-9b7e-c5b3d4e2f1f6',
+        'Caribbean Pack',
+        'Captain Morgan, Coca-Cola, and Pepsi',
+        50,
+        8,
+        '53e2a69c-38d1-4ef7-9899-aa4795988c82',
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        'd1e9b6a5-9d3e-4c7f-8e2d-b2a5c4f3e6d7',
+        'Tequila Time',
+        'Patrón Silver, Corona Extra, and Aquafina',
+        90,
+        15,
+        '656114bf-cab3-47ba-af71-613709b808f4',
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        'b3f5c6a2-0a3f-4d6e-9f4a-d2c3e9b1f4e8',
+        'Brunch Combo',
+        'Hennessy VS, Minute Maid Orange Juice, and Pepsi',
+        70,
+        10,
+        '2aba9662-0810-4f79-8ef2-108e694f9e09',
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        'c2a5f3d7-1e2b-4a3f-8f5d-b1c6e4f9d2e9',
+        'Vodka Fusion',
+        'Grey Goose, Smirnoff Ice, and Coca-Cola',
+        95,
+        18,
+        '03617116-55df-4cd7-9299-74031845721d',
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        'a1d4f7c3-2b4e-5c6a-9b3f-c4e9d5a2f3b0',
+        'Classic Combo',
+        'Jack Daniels, Coca-Cola, and Aquafina',
+        55,
+        10,
+        'd4dca427-f1a7-4ea3-993f-5406b9f739df',
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        'd3f2b6a1-3c5e-6f2d-8a4f-e9b1f5c4d2a1',
+        'Summer Breeze',
+        'Baileys Irish Cream, Smirnoff Ice, and Mountain Dew',
+        50,
+        12,
+        '0bb5f070-f43f-41ff-8bff-b56a9ba295c6',
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        'e4a5c7f3-4f6a-7b3e-9f5d-c2d1e3b9f4a2',
+        'Luxury Pack',
+        'Moët & Chandon, Hennessy VS, and Aquafina',
+        160,
+        25,
+        '1e244dea-2afd-46e8-9536-adc53340b425',
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        'b5c3e7a4-5a6f-8f2d-0b4e-d1e9c4f5b2d3',
+        'Ultimate Mixer',
+        'Jack Daniels, Captain Morgan, and Pepsi',
+        85,
+        15,
+        'c5ba8006-0011-4d26-b408-15650a0e8a6c',
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    );
 
--- Insert Product Variants
-INSERT INTO "ProductVariant"("Id", "ProductId", "ImageId", "PriceAdjustment", "StockQuantity", "IsActive", "CreatedAt", "UpdatedAt") VALUES
-('a793a3c8-8b6f-4f4e-a300-1427ac2cc7b8', '80381bb1-1d22-475a-8b7e-c4b84d02be0e', '7e47fdc4-3043-416a-afd2-d9a9e9de73b9', 0, 10, true, CURRENT_TIMESTAMP, NULL),
-('be3f959b-ad95-442b-9cb1-39a967a15e16', '80381bb1-1d22-475a-8b7e-c4b84d02be0e', '88ae92e5-6569-47b8-ab80-4e70b98e18cb', 0, 20, true, CURRENT_TIMESTAMP, NULL),
-('022109b8-5a11-46ed-92b5-d5ccf59cf02e', '80381bb1-1d22-475a-8b7e-c4b84d02be0e', '7adcaa29-4dd5-48de-a64b-66b5b4977b93', 0, 8, true, CURRENT_TIMESTAMP, NULL),
-('928c8dd1-34f1-4f1c-9809-d3f16e7d4952', 'd98f6668-2b9f-4a7c-a866-99a73921eed6', '08e3b2b2-686a-4418-a669-d5d311059ce5', 0, 15, true, CURRENT_TIMESTAMP, NULL),
-('ba71c6ef-e152-4689-be26-8d26de5fe45c', 'd98f6668-2b9f-4a7c-a866-99a73921eed6', 'a8a65793-c46f-49b9-a7cd-5df88b255acf', 0, 5, true, CURRENT_TIMESTAMP, NULL),
-('4bf431cd-85f7-4abd-8499-7c5951e20c87', 'fba39c75-29fb-499f-a88a-b0863c1d0f2a', '248c4196-6203-485c-96c5-10d9f0fa38ad', 0, 30, true, CURRENT_TIMESTAMP, NULL),
-('a628c13b-d9b8-4671-b068-99a412490de0', 'fba39c75-29fb-499f-a88a-b0863c1d0f2a', '63d3ea71-40a3-44df-9a23-0815eec12b94', 0, 10, true, CURRENT_TIMESTAMP, NULL),
-('67514681-93cd-41ca-b8d2-a2d57ebb5006', 'fba39c75-29fb-499f-a88a-b0863c1d0f2a', '90bea788-43b6-46b8-b027-bbce10fb9e10', 0, 15, true, CURRENT_TIMESTAMP, NULL),
-('b41ec61c-754a-4278-9f83-e0af1ba0d626', '53d78e6d-decc-4244-b116-18bab2f24f09', '2358bcfa-0a2f-4bf8-b4ca-8230b99106f7', 0, 10, true, CURRENT_TIMESTAMP, NULL),
-('a860a28b-bc2f-41c0-ba12-fb2e88499547', '53d78e6d-decc-4244-b116-18bab2f24f09', 'ca49da7c-6deb-45dc-8ae7-65e8abce34d8', 0, 5, true, CURRENT_TIMESTAMP, NULL),
-('03a67d50-9056-42cf-8932-bd7de9622711', 'fba39c75-29fb-499f-a88a-b0863c1d0f2a', NULL, 0, 15, true, CURRENT_TIMESTAMP, NULL),
-('b0109acd-fc4e-4ebd-bcd7-d6472b7c5af0', 'fba39c75-29fb-499f-a88a-b0863c1d0f2a', NULL, 0, 30, true, CURRENT_TIMESTAMP, NULL),
-('6bcbfe56-043a-4fd2-95a8-96f7e0f5f8a3', '53d78e6d-decc-4244-b116-18bab2f24f09', NULL, 0, 15, true, CURRENT_TIMESTAMP, NULL);
+INSERT INTO
+    "ComboProduct" ("CombosId", "ProductsId")
+VALUES
+    (
+        'f3e7d5b1-4b2e-4f9b-8f5e-c5d4b6f0e9a1',
+        '20e9a0df-d1b2-4c6f-8e3d-b324b2b92d7a'
+    ),
+    (
+        'f3e7d5b1-4b2e-4f9b-8f5e-c5d4b6f0e9a1',
+        '13c45b8e-8e5f-4673-9d89-3b2452c9d91d'
+    ),
+    (
+        'f3e7d5b1-4b2e-4f9b-8f5e-c5d4b6f0e9a1',
+        'b7f8461c-38a5-4d2a-b719-830592b268a5'
+    ),
+    (
+        'd2f3a6b2-3a4c-4c7d-9e1d-f3e2c9b4d0a2',
+        '08fa3c5d-6f5e-4d21-bac3-1abfe147d7b6'
+    ),
+    (
+        'd2f3a6b2-3a4c-4c7d-9e1d-f3e2c9b4d0a2',
+        '32cfa947-f2db-4a83-bf27-3c7d9f9d06c9'
+    ),
+    (
+        'd2f3a6b2-3a4c-4c7d-9e1d-f3e2c9b4d0a2',
+        '89eeb09a-3fda-4e4b-bbe1-6c0d9a69e96e'
+    ),
+    (
+        'e9c5d4f3-5f1a-4b3c-9f5a-b3d6e4f2d1b3',
+        'a7d6ef01-ef88-4418-b84d-44e6a9e9d19d'
+    ),
+    (
+        'e9c5d4f3-5f1a-4b3c-9f5a-b3d6e4f2d1b3',
+        '5b2df2d4-56a4-45e5-a2b8-e3db601ca28f'
+    ),
+    (
+        'e9c5d4f3-5f1a-4b3c-9f5a-b3d6e4f2d1b3',
+        '8db8e9a5-3c2f-4a27-87bb-293f41ec198b'
+    ),
+    (
+        'b7d6e3a2-6f2d-4c5e-8d4e-f6b2c3a4d1c4',
+        '6f9a293b-2a65-4a9b-8217-b21f19353df8'
+    ),
+    (
+        'b7d6e3a2-6f2d-4c5e-8d4e-f6b2c3a4d1c4',
+        '2b3b6c0e-4f88-4b97-a8a1-506ff2bc26af'
+    ),
+    (
+        'b7d6e3a2-6f2d-4c5e-8d4e-f6b2c3a4d1c4',
+        '13c45b8e-8e5f-4673-9d89-3b2452c9d91d'
+    ),
+    (
+        'c3f7b6d5-7b3f-4a2e-9c3f-d1e9f5a3b2e5',
+        '9bd4fe4e-5e8b-4e8f-9d45-d5f43be798d6'
+    ),
+    (
+        'c3f7b6d5-7b3f-4a2e-9c3f-d1e9f5a3b2e5',
+        '32cfa947-f2db-4a83-bf27-3c7d9f9d06c9'
+    ),
+    (
+        'c3f7b6d5-7b3f-4a2e-9c3f-d1e9f5a3b2e5',
+        'b7f8461c-38a5-4d2a-b719-830592b268a5'
+    ),
+    (
+        'a4d5f7c3-8c2e-4f6a-9b7e-c5b3d4e2f1f6',
+        '2b3b6c0e-4f88-4b97-a8a1-506ff2bc26af'
+    ),
+    (
+        'a4d5f7c3-8c2e-4f6a-9b7e-c5b3d4e2f1f6',
+        '13c45b8e-8e5f-4673-9d89-3b2452c9d91d'
+    ),
+    (
+        'a4d5f7c3-8c2e-4f6a-9b7e-c5b3d4e2f1f6',
+        'b7f8461c-38a5-4d2a-b719-830592b268a5'
+    ),
+    (
+        'd1e9b6a5-9d3e-4c7f-8e2d-b2a5c4f3e6d7',
+        '8f0a629e-b6ec-4dd4-9f68-2b18a62d8c1e'
+    ),
+    (
+        'd1e9b6a5-9d3e-4c7f-8e2d-b2a5c4f3e6d7',
+        '6f9a293b-2a65-4a9b-8217-b21f19353df8'
+    ),
+    (
+        'd1e9b6a5-9d3e-4c7f-8e2d-b2a5c4f3e6d7',
+        '8db8e9a5-3c2f-4a27-87bb-293f41ec198b'
+    ),
+    (
+        'b3f5c6a2-0a3f-4d6e-9f4a-d2c3e9b1f4e8',
+        '4ac4c10b-5406-49b8-98bc-841c94cf93a3'
+    ),
+    (
+        'b3f5c6a2-0a3f-4d6e-9f4a-d2c3e9b1f4e8',
+        'edc97824-9f3b-4e82-8e79-34e7c93fda4f'
+    ),
+    (
+        'b3f5c6a2-0a3f-4d6e-9f4a-d2c3e9b1f4e8',
+        'b7f8461c-38a5-4d2a-b719-830592b268a5'
+    ),
+    (
+        'c2a5f3d7-1e2b-4a3f-8f5d-b1c6e4f9d2e9',
+        '32cfa947-f2db-4a83-bf27-3c7d9f9d06c9'
+    ),
+    (
+        'c2a5f3d7-1e2b-4a3f-8f5d-b1c6e4f9d2e9',
+        '5b2df2d4-56a4-45e5-a2b8-e3db601ca28f'
+    ),
+    (
+        'c2a5f3d7-1e2b-4a3f-8f5d-b1c6e4f9d2e9',
+        '13c45b8e-8e5f-4673-9d89-3b2452c9d91d'
+    );
 
--- Insert Variants5
-INSERT INTO "Variant" ("Id", "Name", "IsActive", "CreatedAt", "UpdatedAt") VALUES
-('c84517ff-e146-4074-a232-4c0b2328d308', 'Color', true, CURRENT_TIMESTAMP, NULL),
-('0952150e-7949-4166-a489-9a8eadcd803a', 'Size', true, CURRENT_TIMESTAMP, NULL);
+INSERT INTO
+    "Image" (
+        "Id",
+        "ProductId",
+        "AltText",
+        "Url",
+        "IsActive",
+        "CreatedAt",
+        "UpdatedAt"
+    )
+VALUES
+    (
+        'a389e63d-322f-4fae-a94a-7ec313522b9e',
+        'b7f8461c-38a5-4d2a-b719-830592b268a5',
+        'Pepsi image',
+        'https://i.postimg.cc/j208Qd2M/download.jpg',
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        '8b12f497-ec6a-4c6a-813a-4dfcca6f946b',
+        '13c45b8e-8e5f-4673-9d89-3b2452c9d91d',
+        'Coca Cola image',
+        'https://i.postimg.cc/hP0CTnB0/df3f957f-2bf8-46cd-b4d7-100537bf55b7-107cd909-4796-4c68-95af-323e378461e4.webp',
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        '0ff06aa1-2c8c-4361-ba98-11368e324454',
+        '89eeb09a-3fda-4e4b-bbe1-6c0d9a69e96e',
+        'Mountain Dew image',
+        'https://i.postimg.cc/DwjBpcmJ/c91cc27d-61a8-4cc7-be8c-52f09180bd02-1-c976b9c0ead012567b3d3bd8be7efe7c.webp',
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        '52427ca0-6b26-4087-9825-3a15e9bae35c',
+        '8db8e9a5-3c2f-4a27-87bb-293f41ec198b',
+        'Aquafina image',
+        'https://i.postimg.cc/bvZL7226/100021123-7-aquafina-packaged-drinking-water.webp',
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        '1fbb3a78-e7f0-4153-b3d2-0f39dbfca0f9',
+        'edc97824-9f3b-4e82-8e79-34e7c93fda4f',
+        'Minute Maid Orange Juice image',
+        'https://i.postimg.cc/TPBQfYVT/Minute-Maid-100-Orange-Juice-Beverage-450-m-L-6ff04a24-6c0a-455f-9771-9463b1fda6ce-1-245e9522e31d6a36.webp',
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        '69a36e7a-131d-45b7-8800-2b684ac002b6',
+        '20e9a0df-d1b2-4c6f-8e3d-b324b2b92d7a',
+        'Heineken image',
+        'https://i.postimg.cc/k48s43sK/heineken-pint-330ml-476443-1200x1200.webp',
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        '988b615b-20dd-4200-acee-f3c27cfd62e3',
+        '08fa3c5d-6f5e-4d21-bac3-1abfe147d7b6',
+        'Jack Daniels image',
+        'https://i.postimg.cc/hvtXYVXv/photo-1521201795527-a80e2debb4c8.avif',
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        'f78bf348-fdf0-4fd6-9f4a-7d15b2d75f48',
+        '32cfa947-f2db-4a83-bf27-3c7d9f9d06c9',
+        'Grey Goose image',
+        'https://i.postimg.cc/3Nz3ZGpP/image-9b9da7d3-3787-4914-a4f4-3a8582e1ff48-600x.webp',
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        '00d68077-388c-4940-b8ce-b1c5898851c6',
+        'a7d6ef01-ef88-4418-b84d-44e6a9e9d19d',
+        'Baileys Irish Cream image',
+        'https://i.postimg.cc/hjfjbc6Q/images.jpg',
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        'fff48fd4-a939-4956-bc57-67ace0e42b27',
+        '6f9a293b-2a65-4a9b-8217-b21f19353df8',
+        'Corona Extra image',
+        'https://i.postimg.cc/L5FpYSpp/00-D92-FCB-5482-46-A6-9906-5-D3896-A404-EC.jpg',
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        '032d55c0-5436-45b2-8e25-54b2ad22b6aa',
+        '9bd4fe4e-5e8b-4e8f-9d45-d5f43be798d6',
+        'Moët & Chandon image',
+        'https://i.postimg.cc/2jGcBmm7/2a0ee211-13cf-4b6b-aaa0-c710b8a36d90.webp',
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        'a0cd835b-0fa3-490e-bec4-1e07e5320586',
+        '5b2df2d4-56a4-45e5-a2b8-e3db601ca28f',
+        'Smirnoff Ice image',
+        'https://i.postimg.cc/HL14hPdL/0008200072569.webp',
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        '4f58c7a6-a4dc-4085-8d9e-a4d8ba4b50bb',
+        '2b3b6c0e-4f88-4b97-a8a1-506ff2bc26af',
+        'Captain Morgan image',
+        'https://i.postimg.cc/L6rzJ0qV/68e9bccc045554f91a612ee9b1279b26.jpg',
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        'adb707a9-0645-421c-a4a2-2e474bff1fc1',
+        '8f0a629e-b6ec-4dd4-9f68-2b18a62d8c1e',
+        'Patrón Silver image',
+        'https://i.postimg.cc/hvXdj9cw/Patron-Silver-Tequila-40-ABV-750-ml-Bottle-25164305-31d3-486a-b2ac-0bee35c731aa-5440134119a2b08155c2.avif',
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        '6ac157ca-e38f-41f9-bf8e-05bc42608b81',
+        '4ac4c10b-5406-49b8-98bc-841c94cf93a3',
+        ' image',
+        'https://i.postimg.cc/fT0dQjHS/Hennessy-VS-no-box-image-983x700.webp',
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    );
 
--- Insert Product Attributes
-INSERT INTO "ProductAttribute"("Id", "ProductVariantId", "VariantId", "Value",  "IsActive", "CreatedAt", "UpdatedAt") VALUES
-('4774ff82-c78b-4980-8c30-0de860d56b5e', 'a793a3c8-8b6f-4f4e-a300-1427ac2cc7b8', 'c84517ff-e146-4074-a232-4c0b2328d308', 'red', true, CURRENT_TIMESTAMP, NULL),
-('b2ccd888-b875-4b2c-b8aa-33dd90218fa0', 'be3f959b-ad95-442b-9cb1-39a967a15e16', 'c84517ff-e146-4074-a232-4c0b2328d308', 'black', true, CURRENT_TIMESTAMP, NULL),
-('074c3c22-949b-46c9-880a-8fe4114cac98', '022109b8-5a11-46ed-92b5-d5ccf59cf02e', 'c84517ff-e146-4074-a232-4c0b2328d308', 'yellow', true, CURRENT_TIMESTAMP, NULL),
-('3e24ead9-8615-4138-9a82-92ad055d3f98', '928c8dd1-34f1-4f1c-9809-d3f16e7d4952', 'c84517ff-e146-4074-a232-4c0b2328d308', 'gray', true, CURRENT_TIMESTAMP, NULL),
-('b906da22-29e1-46ef-80bb-e3cf00bad8fe', 'ba71c6ef-e152-4689-be26-8d26de5fe45c', 'c84517ff-e146-4074-a232-4c0b2328d308', 'purple', true, CURRENT_TIMESTAMP, NULL),
-('5261ead0-5ad2-4d74-b90d-e4ba9668b4fa', '4bf431cd-85f7-4abd-8499-7c5951e20c87', 'c84517ff-e146-4074-a232-4c0b2328d308', 'black', true, CURRENT_TIMESTAMP, NULL),
-('6aecceb3-9579-4108-bfc4-8aa1046e11a7', 'a628c13b-d9b8-4671-b068-99a412490de0', 'c84517ff-e146-4074-a232-4c0b2328d308', 'blue', true, CURRENT_TIMESTAMP, NULL),
-('053578fa-af25-4bae-945a-c13f79ee1df6', '67514681-93cd-41ca-b8d2-a2d57ebb5006', 'c84517ff-e146-4074-a232-4c0b2328d308', 'gray', true, CURRENT_TIMESTAMP, NULL),
-('fef6a7d1-5502-496e-b912-148f819ecb11', 'b41ec61c-754a-4278-9f83-e0af1ba0d626', 'c84517ff-e146-4074-a232-4c0b2328d308', 'brown', true, CURRENT_TIMESTAMP, NULL),
-('3583a422-92e9-49e5-a1db-15bbb05403cb', 'a860a28b-bc2f-41c0-ba12-fb2e88499547', 'c84517ff-e146-4074-a232-4c0b2328d308', 'black', true, CURRENT_TIMESTAMP, NULL),
-('40c528e7-491c-4053-9239-53c22c824ef6', '03a67d50-9056-42cf-8932-bd7de9622711', '0952150e-7949-4166-a489-9a8eadcd803a', 'L', true, CURRENT_TIMESTAMP, NULL),
-('7d0d36fc-fd54-49d1-9c09-70c1b89e89df', 'b0109acd-fc4e-4ebd-bcd7-d6472b7c5af0', '0952150e-7949-4166-a489-9a8eadcd803a', 'M', true, CURRENT_TIMESTAMP, NULL),
-('ae2aa0ff-e020-4cef-9d24-0f40f24ea01d', '6bcbfe56-043a-4fd2-95a8-96f7e0f5f8a3', '0952150e-7949-4166-a489-9a8eadcd803a', 'XS', true, CURRENT_TIMESTAMP, NULL);
+INSERT INTO
+    "UserAddress" (
+        "Id",
+        "UserId",
+        "Address",
+        "City",
+        "Country",
+        "IsActive",
+        "CreatedAt",
+        "UpdatedAt"
+    )
+VALUES
+    (
+        '945ff41a-fd1d-431b-9a70-2ae6f1a9ec08',
+        'c4055860-c902-4787-ba54-0b34e18a1040',
+        '123 Main St',
+        'Los Angeles',
+        'USA',
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    ),
+    (
+        '83249fea-26a9-4de8-9e2b-a14cf7969d81',
+        'e8489e3b-c12c-4197-8bc1-dac21bc6e82f',
+        '456 Elm St',
+        'New York',
+        'USA',
+        true,
+        CURRENT_TIMESTAMP,
+        NULL
+    );
 
--- Insert User Addresses
-INSERT INTO "UserAddress" ("Id", "UserId", "Address", "City", "Country", "IsActive", "CreatedAt", "UpdatedAt") VALUES
-('945ff41a-fd1d-431b-9a70-2ae6f1a9ec08', 'c4055860-c902-4787-ba54-0b34e18a1040', '123 Main St', 'Los Angeles', 'USA', true, CURRENT_TIMESTAMP, NULL),
-('83249fea-26a9-4de8-9e2b-a14cf7969d81', 'e8489e3b-c12c-4197-8bc1-dac21bc6e82f', '456 Elm St', 'New York', 'USA', true, CURRENT_TIMESTAMP, NULL);
-
--- Insert Products
-INSERT INTO "CategoryProduct" ("CategoriesId", "ProductsId") VALUES
-('e0a21115-170c-438c-9b26-71ed8440b62f', '80381bb1-1d22-475a-8b7e-c4b84d02be0e'),
-('4e5cb421-968e-4f85-b654-a96e0ab0e3f0', '80381bb1-1d22-475a-8b7e-c4b84d02be0e'),
-('4e5cb421-968e-4f85-b654-a96e0ab0e3f0', 'd98f6668-2b9f-4a7c-a866-99a73921eed6'),
-('3e76ea5d-aaaf-468b-ace8-e4944caea1bf', 'd98f6668-2b9f-4a7c-a866-99a73921eed6'),
-('cff773e7-398e-4820-987e-47c171efdee5', 'fba39c75-29fb-499f-a88a-b0863c1d0f2a'),
-('d7c2fa22-0abf-461f-942d-a4e235f46b8c', 'fba39c75-29fb-499f-a88a-b0863c1d0f2a'),
-('111687c4-9ff6-46aa-98b6-3a55c0d880fa', 'fba39c75-29fb-499f-a88a-b0863c1d0f2a'),
-('111687c4-9ff6-46aa-98b6-3a55c0d880fa', '53d78e6d-decc-4244-b116-18bab2f24f09'),
-('cff773e7-398e-4820-987e-47c171efdee5', '53d78e6d-decc-4244-b116-18bab2f24f09');
+INSERT INTO
+    "CategoryProduct" ("CategoriesId", "ProductsId")
+VALUES
+    (
+        '4e5cb421-968e-4f85-b654-a96e0ab0e3f0',
+        '20e9a0df-d1b2-4c6f-8e3d-b324b2b92d7a'
+    ),
+    (
+        '4e5cb421-968e-4f85-b654-a96e0ab0e3f0',
+        '6f9a293b-2a65-4a9b-8217-b21f19353df8'
+    ),
+    (
+        '4e5cb421-968e-4f85-b654-a96e0ab0e3f0',
+        '5b2df2d4-56a4-45e5-a2b8-e3db601ca28f'
+    ),
+    (
+        '05563658-5b6d-4022-8920-d3a2784b2033',
+        '9bd4fe4e-5e8b-4e8f-9d45-d5f43be798d6'
+    ),
+    (
+        '0dc28a1d-8619-4dc7-9667-cd38266d37db',
+        '08fa3c5d-6f5e-4d21-bac3-1abfe147d7b6'
+    ),
+    (
+        '0dc28a1d-8619-4dc7-9667-cd38266d37db',
+        '32cfa947-f2db-4a83-bf27-3c7d9f9d06c9'
+    ),
+    (
+        '0dc28a1d-8619-4dc7-9667-cd38266d37db',
+        '2b3b6c0e-4f88-4b97-a8a1-506ff2bc26af'
+    ),
+    (
+        '0dc28a1d-8619-4dc7-9667-cd38266d37db',
+        '8f0a629e-b6ec-4dd4-9f68-2b18a62d8c1e'
+    ),
+    (
+        '0dc28a1d-8619-4dc7-9667-cd38266d37db',
+        '4ac4c10b-5406-49b8-98bc-841c94cf93a3'
+    ),
+    (
+        'c5f76b16-5662-42b3-841e-1378638440e6',
+        'a7d6ef01-ef88-4418-b84d-44e6a9e9d19d'
+    ),
+    (
+        '13e8fb28-8fab-4c2f-b5e7-48b5bd43f624',
+        'b7f8461c-38a5-4d2a-b719-830592b268a5'
+    ),
+    (
+        '13e8fb28-8fab-4c2f-b5e7-48b5bd43f624',
+        '13c45b8e-8e5f-4673-9d89-3b2452c9d91d'
+    ),
+    (
+        '13e8fb28-8fab-4c2f-b5e7-48b5bd43f624',
+        '89eeb09a-3fda-4e4b-bbe1-6c0d9a69e96e'
+    ),
+    (
+        '5d04716c-cfdf-4f52-9855-acfeb23f6449',
+        '8db8e9a5-3c2f-4a27-87bb-293f41ec198b'
+    ),
+    (
+        '106b3d2b-a416-4a23-9632-928a44a99228',
+        'edc97824-9f3b-4e82-8e79-34e7c93fda4f'
+    );
