@@ -4,15 +4,15 @@ using Microsoft.EntityFrameworkCore;
 namespace Backend.Infrastructure.Repositories.Concretes;
 
 public class UnitOfWork(DbContext context, IOrderRepository ordersRepository,
-    IPaymentTransactionRepository paymentTransactionRepository, IUserAddressRepository userAddressRepository,
-    IOrderItemRepository orderItemRepository, IProductRepository productRepository, IUserRepository userRepository) : IUnitOfWork
+    IPaymentTransactionRepository paymentTransactionRepository,
+    IOrderItemRepository orderItemRepository, IProductRepository productRepository) : IUnitOfWork
 {
     public IOrderRepository OrdersRepository { get; } = ordersRepository;
     public IPaymentTransactionRepository PaymentTransactionRepository { get; } = paymentTransactionRepository;
-    public IUserAddressRepository UserAddressRepository { get; } = userAddressRepository;
+
     public IOrderItemRepository OrderItemRepository { get; } = orderItemRepository;
     public IProductRepository ProductRepository { get; } = productRepository;
-    public IUserRepository UserRepository { get; } = userRepository;
+
 
     private readonly DbContext _context = context;
 

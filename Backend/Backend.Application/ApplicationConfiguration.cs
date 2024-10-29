@@ -1,6 +1,4 @@
 using Backend.Application.Profiles;
-using Backend.Application.Services.Auth.Concretes;
-using Backend.Application.Services.Auth.Interfaces;
 using Backend.Application.Services.Discounts.Abstracts;
 using Backend.Application.Services.Discounts.Concretes;
 using Backend.Application.Services.Discounts.Interfaces;
@@ -22,9 +20,9 @@ namespace Backend.Application
 
         public static void AddApplication(this IServiceCollection services)
         {
-            services.AddAutoMapper(typeof(UserProfile));
+            services.AddAutoMapper(typeof(ProductProfile));
             services.AddMediatR(cfg =>
-            cfg.RegisterServicesFromAssemblies(typeof(UserProfile).Assembly)
+            cfg.RegisterServicesFromAssemblies(typeof(ProductProfile).Assembly)
             );
             string authority = Env.GetString("AUTH_JWT_AUTHORITY");
             string audience = Env.GetString("AUTH_JWT_AUDIENCE");
@@ -63,8 +61,6 @@ namespace Backend.Application
             services.AddScoped<IComboRepository, ComboRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IImageRepository, ImageRepository>();
-            services.AddScoped<IUserAddressRepository, UserAddressRepository>();
-            services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IPaymentTransactionRepository, PaymentTransactionRepository>();
             services.AddScoped<IOrderItemRepository, OrderItemRepository>();
             services.AddScoped<IInventoryService, InventoryService>();
@@ -93,8 +89,6 @@ namespace Backend.Application
                     ]
                 )
             );
-
-            services.AddSingleton<IJwtDecoder, JwtDecoder>();
         }
     }
 }

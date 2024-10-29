@@ -5,11 +5,10 @@ namespace Backend.Domain.Entities.Concretes;
 
 public class Order : BaseEntity
 {
-    public Guid UserId { get; set; }
     public DateTime OrderDate { get; set; }
     public OrderStatus OrderStatus { get; set; }
     public double TotalPrice { get; set; }
-    public User User { get; set; }
+    public string? UserEmail { get; set; }
     public PaymentTransaction PaymentTransaction { get; set; }
     public ICollection<OrderItem> OrderItems { get; set; }
 }
