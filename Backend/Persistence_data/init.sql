@@ -70,9 +70,9 @@ CREATE TABLE
         with
             time zone,
             "IsActive" boolean NOT NULL,
-            "ComboImageId" uuid NOT NULL,
+            "ImageId" uuid NOT NULL,
             CONSTRAINT "PK_Combo" PRIMARY KEY ("Id"),
-            CONSTRAINT "ComboImageId" FOREIGN KEY ("ComboImageId") REFERENCES "ComboImage" ("Id") MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION NOT VALID
+            CONSTRAINT "ImageId" FOREIGN KEY ("ImageId") REFERENCES "ComboImage" ("Id") MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION NOT VALID
     );
 
 CREATE TABLE

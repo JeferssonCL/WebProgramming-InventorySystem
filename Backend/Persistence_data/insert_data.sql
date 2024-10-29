@@ -593,7 +593,7 @@ INSERT INTO
         "Description",
         "Price",
         "DiscountPercent",
-        "ComboImageId",
+        "ImageId",
         "IsActive",
         "CreatedAt",
         "UpdatedAt"
