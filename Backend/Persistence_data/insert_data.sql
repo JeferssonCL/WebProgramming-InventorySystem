@@ -332,7 +332,7 @@ VALUES
         500,
         true,
         CURRENT_TIMESTAMP,
-        NULL
+        CURRENT_TIMESTAMP - INTERVAL '1 month',
     ),
     (
         '13c45b8e-8e5f-4673-9d89-3b2452c9d91d',
@@ -449,7 +449,6 @@ VALUES
         355,
         true,
         CURRENT_TIMESTAMP,
-        NULL
     ),
     (
         '9bd4fe4e-5e8b-4e8f-9d45-d5f43be798d6',
