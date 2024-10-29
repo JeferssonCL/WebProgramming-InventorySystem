@@ -12,7 +12,7 @@ function CompleteOrder() {
         id: item.id,
         name: item.name,
         price: item.price,
-        imageUrl: item.image.length > 0 ? item.image[0].url : '',
+        imageUrl: item.image.url,
         quantity: item.quantity
       }));
 

@@ -21,7 +21,7 @@ export function Header() {
 
   return (
     <header className="header">
-      <img src="public/logo/s.png" alt="Merchant logo" />
+      <img src="./public/logo/s.png" alt="Merchant logo" />
       <div className="header-actions">
         {user ? (
           <>
@@ -38,5 +38,5 @@ export function Header() {
         )}
       </div>
     </header>
-  ); 
+  );
 }
