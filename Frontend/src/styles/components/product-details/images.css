@@ -1,0 +1,25 @@
+.images-section {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.images-list-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.image-section {
+  width: 470px;
+  height: 470px;
+  border-radius: 10px;
+}
+
+.current-image {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+}

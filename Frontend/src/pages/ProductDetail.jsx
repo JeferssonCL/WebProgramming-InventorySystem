@@ -1,13 +1,13 @@
-import { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
-import '../styles/pages/productDetail.css'
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import "../styles/pages/productDetail.css";
+import { Images } from "../components/ProductDetails/Images";
 
 export function ProductDetail() {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchProductById = async () => {
@@ -15,10 +15,11 @@ export function ProductDetail() {
         const response = await fetch(`http://localhost:5163/api/Product/${id}`);
 
         if (!response.ok) {
-          throw new Error('Failed to fetch product details');
+          throw new Error("Failed to fetch product details");
         }
 
         const data = await response.json();
+        console.log(data);
         setProduct(data);
         setLoading(false);
       } catch (error) {
@@ -34,16 +35,32 @@ export function ProductDetail() {
   if (error) return <p>Error: {error}</p>;
 
   return (
-    <div className="product-detail">
-      <button onClick={() => navigate('/')} className='back-catalog-button'>Back to Catalog</button>
-      <img
-        src={product.images?.[0]?.url || 'https://via.placeholder.com/150'}
-        alt={product.name}
-        className="product-image"
-      />
-      <h2>{product.name}</h2>
-      <p>{product.description}</p>
-      <p className="product-price">Price: ${product.price}</p>
+    <div className="product-detail-page">
+      <div className="product-info-section">
+        <Images images={product.images} />
+        <div className="info-section">
+          <h2 className="product-detail-name">{product.name}</h2>
+          <p className="product-detail-description">{product.description}</p>
+          <div className="product-detail-price">
+            <p className="currency-price">$us</p>
+            <p className="price">{product.price}</p>
+          </div>
+          <table className="more-info-table">
+            <tr>
+              <td>Alcohol percentage</td>
+              <td>{product.alcoholPercentage} %</td>
+            </tr>
+            <tr>
+              <td>Brand</td>
+              <td>{product.brand}</td>
+            </tr>
+            <tr>
+              <td>Volume</td>
+              <td>{product.volume} ml</td>
+            </tr>
+          </table>
+        </div>
+      </div>
     </div>
   );
 }
