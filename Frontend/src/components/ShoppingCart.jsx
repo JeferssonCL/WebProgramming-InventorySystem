@@ -34,7 +34,7 @@ export function ShoppingCart() {
                   id={item.id}
                   name={item.name}
                   price={item.price}
-                  image={item.image[0].url}
+                  image={item.image && item.image[0] ? item.image[0].url : ""}
                   quantity={item.quantity}
                   isAvailableStock={item.stock > item.quantity}
                 />

@@ -2,6 +2,7 @@ import { Card, Typography, CardMedia, CircularProgress } from '@mui/material';
 import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import PropTypes from 'prop-types';
 import {useNavigate} from "react-router-dom";
+import AddToCartButton from "./AddToCardButton.jsx";
 
 const ProductOffersCard = ({ product }) => {
     const navigate = useNavigate();
@@ -9,22 +10,22 @@ const ProductOffersCard = ({ product }) => {
     return(
         <Card
             variant="outlined"
-            className="p-5 w-full flex flex-row space-x-3 justify-start cursor-pointer"
-            onClick={() => {
-                navigate("/product/" + product.id);
-            }}
+            className="p-5 w-full flex flex-row space-x-3 justify-start"
         >
-            {product.images.lenght > 0
-                ? <CardMedia
-                    component="img"
-                    alt="Combo of products image"
-                    src={product.image?.[0]?.url || "default-image-url.jpg"}
-                    sx={{width: { xs: '100%', sm: 120 },
-                    }}
-                /> : <CircularProgress/>
-            }
+            <CardMedia
+                component="img"
+                alt="Combo of products image"
+                src={product.images?.[0]?.url || "default-image-url.jpg"}
+                sx={{width: { xs: '100%', sm: 120 },
+                }}
+            />
             <div className="w-full">
-                <div className="flex flex-row justify-between">
+                <div
+                    className="flex flex-row justify-between"
+                    onClick={() => {
+                        navigate("/product/" + product.id);
+                    }}
+                >
                     <label className="font-bold text-lg">{product.name}</label>
                     <div className="flex flex-row items-center align-top font-light bg-red-600 text-white pr-3 pl-3 pt-0.5 pb-0.5">
                         <LocalOfferIcon fontSize="small"/>
@@ -35,6 +36,7 @@ const ProductOffersCard = ({ product }) => {
                     <label className="font-light pt-5">{product.description}</label>
                     <label className="text-sm text-end line-through">Price: {product.price} $</label>
                     <label className="text-end ">Price: <b>{product.priceWithDiscount} $</b></label>
+                    <AddToCartButton product={product} isProduct={true}></AddToCartButton>
                 </div>
             </div>
         </Card>

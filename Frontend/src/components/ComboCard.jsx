@@ -2,6 +2,9 @@ import { Card, Typography, CardMedia } from '@mui/material';
 import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import PropTypes from 'prop-types';
 import {useNavigate} from "react-router-dom";
+import AddToCartButton from "./AddToCardButton.jsx";
+import {useContext} from "react";
+import {ProductsContext} from "../Context/ProductsContext.jsx";
 
 const ComboCard = ({ combo }) => {
     const navigate = useNavigate();
@@ -9,10 +12,7 @@ const ComboCard = ({ combo }) => {
     return(
         <Card
             variant="outlined"
-            className="p-5 w-full flex flex-col justify-start cursor-pointer space-y-2"
-            onClick={() => {
-                navigate("/combo/" + combo.id);
-            }}
+            className="p-5 w-full flex flex-col justify-start space-y-2"
         >
             <img
                 className="h-60 w-full object-cover"
@@ -20,7 +20,12 @@ const ComboCard = ({ combo }) => {
                 alt="Combo of products image"
             />
             <div className="w-full h-full">
-                <div className="flex flex-row justify-between">
+                <div
+                    className="flex flex-row justify-between cursor-pointer"
+                    onClick={() => {
+                        navigate("/combo/" + combo.id);
+                    }}
+                >
                     <label className="font-bold text-lg h-full">{combo.name}</label>
                     <div className="flex flex-row items-center align-top font-light bg-red-600 text-white pr-3 pl-3 pt-0.5 pb-0.5">
                         <LocalOfferIcon fontSize="small"/>
@@ -37,6 +42,7 @@ const ComboCard = ({ combo }) => {
                     <div className="flex flex-col">
                         <label className="text-sm text-end line-through">Price: {combo.price} $</label>
                         <label className="text-end ">Price: <b>{combo.price - (combo.price * combo.discountPercent / 100)} $</b></label>
+                        <AddToCartButton product={combo} isProduct={false}></AddToCartButton>
                     </div>
                 </div>
             </div>

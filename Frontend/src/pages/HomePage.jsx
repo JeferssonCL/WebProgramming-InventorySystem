@@ -75,6 +75,7 @@ export function HomePage() {
                         objectFit: 'fill',
                         transition: 'opacity 0.5s ease-in-out',
                         opacity: isFading ? 0 : 1,
+                        zIndex: '-1',
                     }}
                 />
 

@@ -23,18 +23,11 @@ export const ProductsProvider = ({ children }) => {
     }, [products]);
 
     const addProduct = (newProduct) => {
-        const attributesMap = getAttributesMap(newProduct.variants);
-        const variantName = Object.keys(attributesMap).map(key => {
-                                        const firstValue = attributesMap[key][0];
-                                        return `${key}: ${firstValue.attributes.value}`;
-                                    }).join(', ');
         const productToStore = {
             id: newProduct.id,
             name: newProduct.name,
             price: newProduct.price,
             image: newProduct.images,
-            variant: variantName,
-            attributesMap: attributesMap,
             quantity: 1,
             stock : newProduct.stock
         };
@@ -48,30 +41,6 @@ export const ProductsProvider = ({ children }) => {
             });
         }
     };
-
-    const getAttributesMap = (variants) => {
-        const attributesMap = {};
-
-        variants.forEach(variant => {
-            variant.attributes.forEach(attribute => {
-                if (attributesMap[attribute.name]) {
-                    if (!attributesMap[attribute.name].includes(variant)) {
-                        attributesMap[attribute.name].push(variant);
-                    }
-                } else {
-                    attributesMap[attribute.name] = [variant];
-                }
-            });
-        });
-
-        return attributesMap;
-    }
-
-    const getAttributesSet = (id, attributesMap) =>  {
-        return Object.keys(attributesMap).map(key => {
-            return selectedAttributes[key+'-'+id];
-        }).join(',');
-    }
 
     const removeProductById = (id) => {
         setProducts((prevProducts) => {
@@ -111,7 +80,6 @@ export const ProductsProvider = ({ children }) => {
             handleIncreaseQuantity,
             selectedAttributes,
             handleAttributeChange,
-            getAttributesSet
         }}>
             {children}
         </ProductsContext.Provider>
