@@ -15,7 +15,10 @@ public class ComboMap : IEntityTypeConfiguration<Combo>
         builder.Property(p => p.Description).IsRequired();
         builder.Property(p => p.DiscountPercent).IsRequired();
 
-        builder.HasMany(p => p.Products)
-            .WithMany(c => c.Combos);
+        builder.HasMany(c => c.Products)
+            .WithMany(p => p.Combos);
+
+        builder.HasOne(c => c.Image)
+            .WithOne(i => i.Combo);
     }
 }

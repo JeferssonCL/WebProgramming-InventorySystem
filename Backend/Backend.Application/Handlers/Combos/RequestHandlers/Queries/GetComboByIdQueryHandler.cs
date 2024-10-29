@@ -6,12 +6,13 @@ using MediatR;
 
 namespace Backend.Application.Handlers.Combos.RequestHandlers.Queries;
 
-public class GetComboByIdQueryHandler(IComboRepository comboRepository)
+public class GetComboByIdQueryHandler(IComboRepository comboRepository, IImageRepository imageRepository)
     : IRequestHandler<GetComboByIdQuery, ComboDto?>
 {
     public async Task<ComboDto?> Handle(GetComboByIdQuery request, CancellationToken cancellationToken)
     {
         var combo = await comboRepository.GetByIdAsync(request.Id);
+        var image = await imageRepository.GetByIdAsync(combo!.ImageId);
         return new ComboDto
         {
             Id = combo!.Id,
@@ -19,6 +20,7 @@ public class GetComboByIdQueryHandler(IComboRepository comboRepository)
             Description = combo.Description,
             Price = combo.Price,
             DiscountPercent = combo.DiscountPercent,
+            ComboImageDto = new ComboImageDto { AltText = image!.AltText, Url = image.Url },
             Products = combo.Products.Select(p => new ProductComboDto
             {
                 Name = p.Name,
