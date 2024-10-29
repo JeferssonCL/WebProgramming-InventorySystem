@@ -121,7 +121,7 @@ export function Signup() {
     let user = userCredential.user;
 
     try {
-      await axios.post('http://localhost:5163/api/auth/signup', {
+      await axios.post('http://localhost:5108/api/auth/signup', {
         name: user.displayName,
         email: user.email,
         IdentityId: user.uid

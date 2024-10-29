@@ -4,14 +4,10 @@ using DotNetEnv;
 using Microsoft.EntityFrameworkCore;
 using Backend.Application;
 using Backend.Infrastructure.Context;
-using Backend.Infrastructure.Repositories.Interfaces;
-using Backend.Infrastructure.Repositories.Concretes;
-using Backend.Application.Services.Auth.Interfaces;
-using Backend.Application.Services.Auth.Concretes;
 
 var builder = WebApplication.CreateBuilder(args);
 
-Env.Load("../.env");
+Env.Load("../../.env");
 
 builder.Services.AddCors(options =>
 {
