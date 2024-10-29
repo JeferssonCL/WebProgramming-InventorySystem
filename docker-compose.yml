@@ -12,7 +12,7 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
       - ./Persistence_data/backend/init.sql:/docker-entrypoint-initdb.d/1.sql
-    #  - ./Persistence_data/backend/insert_data.sql:/docker-entrypoint-initdb.d/2.sql
+      - ./Persistence_data/backend/insert_data.sql:/docker-entrypoint-initdb.d/2.sql
 
   postgres_user_service_db:
     container_name: postgres_user_service_db
