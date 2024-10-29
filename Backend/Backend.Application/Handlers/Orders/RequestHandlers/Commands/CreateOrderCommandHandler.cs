@@ -40,25 +40,16 @@ public class CreateOrderCommandHandler : IRequestHandler<CreateOrderCommand, str
             var transactionStatus = sessionWithLineItems.PaymentStatus ?? "Unknown";
             var orderStatus = MapStripeStatusToOrderStatus(transactionStatus);
 
-            User? user = await _unitOfWork.UserRepository.GetUserByIdentityId(request.OrderToBeCreated.Customer.Id);
-
-
-            if (user == null)
-            {
-                throw new InvalidOperationException("User not found.");
-            }
 
 
             var order = new Order
             {
-                UserId = user.Id,
+                UserEmail = request.OrderToBeCreated.Customer.Email,
                 OrderDate = DateTime.UtcNow,
                 OrderStatus = orderStatus,
                 TotalPrice = sessionWithLineItems.AmountTotal ?? 0,
             };
             await _unitOfWork.OrdersRepository.AddAsync(order);
-
-            await HandleUserAddress(request.OrderToBeCreated.Customer, user.Id);
 
 
             var orderItems = sessionWithLineItems.LineItems.Data.Select(item => new OrderItem
@@ -119,20 +110,5 @@ public class CreateOrderCommandHandler : IRequestHandler<CreateOrderCommand, str
             "card" => PaymentMethod.CreditCard,
             _ => throw new ArgumentOutOfRangeException()
         };
-    }
-
-
-    private async Task HandleUserAddress(CustomerDTO customer, Guid userId)
-    {
-
-        var newUserAddress = new UserAddress
-        {
-            UserId = userId,
-            Address = customer.Address,
-            City = customer.City,
-            Country = customer.Country
-        };
-
-        await _unitOfWork.UserAddressRepository.AddAsync(newUserAddress);
     }
 }

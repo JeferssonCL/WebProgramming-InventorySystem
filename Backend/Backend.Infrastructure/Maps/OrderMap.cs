@@ -13,14 +13,12 @@ public class OrderMap : IEntityTypeConfiguration<Order>
         builder.Property(o => o.Id).ValueGeneratedOnAdd();
         builder.Property(o => o.OrderDate).IsRequired();
         builder.Property(o => o.TotalPrice).IsRequired();
+        builder.Property(o => o.UserEmail).IsRequired();
+
 
         builder.HasMany(o => o.OrderItems)
             .WithOne(oi => oi.Order)
             .HasForeignKey(oi => oi.OrderId);
-
-        builder.HasOne(o => o.User)
-            .WithMany(u => u.Orders)
-            .HasForeignKey(o => o.UserId);
 
         builder.HasOne(o => o.PaymentTransaction)
             .WithOne(pt => pt.Order)
