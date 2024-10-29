@@ -15,7 +15,7 @@ const ComboCard = ({ combo }) => {
         >
             <img
                 className="h-60 w-full object-cover"
-                src="https://images.pexels.com/photos/340996/pexels-photo-340996.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                src={combo.comboImageDto.url}
                 alt="Combo of products image"
             />
             <div className="w-full h-full">

@@ -14,7 +14,7 @@ const ProductOffersCard = ({ product }) => {
                 navigate("/product/" + product.id);
             }}
         >
-            {/*product.images.lenght > 0
+            {product.images.lenght > 0
                 ? <CardMedia
                     component="img"
                     alt="Combo of products image"
@@ -22,14 +22,7 @@ const ProductOffersCard = ({ product }) => {
                     sx={{width: { xs: '100%', sm: 120 },
                     }}
                 /> : <CircularProgress/>
-            */}
-            <CardMedia
-                component="img"
-                alt="Combo of products image"
-                src="https://images.pexels.com/photos/338711/pexels-photo-338711.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"git
-                sx={{width: { xs: '100%', sm: 120 },
-                }}
-            />
+            }
             <div className="w-full">
                 <div className="flex flex-row justify-between">
                     <label className="font-bold text-lg">{product.name}</label>
