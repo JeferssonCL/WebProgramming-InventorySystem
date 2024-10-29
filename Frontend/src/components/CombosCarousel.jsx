@@ -10,7 +10,7 @@ const CombosCarousel = () => {
     const [combosListToReceive, setCombosListToReceive] = useState([]);
 
     useEffect(() => {
-        const apiUrl = "http://localhost:5163/api/Combo?page=1&pageSize=10";
+        const apiUrl = "http://localhost:5163/api/Combo/discount?page=1&pageSize=10";
 
         const fetchProducts = async () => {
             const response = await axios.get(apiUrl);

@@ -49,7 +49,7 @@ export function HomePage() {
                 width="100%"
                 height="400px"
                 className="mb-10"
-                sx={{ overflow: 'hidden' }}
+                sx={{ overflow: 'hidden', zIndex: '-1' }}
             >
                 <IconButton
                     onClick={handlePrev}
@@ -75,7 +75,6 @@ export function HomePage() {
                         objectFit: 'fill',
                         transition: 'opacity 0.5s ease-in-out',
                         opacity: isFading ? 0 : 1,
-                        zIndex: '-1',
                     }}
                 />
 

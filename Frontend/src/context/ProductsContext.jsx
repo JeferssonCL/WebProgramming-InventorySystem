@@ -27,7 +27,7 @@ export const ProductsProvider = ({ children }) => {
             id: newProduct.id,
             name: newProduct.name,
             price: newProduct.price,
-            image: newProduct.images,
+            image: newProduct.image,
             quantity: 1,
             stock : newProduct.stock
         };

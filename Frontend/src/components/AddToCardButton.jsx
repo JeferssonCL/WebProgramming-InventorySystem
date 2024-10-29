@@ -8,13 +8,21 @@ const AddToCartButton = ({product, isProduct}) => {
         return {
             id: combo.id,
             name: combo.name,
-            price: combo.price,
-            image: [{
-                url: combo.comboImageDto.url,
-                altText: combo.comboImageDto.altText
-            }],
+            price: combo.priceWithDiscount,
+            image: combo.comboImageDto,
             quantity: 1,
-            stock : combo.stock
+            stock : 100
+        }
+    }
+
+    const ProductShoppingCartDTO = (product) => {
+        return {
+            id: product.id,
+            name: product.name,
+            price: product.priceWithDiscount,
+            image: product.images[0] ?? [],
+            quantity: 1,
+            stock : 100
         }
     }
 
@@ -23,7 +31,7 @@ const AddToCartButton = ({product, isProduct}) => {
             className="bg-[#7790ED] rounded-s pl-3 pr-3 pt-1 pb-1 text-center text-white cursor-pointer"
             onClick={() => {
                 console.log(isProduct);
-                addProduct(isProduct ? product : ComboToProductDTO(product))
+                addProduct(isProduct ? ProductShoppingCartDTO(product) : ComboToProductDTO(product))
             }}
         >
             Add to Card

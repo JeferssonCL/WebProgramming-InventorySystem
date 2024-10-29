@@ -41,7 +41,7 @@ const ComboCard = ({ combo }) => {
                     </ul>
                     <div className="flex flex-col">
                         <label className="text-sm text-end line-through">Price: {combo.price} $</label>
-                        <label className="text-end ">Price: <b>{combo.price - (combo.price * combo.discountPercent / 100)} $</b></label>
+                        <label className="text-end ">Price: <b>{combo.priceWithDiscount} $</b></label>
                         <AddToCartButton product={combo} isProduct={false}></AddToCartButton>
                     </div>
                 </div>
