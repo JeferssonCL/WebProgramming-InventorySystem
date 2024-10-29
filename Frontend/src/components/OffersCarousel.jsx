@@ -5,127 +5,12 @@ import { KeyboardArrowLeft, KeyboardArrowRight } from "@mui/icons-material";
 import ProductOffersCard from "./ProductOnOffertCard.jsx";
 import axios from "axios";
 
-const productsWithOffers = [
-    {
-        name: "Some Name",
-        description: "Lorem ipuson dolor bae, siet maet dues milis",
-        price: 120,
-        discount: 10,
-        image: [
-            {
-                url: "https://images.pexels.com/photos/2286972/pexels-photo-2286972.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-                altTexT: "Some alt text"
-            },
-            {
-                url: "https://images.pexels.com/photos/2286972/pexels-photo-2286972.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-                altTexT: "Some alt text"
-            }
-        ],
-    },
-    {
-        name: "Some Name",
-        description: "Lorem ipuson dolor bae, siet maet dues milis",
-        price: 120,
-        discount: 10,
-        image: [
-            {
-                url: "https://images.pexels.com/photos/2286972/pexels-photo-2286972.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-                altTexT: "Some alt text"
-            },
-            {
-                url: "https://images.pexels.com/photos/2286972/pexels-photo-2286972.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-                altTexT: "Some alt text"
-            }
-        ],
-    },
-    {
-        name: "Some Name",
-        description: "Lorem ipuson dolor bae, siet maet dues milis",
-        price: 120,
-        discount: 10,
-        image: [
-            {
-                url: "https://images.pexels.com/photos/2286972/pexels-photo-2286972.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-                altTexT: "Some alt text"
-            },
-            {
-                url: "https://images.pexels.com/photos/2286972/pexels-photo-2286972.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-                altTexT: "Some alt text"
-            }
-        ],
-    },
-    {
-        name: "Some Name",
-        description: "Lorem ipuson dolor bae, siet maet dues milis",
-        price: 120,
-        discount: 10,
-        image: [
-            {
-                url: "https://images.pexels.com/photos/2286972/pexels-photo-2286972.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-                altTexT: "Some alt text"
-            },
-            {
-                url: "https://images.pexels.com/photos/2286972/pexels-photo-2286972.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-                altTexT: "Some alt text"
-            }
-        ],
-    },
-    {
-        name: "Some Name",
-        description: "Lorem ipuson dolor bae, siet maet dues milis",
-        price: 120,
-        discount: 10,
-        image: [
-            {
-                url: "https://images.pexels.com/photos/2286972/pexels-photo-2286972.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-                altTexT: "Some alt text"
-            },
-            {
-                url: "https://images.pexels.com/photos/2286972/pexels-photo-2286972.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-                altTexT: "Some alt text"
-            }
-        ],
-    },
-    {
-        name: "Some Name",
-        description: "Lorem ipuson dolor bae, siet maet dues milis",
-        price: 120,
-        discount: 10,
-        image: [
-            {
-                url: "https://images.pexels.com/photos/2286972/pexels-photo-2286972.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-                altTexT: "Some alt text"
-            },
-            {
-                url: "https://images.pexels.com/photos/2286972/pexels-photo-2286972.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-                altTexT: "Some alt text"
-            }
-        ],
-    },
-    {
-        name: "Some Name",
-        description: "Lorem ipuson dolor bae, siet maet dues milis",
-        price: 120,
-        discount: 10,
-        image: [
-            {
-                url: "https://images.pexels.com/photos/2286972/pexels-photo-2286972.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-                altTexT: "Some alt text"
-            },
-            {
-                url: "https://images.pexels.com/photos/2286972/pexels-photo-2286972.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-                altTexT: "Some alt text"
-            }
-        ],
-    }
-];
-
 const OffersCarousel = () => {
     const [activeStep, setActiveStep] = useState(0);
     const [productsWithOffer, setProductsWithOffer] = useState([]);
 
     useEffect(() => {
-        const apiUrl = "http://localhost:5163/api/Combo?page=1&pageSize=10";
+        const apiUrl = "http://localhost:5163/api/Discounts?page=1&limit=10";
 
         const fetchProducts = async () => {
             const response = await axios.get(apiUrl);
@@ -136,7 +21,7 @@ const OffersCarousel = () => {
     }, []);
 
 
-    const maxSteps = Math.ceil(productsWithOffers.length / 3);
+    const maxSteps = Math.ceil(productsWithOffer.length / 3);
 
     const handleNext = () => {
         setActiveStep((prevStep) => (prevStep + 1) % maxSteps);
@@ -169,9 +54,9 @@ const OffersCarousel = () => {
                             gap: 2,
                         }}
                     >
-                        {productsWithOffers
+                        {productsWithOffer
                             .slice(groupIndex * 3, groupIndex * 3 + 3)
-                            .map((product, index) => (
+                            .map((product) => (
                                 <ProductOffersCard product={product}>
                                 </ProductOffersCard>
                             ))}

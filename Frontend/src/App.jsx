@@ -28,7 +28,7 @@ function App() {
           <AuthProvider>
             <Header/>
             <Routes>
-              <Route path='/' element={<Home/>} />
+              <Route path='/' element={<HomePage/>} />
               <Route path="/product/:id" element={<ProductDetail />} />
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<Signup />} />
@@ -59,12 +59,6 @@ function App() {
               <Route
                 path="*"
                 element={<Navigate to="/" replace />}
-              />
-              <Route
-                path="/home-page"
-                element={
-                  <HomePage></HomePage>
-                }
               />
             </Routes>
             <Footer/>
