@@ -75,18 +75,19 @@ namespace Backend.Application
                     [
                         new StockAgeDiscount(new Dictionary<int, double>
                             {
-                                { 9, 30.0 },
-                                { 6, 20.0 },
-                                { 3, 10.0 }
+                                { 3, 30.0 },
+                                { 2, 20.0 },
+                                { 1, 5.0 }
                             }
                             ),
                         new BrandDiscount(
                             new Dictionary<string, double>
                             {
-                                { "Brand A", 10.0 },
-                                { "Brand B", 9.0 },
-                                { "Brand C", 12.0 },
-                                { "Brand D", 8.0 }
+                                { "Pepsi", 10.0 },
+                                { "Jack Daniels", 9.0 },
+                                { "Corona", 12.0 },
+                                { "Hennessy", 8.0 }
+
                             }
                         )
                     ]
