@@ -15,6 +15,7 @@ import PaymentStatusFailed from './pages/PaymentStatusSuccess'
 import { AuthProvider } from './Context/AuthContext'
 import { PrivateRoute } from './Context/PrivateRoute'
 import{Toaster} from 'sonner'
+import { ComboDetail } from './pages/ComboDetail'
 
 function App() {
 
@@ -28,6 +29,7 @@ function App() {
             <Routes>
               <Route path='/' element={<Home/>} />
               <Route path="/product/:id" element={<ProductDetail />} />
+              <Route path="/combo/:id" element={<ComboDetail />} />
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<Signup />} />
               <Route
