@@ -12,7 +12,7 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
       - ./Persistence_data/init.sql:/docker-entrypoint-initdb.d/1.sql
-    #  - ./Persistence_data/insert_data.sql:/docker-entrypoint-initdb.d/2.sql
+      - ./Persistence_data/insert_data.sql:/docker-entrypoint-initdb.d/2.sql
 
   pgadmin:
     image: dpage/pgadmin4
